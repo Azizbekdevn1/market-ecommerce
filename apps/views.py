@@ -98,3 +98,15 @@ class WishlistView(View):
         if not created:
             wishlist.delete()
         return redirect('/')
+
+
+class WishlistsView(ListView):
+    template_name = 'apps/product/wishlist.html'
+    model = WishList
+    context_object_name = 'wishlists'
+
+
+class WishlistRemoveView(View):
+    def get(self, request, product_id):
+        Wishlist.objects.filter(product_id=product_id, user_id=self.request.user.id).delete()
+        return redirect(reverse('wishlist_list'))

@@ -2099,7 +2099,26 @@
                                    title="Switch to dark theme"><span class="fas fa-moon fs-0"></span></label>
                         </div>
                     </li>
-                        {% if user.is_authenticated %}
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link px-0 notification-indicator notification-indicator-warning notification-indicator-fill fa-icon-wait"
+                               href="{% url 'wishlist_list' %}">
+                                <svg class="svg-inline--fa fa-shopping-cart fa-w-18" data-fa-transform="shrink-7"
+                                     style="font-size: 33px;transform-origin: 0.5625em 0.5em;" aria-hidden="true"
+                                     focusable="false" data-prefix="fas" data-icon="shopping-cart" role="img"
+                                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg="">
+                                    <g transform="translate(288 256)">
+                                        <g transform="translate(0, 0)  scale(0.5625, 0.5625)  rotate(0 0 0)">
+                                            <path fill="currentColor"
+                                                  d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z"
+                                                  transform="translate(-288 -256)"></path>
+                                        </g>
+                                    </g>
+                                </svg>
+                                <!-- <span class="fas fa-shopping-cart" data-fa-transform="shrink-7" style="font-size: 33px;"></span> Font Awesome fontawesome.com --><span
+                                    class="notification-indicator-number">1</span></a>
+
+                        </li>
                         <li class="nav-item dropdown"><a class="nav-link pe-0" id="navbarDropdownUser" href="#"
                                                          role="button" data-bs-toggle="dropdown" aria-haspopup="true"
                                                          aria-expanded="false">
@@ -2125,9 +2144,9 @@
                                 </div>
                             </div>
                         </li>
-                        {% else %}
+                    {% else %}
                         <a href="{% url 'login' %}">Login</a>
-                        {% endif %}
+                    {% endif %}
                 </ul>
             </nav>
             {% block content %}

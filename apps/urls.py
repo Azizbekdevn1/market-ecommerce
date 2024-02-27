@@ -4,7 +4,7 @@ from django.urls import path
 from .tasks import add_data
 from apps.tasks import task_one
 from apps.views import ProductListView, ProductDetailView, RegisterFormView, CustomLoginView, ProfileView, \
-    CustomUserLogoutView, OrderView, OrderedTemplateView, ProfileSettingsView, ChangePasswordView, WishlistView
+    CustomUserLogoutView, OrderView, OrderedTemplateView, ProfileSettingsView, ChangePasswordView, WishlistView,WishlistsView
 from root import settings
 
 
@@ -30,5 +30,6 @@ urlpatterns = [
                   path('order/', OrderView.as_view(), name='order'),
                   path('ordered/<int:pk>/', OrderedTemplateView.as_view(), name='ordered'),
                   path('changepassword/', ChangePasswordView.as_view(), name='changepassword'),
-                  path('wishlist/<int:product_id>', WishlistView.as_view(), name='wishlist_create'),
+                  path('wishlist/add/<int:product_id>', WishlistView.as_view(), name='wishlist_create'),
+                  path('wishlist/', WishlistsView.as_view(), name='wishlist_list')
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
