@@ -1,0 +1,34 @@
+from django.conf.urls.static import static
+from django.http import HttpResponse, JsonResponse
+from django.urls import path
+from .tasks import add_data
+from apps.tasks import task_one
+from apps.views import ProductListView, ProductDetailView, RegisterFormView, CustomLoginView, ProfileView, \
+    CustomUserLogoutView, OrderView, OrderedTemplateView, ProfileSettingsView, ChangePasswordView, WishlistView
+from root import settings
+
+
+#
+
+def djagshjhags(request):
+    add_data()
+    return JsonResponse({})
+
+
+
+
+
+urlpatterns = [
+                  path('', ProductListView.as_view(), name='product-list'),
+                  path('data/', djagshjhags),
+                  path('product/<int:pk>/', ProductDetailView.as_view(), name='product-detail'),
+                  path('register/', RegisterFormView.as_view(), name='register'),
+                  path('login/', CustomLoginView.as_view(), name='login'),
+                  path('profile/', ProfileView.as_view(), name='profile'),
+                  path('settings/', ProfileSettingsView.as_view(), name='settings'),
+                  path('logout/', CustomUserLogoutView.as_view(), name='logout'),
+                  path('order/', OrderView.as_view(), name='order'),
+                  path('ordered/<int:pk>/', OrderedTemplateView.as_view(), name='ordered'),
+                  path('changepassword/', ChangePasswordView.as_view(), name='changepassword'),
+                  path('wishlist/<int:product_id>', WishlistView.as_view(), name='wishlist_create'),
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
