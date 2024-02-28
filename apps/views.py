@@ -34,15 +34,22 @@ class RegisterFormView(FormView):
     template_name = 'apps/auth/register.html'
     success_url = reverse_lazy('login')
 
-    def send_welcome_email(request):
-        subject = 'Welcome to My Site'
-        message = 'Thank you for creating an account!'
-        from_email = 'admin@mysite.com'
-        recipient_list = [request.user.email]
-        send_mail(subject, message, from_email, recipient_list)
-
     def form_valid(self, form):
+        # Save the form data
         form.save()
+
+        # Send an email to the user
+        user_email = form.cleaned_data['email']
+        user_name = form.cleaned_data['username']
+        send_mail(
+            'Assalomu Alaykum saytimizga xush kelibsiz ',
+            'Tanlang va sotib oling ',
+            'azizbekmurodov2003@gmail.com',  # Sender's email
+            [user_email],  # Recipient's email
+            fail_silently=False,
+        )
+
+        # Call the parent class's form_valid method
         return super().form_valid(form)
 
 
