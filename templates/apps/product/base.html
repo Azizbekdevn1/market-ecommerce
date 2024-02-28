@@ -254,7 +254,7 @@
                                                    data-bs-toggle="collapse" aria-expanded="true"
                                                    aria-controls="e-commerce">
                             <div class="d-flex align-items-center"><span class="nav-link-icon"><span
-                                    class="fas fa-shopping-cart"></span></span><span class="nav-link-text ps-1">E commerce</span>
+                                    class="fas fa-heart"></span></span><span class="nav-link-text ps-1">E commerce</span>
                             </div>
                         </a>
                             <ul class="nav collapse show" id="e-commerce">
@@ -2103,9 +2103,9 @@
                         <li class="nav-item">
                             <a class="nav-link px-0 notification-indicator notification-indicator-warning notification-indicator-fill fa-icon-wait"
                                href="{% url 'wishlist_list' %}">
-                                <svg class="svg-inline--fa fa-shopping-cart fa-w-18" data-fa-transform="shrink-7"
+                                <svg class="svg-inline--fa fa-heart" data-fa-transform="shrink-7"
                                      style="font-size: 33px;transform-origin: 0.5625em 0.5em;" aria-hidden="true"
-                                     focusable="false" data-prefix="fas" data-icon="shopping-cart" role="img"
+                                     focusable="false" data-prefix="fas" data-icon="fa-heart" role="img"
                                      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg="">
                                     <g transform="translate(288 256)">
                                         <g transform="translate(0, 0)  scale(0.5625, 0.5625)  rotate(0 0 0)">
@@ -2116,7 +2116,7 @@
                                     </g>
                                 </svg>
                                 <!-- <span class="fas fa-shopping-cart" data-fa-transform="shrink-7" style="font-size: 33px;"></span> Font Awesome fontawesome.com --><span
-                                    class="notification-indicator-number">1</span></a>
+                                    class="notification-indicator-number">{{ user.count_wishlist }}</span></a>
 
                         </li>
                         <li class="nav-item dropdown"><a class="nav-link pe-0" id="navbarDropdownUser" href="#"

@@ -5,8 +5,9 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy, reverse
 from django.views import View
 from django.views.generic import ListView, DetailView, FormView, TemplateView, UpdateView
-from apps.models import Product, User, Order, WishList
+from apps.models import Product, User, Order, WishList, Category
 from .forms import UserRegistrationForm, OrderModelForm
+from django.core.mail import send_mail
 
 
 class ProductListView(ListView):
@@ -15,6 +16,11 @@ class ProductListView(ListView):
     context_object_name = 'products'
     paginate_by = 4
     ordering = ('-id',)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = Category.objects.all()
+        return context
 
 
 class ProductDetailView(DetailView):
@@ -27,6 +33,13 @@ class RegisterFormView(FormView):
     form_class = UserRegistrationForm
     template_name = 'apps/auth/register.html'
     success_url = reverse_lazy('login')
+
+    def send_welcome_email(request):
+        subject = 'Welcome to My Site'
+        message = 'Thank you for creating an account!'
+        from_email = 'admin@mysite.com'
+        recipient_list = [request.user.email]
+        send_mail(subject, message, from_email, recipient_list)
 
     def form_valid(self, form):
         form.save()
@@ -107,6 +120,7 @@ class WishlistsView(ListView):
 
 
 class WishlistRemoveView(View):
+
     def get(self, request, product_id):
-        Wishlist.objects.filter(product_id=product_id, user_id=self.request.user.id).delete()
+        WishList.objects.filter(product_id=product_id, user_id=self.request.user.id).delete()
         return redirect(reverse('wishlist_list'))

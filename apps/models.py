@@ -40,12 +40,18 @@ class User(AbstractUser):
     is_verified = BooleanField(default=False)
     phone = CharField(max_length=25, unique=True, validators=[phone_regex], null=True)
 
+    @property
+    def count_wishlist(self):
+        return self.wishlists.count()
+
 
 # objects =CustomUserManager()
 
 
 class Category(Model):
     name = CharField(max_length=255)
+    image = ResizedImageField(size=[168, 168], upload_to='category/images', null=True, blank=True,
+                              default='users/images/default.png')
 
     class Meta:
         verbose_name = 'Categoriya'
@@ -119,6 +125,6 @@ class Order(Model):
 
 
 class WishList(Model):
-    user = ForeignKey('apps.User', on_delete=CASCADE, related_name='wishlists')
-    product = ForeignKey('apps.Product', on_delete=CASCADE)
+    user = ForeignKey('apps.User', CASCADE, related_name='wishlists')
+    product = ForeignKey('apps.Product', CASCADE)
     added_at = DateTimeField(auto_now_add=True)

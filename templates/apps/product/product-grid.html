@@ -2,6 +2,33 @@
 {% load static %}
 {% load custom_tags %}
 {% block content %}
+    <div class="card mt-2 mb-2">
+        <div class="card-header bg-light">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h5 class="mb-0" id="followers"></h5>
+                </div>
+                <div class="col text-end"><a class="font-sans-serif" href="/category">Kategoriyalar</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body bg-light px-1 py-0">
+            <div class="row g-0 text-center fs--1">
+                {% for category in categories %}
+                    <div class="col-4 col-md-4 col-lg-3 col-xx1-2 mb-1">
+                        <div class="bg-white dark__bg-1100 p-1 h-100"><a href="/category/uy-uchun"><img
+                                class="img-thumbnail img-fluid  mb-3 shadow-sm"
+                                src="{{ category.image.url }}" alt="image"
+                                width="100"></a>
+                            <h6 class="mb-1"><a href="#">{{ category.name }}</a>
+                            </h6>
+                            <p class="fs--2 mb-1"></p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
     <div class="card mb-3">
         <div class="card-body">
             <div class="row flex-between-center">
