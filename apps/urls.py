@@ -12,9 +12,9 @@ from django.urls import path
 
 
 
-# def djagshjhags(request):
-#     add_data()
-#     return JsonResponse({})
+def djagshjhags(request):
+    add_data()
+    return JsonResponse({})
 
 
 
@@ -22,7 +22,7 @@ from django.urls import path
 
 urlpatterns = [
                   path('', ProductListView.as_view(), name='product-list'),
-                  # path('data/', djagshjhags),
+                  path('data/', djagshjhags),
                   path('product/<int:pk>/', ProductDetailView.as_view(), name='product-detail'),
                   path('register/', RegisterFormView.as_view(), name='register'),
                   path('login/', CustomLoginView.as_view(), name='login'),

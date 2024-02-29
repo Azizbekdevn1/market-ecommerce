@@ -11,6 +11,7 @@ from django.core.mail import send_mail
 
 
 class ProductListView(ListView):
+    model = Product
     queryset = Product.objects.all()
     template_name = 'apps/product/product-grid.html'
     context_object_name = 'products'
@@ -21,6 +22,12 @@ class ProductListView(ListView):
         context = super().get_context_data(**kwargs)
         context['categories'] = Category.objects.all()
         return context
+
+    def get_queryset(self):
+        category_id = self.request.GET.get('category')
+        if category_id:
+            return self.queryset.filter(category_id=category_id)
+        return super().get_queryset()
 
 
 class ProductDetailView(DetailView):
@@ -40,7 +47,6 @@ class RegisterFormView(FormView):
 
         # Send an email to the user
         user_email = form.cleaned_data['email']
-        user_name = form.cleaned_data['username']
         send_mail(
             'Assalomu Alaykum saytimizga xush kelibsiz ',
             'Tanlang va sotib oling ',

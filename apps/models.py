@@ -79,7 +79,7 @@ class Product(BaseModel):
     price = FloatField(default=200)
     spec = JSONField(null=True, blank=True)
     discount = FloatField(null=True, blank=True)
-    category = ForeignKey('apps.Category', CASCADE)
+    category = ForeignKey('apps.Category', CASCADE, 'categories')
     description = TextField(blank=True, null=True)
 
     class Meta:

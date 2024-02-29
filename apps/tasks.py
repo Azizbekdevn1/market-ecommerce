@@ -17,7 +17,7 @@ def add_data():
     category = Category.objects.count()
     for i in range(30):
         name = f"Product -{i}"
-        category = random.randint(1, category)
+        category = random.randint(1, 10)
         price = random.randint(10, 100) * 10
         quantity = random.randint(0, 100)
         description = f"Descriptiom -{i}"
