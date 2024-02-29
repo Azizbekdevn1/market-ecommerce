@@ -14,7 +14,6 @@ def task_one(x, y):
 
 def add_data():
     products = []
-    category = Category.objects.count()
     for i in range(30):
         name = f"Product -{i}"
         category = random.randint(1, 10)

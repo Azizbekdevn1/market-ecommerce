@@ -62,7 +62,8 @@ class Category(Model):
 
 
 class ProductImage(Model):
-    image = ResizedImageField(upload_to='product/images', size=[1098, 717], null=True, blank=True)
+    image = ResizedImageField(upload_to='product/images', size=[1098, 717], null=True,
+                              blank=True)
     product = ForeignKey('apps.Product', CASCADE, related_name='images')
 
     def __repr__(self):

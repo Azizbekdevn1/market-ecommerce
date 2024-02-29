@@ -12,11 +12,10 @@ from django.core.mail import send_mail
 
 class ProductListView(ListView):
     model = Product
-    queryset = Product.objects.all()
+    queryset = Product.objects.order_by('-id')
     template_name = 'apps/product/product-grid.html'
     context_object_name = 'products'
-    paginate_by = 4
-    ordering = ('-id',)
+    paginate_by = 9
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
