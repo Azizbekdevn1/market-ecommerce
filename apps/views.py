@@ -1,5 +1,6 @@
 from django.contrib.auth import logout
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, PasswordChangeView
 from django.shortcuts import redirect
 from django.urls import reverse_lazy, reverse
@@ -8,6 +9,8 @@ from django.views.generic import ListView, DetailView, FormView, TemplateView, U
 from apps.models import Product, User, Order, WishList, Category
 from .forms import UserRegistrationForm, OrderModelForm
 from django.core.mail import send_mail
+
+from .mixins import NotLoginRequiredMixin
 
 
 class ProductListView(ListView):
@@ -35,7 +38,7 @@ class ProductDetailView(DetailView):
     context_object_name = 'product'
 
 
-class RegisterFormView(FormView):
+class RegisterFormView(FormView, NotLoginRequiredMixin):
     form_class = UserRegistrationForm
     template_name = 'apps/auth/register.html'
     success_url = reverse_lazy('login')
@@ -58,13 +61,13 @@ class RegisterFormView(FormView):
         return super().form_valid(form)
 
 
-class CustomLoginView(LoginView):
+class CustomLoginView(NotLoginRequiredMixin, LoginView):
     template_name = 'apps/auth/login.html'
     authentication_form = AuthenticationForm
     next_page = 'product-list'
 
 
-class ProfileView(ListView):
+class ProfileView(ListView, NotLoginRequiredMixin):
     template_name = 'apps/users/profile.html'
     queryset = User.objects.all()
 

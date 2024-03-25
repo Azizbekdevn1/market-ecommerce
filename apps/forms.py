@@ -35,7 +35,7 @@ class UserLoginForm(AuthenticationForm):
 class OrderModelForm(ModelForm):
     class Meta:
         model = Order
-        fields = ('name', 'phone_number', 'product','count')
+        fields = ('name', 'phone_number', 'product', 'count')
 
     def clean_phone_number(self):
         phone_number = self.cleaned_data['phone_number']
