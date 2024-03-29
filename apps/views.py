@@ -36,9 +36,10 @@ class ProductDetailView(DetailView):
     model = Product
     template_name = 'apps/product/product-details.html'
     context_object_name = 'product'
+    pk_url_kwarg = 'slug'
 
 
-class RegisterFormView(FormView, NotLoginRequiredMixin):
+class RegisterFormView(NotLoginRequiredMixin, FormView, ):
     form_class = UserRegistrationForm
     template_name = 'apps/auth/register.html'
     success_url = reverse_lazy('login')
@@ -89,7 +90,7 @@ class OrderView(FormView):
         return redirect(reverse('ordered', kwargs={'pk': order.pk}))
 
     def form_invalid(self, form):
-        return redirect(reverse('product-detail', kwargs={'pk': self.request.POST.get('product')}))
+        return redirect(reverse('product-detail', kwargs={'slug': self.request.POST.get('product')}))
 
 
 class OrderedTemplateView(DetailView):
@@ -139,3 +140,21 @@ class WishlistRemoveView(View):
     def get(self, request, product_id):
         WishList.objects.filter(product_id=product_id, user_id=self.request.user.id).delete()
         return redirect(reverse('wishlist_list'))
+
+
+class MarketView(ListView):
+    queryset = Product.objects.all()
+    context_object_name = 'products'
+    template_name = 'apps/product/market.html'
+    paginate_by = 6
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = Category.objects.all()
+        return context
+
+    def get_queryset(self):
+        category_id = self.request.GET.get('category')
+        if category_id:
+            return self.queryset.filter(category_id=category_id)
+        return super().get_queryset()

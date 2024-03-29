@@ -5,11 +5,16 @@ from django.contrib.auth.models import Group
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 
-from apps.models import Product, Category, ProductImage, User
+from apps.models import Product, Category, ProductImage, User, Order
 
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name')
+
+
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
     list_display = ('id', 'name')
 
 
@@ -45,7 +50,7 @@ class UserUserAdmin(UserAdmin):
             'fields': ('username', 'password1', 'password2', 'avatar'),
         }),
     )
-    list_display = ('username', 'email', 'first_name', 'last_name','is_staff')
+    list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff')
     search_fields = ('username', 'email', 'first_name', 'last_name')
     ordering = ('username',)
 

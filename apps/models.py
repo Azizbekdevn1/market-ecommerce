@@ -1,7 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import RegexValidator
 from django.db.models import CharField, PositiveIntegerField, FloatField, ForeignKey, ImageField, \
-    TextField, JSONField, Model, CASCADE, TextChoices, BooleanField, DateTimeField
+    TextField, JSONField, Model, CASCADE, TextChoices, BooleanField, DateTimeField, SlugField, SET_NULL
 from django.utils.timezone import now
 from django_resized import ResizedImageField
 from datetime import timedelta
@@ -40,6 +40,9 @@ class User(AbstractUser):
     is_verified = BooleanField(default=False)
     phone = CharField(max_length=25, unique=True, validators=[phone_regex], null=True)
 
+    def __str__(self):
+        return f'{self.id} - {self.type}'
+
     @property
     def count_wishlist(self):
         return self.wishlists.count()
@@ -76,6 +79,7 @@ class ProductImage(Model):
 
 class Product(BaseModel):
     name = CharField(max_length=255)
+    slug = SlugField(max_length=255, unique=True)
     quantity = PositiveIntegerField(default=0)
     price = FloatField(default=200)
     spec = JSONField(null=True, blank=True)
@@ -118,7 +122,8 @@ class Order(Model):
     name = CharField(max_length=20)
     phone_number = CharField(max_length=20)
     count = PositiveIntegerField(default=1)
-    product = ForeignKey('apps.Product', CASCADE)
+    product = ForeignKey('apps.Product', CASCADE, to_field='slug')
+    currier = ForeignKey('apps.User', SET_NULL, limit_choices_to={'type': User.Type.CURRIER}, null=True, blank=True)
 
     @property
     def total(self):

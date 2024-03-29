@@ -41,7 +41,7 @@ class OrderModelForm(ModelForm):
         phone_number = self.cleaned_data['phone_number']
         if not re.match(r'^\+998\(\d{2}\) \d{3}-\d{2}-\d{2}$', phone_number):
             raise ValidationError("Invalid phone number format. Please use the format +998(__) ___-__ - __")
-        return phone_number
+        return ''.join(re.findall('\d+', phone_number))
 
 
 class ProfileUpdateForm(UserChangeForm):

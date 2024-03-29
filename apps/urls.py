@@ -4,12 +4,10 @@ from django.urls import path
 from .tasks import add_data
 from apps.tasks import task_one
 from apps.views import ProductListView, ProductDetailView, RegisterFormView, CustomLoginView, ProfileView, \
-    CustomUserLogoutView, OrderView, OrderedTemplateView, ProfileSettingsView, ChangePasswordView, WishlistView,WishlistsView,WishlistRemoveView
+    CustomUserLogoutView, OrderView, OrderedTemplateView, ProfileSettingsView, ChangePasswordView, WishlistView, \
+    WishlistsView, WishlistRemoveView, MarketView
 from root import settings
 from django.urls import path
-
-
-
 
 
 def djagshjhags(request):
@@ -17,13 +15,10 @@ def djagshjhags(request):
     return JsonResponse({})
 
 
-
-
-
 urlpatterns = [
                   path('', ProductListView.as_view(), name='product-list'),
                   path('data/', djagshjhags),
-                  path('product/<int:pk>/', ProductDetailView.as_view(), name='product-detail'),
+                  path('product/<str:slug>/', ProductDetailView.as_view(), name='product-detail'),
                   path('register/', RegisterFormView.as_view(), name='register'),
                   path('login/', CustomLoginView.as_view(), name='login'),
                   path('profile/', ProfileView.as_view(), name='profile'),
@@ -34,5 +29,6 @@ urlpatterns = [
                   path('changepassword/', ChangePasswordView.as_view(), name='changepassword'),
                   path('wishlist/add/<int:product_id>', WishlistView.as_view(), name='wishlist_create'),
                   path('wishlist/', WishlistsView.as_view(), name='wishlist_list'),
-                  path('wishlist/delete/<int:product_id>', WishlistRemoveView.as_view(), name='wishlist_delete')
+                  path('wishlist/delete/<int:product_id>', WishlistRemoveView.as_view(), name='wishlist_delete'),
+                  path('market/', MarketView.as_view(), name='market')
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

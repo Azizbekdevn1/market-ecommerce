@@ -152,6 +152,7 @@ class Migration(migrations.Migration):
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('created_at', models.DateTimeField(default=django.utils.timezone.now)),
                 ('name', models.CharField(max_length=255)),
+                ('slug', models.SlugField(max_length=255, unique=True)),
                 ('quantity', models.PositiveIntegerField(default=0)),
                 ('price', models.FloatField(default=200)),
                 ('spec', models.JSONField(blank=True, null=True)),
