@@ -2,14 +2,14 @@ from django.contrib.auth import logout
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, PasswordChangeView
+from django.core.mail import send_mail
 from django.shortcuts import redirect
 from django.urls import reverse_lazy, reverse
 from django.views import View
 from django.views.generic import ListView, DetailView, FormView, TemplateView, UpdateView
-from apps.models import Product, User, Order, WishList, Category
-from .forms import UserRegistrationForm, OrderModelForm
-from django.core.mail import send_mail
 
+from apps.models import Product, User, Order, WishList, Category, Stream
+from .forms import UserRegistrationForm, OrderModelForm, StreamModelForm
 from .mixins import NotLoginRequiredMixin
 
 
@@ -39,7 +39,7 @@ class ProductDetailView(DetailView):
     pk_url_kwarg = 'slug'
 
 
-class RegisterFormView(NotLoginRequiredMixin, FormView, ):
+class RegisterFormView(NotLoginRequiredMixin, FormView):
     form_class = UserRegistrationForm
     template_name = 'apps/auth/register.html'
     success_url = reverse_lazy('login')
@@ -158,3 +158,21 @@ class MarketView(ListView):
         if category_id:
             return self.queryset.filter(category_id=category_id)
         return super().get_queryset()
+
+
+class StreamListView(LoginRequiredMixin, FormView):
+    template_name = 'apps/product/oqim.html'
+    form_class = StreamModelForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['streams'] = Stream.objects.all()
+        return context
+
+    def form_valid(self, form):
+        form.save(user=self.request.user)
+        return redirect('streams')
+
+    def form_invalid(self, form):
+        return super().form_invalid(form)
+

@@ -1,3 +1,4 @@
+from audioop import reverse
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import RegexValidator
 from django.db.models import CharField, PositiveIntegerField, FloatField, ForeignKey, ImageField, \
@@ -6,6 +7,7 @@ from django.utils.timezone import now
 from django_resized import ResizedImageField
 from datetime import timedelta
 from django.utils import timezone
+from django.utils.text import slugify
 
 
 class BaseModel(Model):
@@ -53,6 +55,7 @@ class User(AbstractUser):
 
 class Category(Model):
     name = CharField(max_length=255)
+    slug = SlugField(max_length=255, unique=True)
     image = ResizedImageField(size=[168, 168], upload_to='category/images', null=True, blank=True,
                               default='users/images/default.png')
 
@@ -62,6 +65,21 @@ class Category(Model):
 
     def __str__(self):
         return self.name
+
+    def _get_unique_slug(self):
+        slug = slugify(self.name)
+        unique_slug = slug
+        num = 1
+        while Product.objects.filter(slug=unique_slug).exists():
+            unique_slug = f'{slug}-{num}'
+            num += 1
+        return unique_slug
+
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        self.slug = self._get_unique_slug()
+        if force_update is True:
+            self.slug = slugify(self.name)
+        return super().save(force_insert, force_update, using, update_fields)
 
 
 class ProductImage(Model):
@@ -90,6 +108,21 @@ class Product(BaseModel):
     class Meta:
         verbose_name = 'Maxsulot'
         verbose_name_plural = 'Maxsulotlar'
+
+    def _get_unique_slug(self):
+        slug = slugify(self.name)
+        unique_slug = slug
+        num = 1
+        while Product.objects.filter(slug=unique_slug).exists():
+            unique_slug = f'{slug}-{num}'
+            num += 1
+        return unique_slug
+
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        self.slug = self._get_unique_slug()
+        if force_update is True:
+            self.slug = slugify(self.name)
+        return super().save(force_insert, force_update, using, update_fields)
 
     @property
     def percent_product(self):
@@ -130,7 +163,26 @@ class Order(Model):
         return self.count * self.product.percent_product
 
 
+class Region(Model):
+    name = CharField(max_length=30)
+
+
+class District(Model):
+    name = CharField(max_length=30)
+    region = ForeignKey('apps.Region', CASCADE)
+
+
 class WishList(Model):
     user = ForeignKey('apps.User', CASCADE, related_name='wishlists')
     product = ForeignKey('apps.Product', CASCADE)
     added_at = DateTimeField(auto_now_add=True)
+
+
+class Stream(Model):
+    name = CharField(max_length=255)
+    user = ForeignKey('apps.User', CASCADE, related_name='streams')
+    product = ForeignKey('apps.Product', CASCADE)
+
+    class Meta:
+        verbose_name = "Oqim"
+        verbose_name_plural = "Oqimlar ro'yhati"

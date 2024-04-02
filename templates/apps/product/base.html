@@ -39,6 +39,9 @@
     <!--    Stylesheets-->
     <!-- ===============================================-->
     <link href="{% static 'apps/vendors/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+    {#    <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"#}
+    {#          rel="stylesheet" type="text/css">#}
+
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700%7cPoppins:300,400,500,600,700,800,900&amp;display=swap"
           rel="stylesheet">
@@ -143,7 +146,7 @@
                         </a>
                             <!-- more inner pages-->
                         </li>
-                        {% if user.is_authenticated%}
+                        {% if user.is_authenticated %}
                             <li class="nav-item"><a class="nav-link" href="{% url 'market' %}" aria-expanded="false">
                                 <div class="d-flex align-items-center"><span
                                         class="nav-link-text ps-1">Market</span>
@@ -151,7 +154,7 @@
                             </a>
                                 <!-- more inner pages-->
                             </li>
-                            <li class="nav-item"><a class="nav-link" href="index.html" aria-expanded="false">
+                            <li class="nav-item"><a class="nav-link" href="{% url 'streams' %}" aria-expanded="false">
                                 <div class="d-flex align-items-center"><span
                                         class="nav-link-text ps-1">Oqim</span>
                                 </div>
@@ -195,7 +198,7 @@
                         {% endif %}
 
 
-                    </ul> 
+                    </ul>
                 </div>
             </div>
         </nav>
@@ -658,20 +661,30 @@
 </a>
 
 {% block javajcript %}
-    <!-- ===============================================-->
-    <!--    JavaScripts-->
-    <!-- ===============================================-->
-    <script src="{% static 'apps/vendors/popper/popper.min.js' %}"></script>
-    <script src="{% static 'apps/vendors/bootstrap/bootstrap.min.js' %}"></script>
-    <script src="{% static 'apps/vendors/anchorjs/anchor.min.js' %}"></script>
-    <script src="{% static 'apps/vendors/is/is.min.js' %}"></script>
-    <script src="{% static 'apps/vendors/swiper/swiper-bundle.min.js' %}"></script>
-    <script src="{% static 'apps/vendors/fontawesome/all.min.js' %}"></script>
-    <script src="{% static 'apps/vendors/lodash/lodash.min.js' %}"></script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
-    <script src="{% static 'apps/vendors/list.js/list.min.js' %}"></script>
-    <script src="{% static 'apps/assets/js/theme.js' %}"></script>
 {% endblock javajcript %}
+<!-- ===============================================-->
+<!--    JavaScripts-->
+<!-- ===============================================-->
+<script src="{% static 'apps/vendors/popper/popper.min.js' %}"></script>
+<script src="{% static 'apps/vendors/bootstrap/bootstrap.min.js' %}"></script>
+<script src="{% static 'apps/vendors/anchorjs/anchor.min.js' %}"></script>
+<script src="{% static 'apps/vendors/is/is.min.js' %}"></script>
+<script src="{% static 'apps/vendors/swiper/swiper-bundle.min.js' %}"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js">
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js">
+</script>
+
+
+<script src="{% static 'apps/vendors/fontawesome/all.min.js' %}"></script>
+<script src="{% static 'apps/vendors/lodash/lodash.min.js' %}"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+<script src="{% static 'apps/vendors/list.js/list.min.js' %}"></script>
+<script src="{% static 'apps/assets/js/theme.js' %}"></script>
+
+
+
 </body>
 
 </html>

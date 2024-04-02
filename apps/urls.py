@@ -1,13 +1,12 @@
 from django.conf.urls.static import static
-from django.http import HttpResponse, JsonResponse
+from django.http import JsonResponse
 from django.urls import path
-from .tasks import add_data
-from apps.tasks import task_one
+
 from apps.views import ProductListView, ProductDetailView, RegisterFormView, CustomLoginView, ProfileView, \
     CustomUserLogoutView, OrderView, OrderedTemplateView, ProfileSettingsView, ChangePasswordView, WishlistView, \
-    WishlistsView, WishlistRemoveView, MarketView
+    WishlistsView, WishlistRemoveView, MarketView, StreamListView
 from root import settings
-from django.urls import path
+from .tasks import add_data
 
 
 def djagshjhags(request):
@@ -30,5 +29,6 @@ urlpatterns = [
                   path('wishlist/add/<int:product_id>', WishlistView.as_view(), name='wishlist_create'),
                   path('wishlist/', WishlistsView.as_view(), name='wishlist_list'),
                   path('wishlist/delete/<int:product_id>', WishlistRemoveView.as_view(), name='wishlist_delete'),
-                  path('market/', MarketView.as_view(), name='market')
+                  path('market/', MarketView.as_view(), name='market'),
+                  path('streams/', StreamListView.as_view(), name='streams')
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
