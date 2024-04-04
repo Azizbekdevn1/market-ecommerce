@@ -36,7 +36,7 @@ class ProductDetailView(DetailView):
     model = Product
     template_name = 'apps/product/product-details.html'
     context_object_name = 'product'
-    pk_url_kwarg = 'slug'
+    slug_url_kwarg = 'slug'
 
 
 class RegisterFormView(NotLoginRequiredMixin, FormView):
@@ -175,4 +175,3 @@ class StreamListView(LoginRequiredMixin, FormView):
 
     def form_invalid(self, form):
         return super().form_invalid(form)
-
