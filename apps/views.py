@@ -164,14 +164,13 @@ class StreamListView(LoginRequiredMixin, FormView):
     template_name = 'apps/product/oqim.html'
     form_class = StreamModelForm
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['streams'] = Stream.objects.all()
-        return context
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['streams'] = Stream.objects.filter(user=self.request.user)
+    #     return context
 
     def form_valid(self, form):
-        form.save(user=self.request.user)
+        stream = form.save(commit=False)
+        stream.user = self.request.user
+        stream.save()
         return redirect('streams')
-
-    def form_invalid(self, form):
-        return super().form_invalid(form)

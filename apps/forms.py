@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import AuthenticationForm, UserChangeForm
-from django.forms import ModelForm, ValidationError, CharField, PasswordInput, TextInput
-from apps.models import User, Order, Stream
+from django.forms import ModelForm, ValidationError, CharField, PasswordInput, TextInput, ModelChoiceField
+from apps.models import User, Order, Stream, Product
 import re
 
 
@@ -51,6 +51,8 @@ class ProfileUpdateForm(UserChangeForm):
 
 
 class StreamModelForm(ModelForm):
+    product = ModelChoiceField(queryset=Product.objects.all())
+
     class Meta:
         model = Stream
         fields = ('name', 'product')
