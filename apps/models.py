@@ -1,4 +1,6 @@
 from audioop import reverse
+from enum import IntEnum
+
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import RegexValidator
 from django.db.models import CharField, PositiveIntegerField, FloatField, ForeignKey, ImageField, \
@@ -49,8 +51,9 @@ class User(AbstractUser):
     def count_wishlist(self):
         return self.wishlists.count()
 
-
-# objects =CustomUserManager()
+    @property
+    def is_operator(self):
+        return self.type == self.Type.OPERATOR
 
 
 class Category(Model):
@@ -83,7 +86,7 @@ class Category(Model):
 
 
 class ProductImage(Model):
-    image = ResizedImageField(upload_to='product/images', size=[1098, 717], null=True,   blank=True)
+    image = ResizedImageField(upload_to='product/images', size=[1098, 717], null=True, blank=True)
     product = ForeignKey('apps.Product', CASCADE, related_name='images')
 
     def __repr__(self):
@@ -151,6 +154,18 @@ class Product(BaseModel):
 
 
 class Order(Model):
+    class Status(TextChoices):
+        NEW = 'yangi', 'Yangi'
+        DELIVERED = 'yetkazildi', 'Yetkazildi'
+        ARCHIVE = 'arxivlandi', 'Arxivlandi'
+        DELIVERING = 'yetkazilmoqda', 'Yetkazilmoqda'
+        BROKEN = 'nosoz_mahsulot', 'Nosoz_maxsulot'
+        RETURNED = 'qaytib_keldi', 'Qaytib_keldi'
+        CANCELLED = 'bekor_qilindi', 'Bekor_qilibdi'
+        WAITING = 'keyin_oladi', 'Keyin_oladi'
+        READY_TO_DELIVERY = 'dastavkaga_tayyor', 'Dastavkaga_tayyor'
+
+    status = CharField(max_length=30, choices=Status.choices, default=Status.NEW)
     name = CharField(max_length=20)
     phone_number = CharField(max_length=20)
     count = PositiveIntegerField(default=1)
