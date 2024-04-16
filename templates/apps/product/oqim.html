@@ -1,0 +1,35 @@
+{% extends 'apps/product/base.html' %}
+{% load static %}
+{% load custom_tags %}
+{% block content %}
+    <div class="card mb-3">
+        <div class="card-body">
+            <div class="container">
+                <br>
+                <h3 class="text-center"> Mening havolalarim </h3>
+                <br>
+                {% for stream in user.streams.all %}
+                    <div class="row">
+                        <a>{{ stream.name }}</a>
+                    </div>
+                {% endfor %}
+            </div>
+            <footer class="footer">
+                <div class="row g-0 justify-content-between fs--1 mt-2 mb-4">
+                    <div class="col-12 col-sm-auto text-center">
+                        <!-- <p class="mb-0 text-600"><a href="https://sayt.uz"style="color: #d9a491; font-size: 15px;">Разработка сайтов Sayt.uz</a>  <span class="d-none d-sm-inline-block">| </span> 2022 &copy; </p> -->
+                    </div>
+
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script>
+        var isFluid = JSON.parse(localStorage.getItem('isFluid'));
+        if (isFluid) {
+            var container = document.querySelector('[data-layout]');
+            container.classList.remove('container');
+            container.classList.add('container-fluid');
+        }
+    </script>
+{% endblock %}

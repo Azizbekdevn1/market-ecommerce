@@ -1,0 +1,67 @@
+
+/etc/systemd/system/azizbek.service
+
+
+[Unit]
+Description=Market Django Template project
+After=network.target
+
+[Service]
+WorkingDirectory=/var/www/azizbek
+ExecStart=/var/www/azizbek/venv/bin/gunicorn \
+          --access-logfile - \
+          --workers 2 \
+          --bind unix:/var/www/azizbek/azizbek.sock \
+          root.wsgi:application
+
+[Service]
+WorkingDirectory=/var/www/azizbek
+ExecStart=/var/www/azizbek/venv/bin/gunicorn \
+          --access-logfile - \
+          --workers 2 \
+          --bind 0.0.0.0:8000 \
+          root.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
+
+
+systemctl enable azizbek.service
+systemctl start azizbek.service
+
+systemctl status azizbek.service
+
+
+
+
+
+
+
+/etc/nginx/sites-available/azizbek
+/etc/nginx/sites-enabled/azizbek
+
+ln -s /etc/nginx/sites-available/azizbek /etc/nginx/sites-enabled/azizbek
+
+
+server {
+    listen 80;
+    server_name botirjon.daadoo.live;
+
+    location /static {
+        root /var/www/azizbek;
+    }
+
+    location /media {
+        root /var/www/azizbek;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/var/www/azizbek/azizbek.sock;
+        proxy_pass http://localhost:8000;
+    }
+}
+
+
+certbot --nginx -d botirjon.daadoo.live
+certbot renew --dry-run

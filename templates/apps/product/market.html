@@ -1,0 +1,197 @@
+{% extends 'apps/product/base.html' %}
+{% load static %}
+{% load custom_tags %}
+
+{% block content %}
+    <div class="card-body">
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Oqim yaratish</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="{% url 'streams' %}" class="form-class">
+                            {% csrf_token %}
+                            <input type="hidden" id="hidden_product" value="test" name="product">
+                            Oqim nomi <input type="text" name="name" class="form-control" placeholder="">
+                            Chegirma <input type="text" name="discount" class="form-control" placeholder="">
+                            Qo'shimcha foyda <input type="text" name="additional_benefit" class="form-control"
+                                                    placeholder="">
+                            Pullik dostavka <input type="checkbox" name="paid_delivery" id="id_paid_delivery">
+                            <input type="submit" class="btn btn-primary mt-4" value="Oqim yaratish">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 500px">
+                <div class="modal-content position-relative">
+                    <div class="position-absolute top-0 end-0 mt-2 me-2 z-index-1">
+                        <button class="btn-close btn btn-sm btn-circle d-flex flex-center transition-base"
+                            data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body p-0">
+                        <div class="rounded-top-lg py-3 ps-4 pe-6 bg-light">
+                            <h4 class="mb-1" id="modalExampleDemoLabel">Add a new illustration </h4>
+                        </div>
+                        <div class="p-4 pb-0">
+                            <form method="POST" class="form-class">
+    
+    
+    
+    
+    
+                                <input type="submit" class="btn btn-primary mt-4" value="Oqim yaratish">
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Close</button>
+                        <button class="btn btn-primary" type="button">Understood </button>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <div class="container">
+            <br>
+            <br>
+            <h3 class="text-center"> Hozirda sotuvda bor <br> mahsulotlar </h3>
+            <br>
+
+            <div class="container border-bottom-4">
+                <div class="header_tab_menu">
+                    <div class="header_menu" style="overflow: auto">
+                        <a href="{% url 'market' %}" class="active btn btn-default"> Hammasi </a>
+                        {% for category in categories %}
+                            <a href="{% url 'market' %}?category={{ category.id }}"
+                               class="btn btn-default"> {{ category.name }} </a>
+                        {% endfor %}
+                    </div>
+                    <div class="search-box" style="width: 100%;">
+                        <form action="/admin_page/market/" method="GET" class="position-relative" style="width: 100%"
+                              data-bs-display="static" autocomplete="off">
+                            <input type="hidden" name="csrfmiddlewaretoken"
+                                   value="7EuuwKVbGxHsOsMSizO6UgKjBfj5hBUgzMopUS6mmRDuwOA1fMn4vUaEjLpC8ilI">
+                            <input id="search-input" name="q" class="form-control search-input" type="search"
+                                   placeholder="Qidiruv..." aria-label="Search">
+                            <svg class="svg-inline--fa fa-search fa-w-16 search-box-icon" aria-hidden="true"
+                                 focusable="false" data-prefix="fas" data-icon="search" role="img"
+                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                                <path fill="currentColor"
+                                      d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
+                            </svg>
+                            <!-- <span class="fas fa-search search-box-icon" aria-hidden="true"></span> Font Awesome fontawesome.com -->
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                {% for pro in products %}
+                    <div class="col-sm-4 p-2">
+                        <div class="card">
+                            <a href="/product-detail/zikr-ring" target="_blank">
+                                <img class="card-img-top" src="{{ pro.image.image.url }}" alt="Zikr ring">
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="/product-detail/zikr-ring" target="_blank">
+                                        {{ pro.name }}
+                                    </a>
+                                </h5>
+                                <p class="text-muted"> {{ pro.price }}</p>
+                            </div>
+
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">To'lov: <strong>{{ pro.shipping_cost }} </strong></li>
+
+                                <li class="list-group-item">Zaxirada: <strong> {{ pro.quantity }} ta </strong>
+                                </li>
+
+                                <li class="list-group-item">Chegirma: <strong>
+                                    {% if pro.in_discount %}
+                                        Bor
+                                    {% else %}
+                                        Yo'q
+                                    {% endif %}
+                                </strong>
+                                </li>
+
+                            </ul>
+
+                            <a href="https://t.me/alijahon_uz_Internet_magazin/1400"
+                               class="btn bg-danger text-white mt-2">Reklama
+                                Posti</a>
+                            <button class="btn btn-primary btn_open_modal" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal" name="{{ pro.pk }}">
+                                Oqim yaratish
+                            </button>
+                            <a href="{% url 'product-detail' pro.pk %}"
+                               class="btn bg-danger text-white mt-2">Batafsil</a>
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="card-footer bg-light d-flex justify-content-center">
+                    <div>
+                        {% if is_paginated %}
+                            {% if page_obj.has_previous %}
+                                <a class="btn btn-falcon-default btn-sm me-2" type="button" disabled="disabled"
+                                   data-bs-toggle="tooltip" data-bs-placement="top" title="Prev"
+                                   href="?page={{ page_obj.previous_page_number }}">
+                            <span class="fas fa-chevron-left">
+                            </span>
+                                </a>
+                            {% else %}
+                                <a class="btn btn-falcon-default btn-sm me-2" type="button" disabled="disabled"
+                                   data-bs-toggle="tooltip" data-bs-placement="top" title="Prev" href="#">
+                            <span class="fas fa-chevron-left">
+                            </span>
+                                </a>
+
+                            {% endif %}
+                            {% for p in page_obj.paginator.page_range %}
+                                {% if p == page_obj.number %}
+                                    <a class="btn btn-sm btn-falcon-default text-primary me-2"
+                                       href="?page={{ p }}">{{ p }}</a>
+                                {% else %}
+                                    <a class="btn btn-sm btn-falcon-default me-2" href="?page={{ p }}">{{ p }}</a>
+                                {% endif %}
+                            {% endfor %}
+                            {% if page_obj.has_next %}
+                                <a class="btn btn-falcon-default btn-sm" type="button" data-bs-toggle="tooltip"
+                                   data-bs-placement="top" title="Next" href="?page={{ page_obj.next_page_number }}">
+                                    <span class="fas fa-chevron-right "></span>
+                                </a>
+                            {% else %}
+                                <a class="btn btn-falcon-default btn-sm" type="button" data-bs-toggle="tooltip"
+                                   data-bs-placement="top" title="Next" href="#">
+                                    <span class="fas fa-chevron-right disabled"></span>
+                                </a>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javajcript %}
+
+    <script>
+        $('.btn_open_modal').on('click', function () {
+            let product_id = $(this).attr('name');
+            console.log(product_id);
+            $('#hidden_product').val(product_id);
+        })
+    </script>
+{% endblock %}
