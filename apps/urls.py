@@ -4,7 +4,7 @@ from django.urls import path
 
 from apps.views import ProductListView, ProductDetailView, RegisterFormView, CustomLoginView, ProfileView, \
     CustomUserLogoutView, OrderView, OrderedTemplateView, ProfileSettingsView, ChangePasswordView, WishlistView, \
-    WishlistsView, WishlistRemoveView, MarketView, StreamListView
+    WishlistsView, WishlistRemoveView, MarketView, StreamListView, StreamDetailView
 from root import settings
 from .tasks import add_data
 
@@ -35,5 +35,6 @@ urlpatterns = [
                   path('wishlist/delete/<int:product_id>', WishlistRemoveView.as_view(), name='wishlist_delete'),
                   path('market/', MarketView.as_view(), name='market'),
                   path('streams/', StreamListView.as_view(), name='streams'),
+                  path('streams/<int:pk>/', StreamDetailView.as_view(), name='stream_detail'),
                   path('sentry-debug/', trigger_error),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

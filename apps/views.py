@@ -174,3 +174,9 @@ class StreamListView(LoginRequiredMixin, FormView):
         stream.user = self.request.user
         stream.save()
         return redirect('streams')
+
+
+class StreamDetailView(DetailView):
+    model = Stream
+
+    template_name = 'apps/product/oqim.html'

@@ -8,11 +8,43 @@
                 <br>
                 <h3 class="text-center"> Mening havolalarim </h3>
                 <br>
-                {% for stream in user.streams.all %}
-                    <div class="row">
-                        <a>{{ stream.name }}</a>
-                    </div>
-                {% endfor %}
+                <div class="row">
+                    {% for stream in user.streams.all %}
+                        <div class="col-sm-4">
+                            <div class="card-header">
+                                <!-- <a href="#" onclick="myFunction(57699)" data-request="onDeleteStream"
+                                    data-request-data="'id': 57699, 'csrftoken':DzD7mZxRyutKcq2BVW7YL6sXZfkJJHZk8ftQrGOoSq3PzDiEITwr1Vge5KYgseAk"
+                                    data-request-flash="" data-request-success="$(this).closest('.col-sm-4').remove()"
+                                    data-request-confirm="Siz rostdan ham oqimni o'chirmoqchimisiz?" class="text-danger"
+                                    style="float: right"> <span class="fa fa-trash" aria-hidden="true"></span> </a> -->
+
+                                <h5>{{ stream.name }}</h5>
+                            </div>
+                            <div class="card">
+                                <div class="card-body" style="position: relative;">
+                                    <div class="form-group">
+                                        <input type="text" value="{{ request.build_absolute_uri }}{{ stream.id }}"
+                                               readonly=""
+                                               class="ref_link form-control">
+                                    </div>
+                                    <button class="copy_ref_bn btn btn-primary"
+                                            style="float:left; margin-right:9px; margin-top: 9px;">Nusxa ko'chirish
+                                    </button>
+                                    <a href="{% url 'product-detail' stream.product.slug %}" target="_blank"><i
+                                            class="fa-solid fa-square-arrow-up-right"
+                                            style="font-size: 29px; float:left; color:#e52c2c; margin-top: 9px; margin-right:9px;"
+                                            aria-hidden="true"></i></a>
+                                    <a href="#" target="_blank"><i
+                                            class="fa-brands fa-telegram"
+                                            style="font-size: 29px; float:left; color:#e52c2c; margin-top: 9px;"
+                                            aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                    {% endfor %}
+                </div>
+
             </div>
             <footer class="footer">
                 <div class="row g-0 justify-content-between fs--1 mt-2 mb-4">
@@ -31,5 +63,34 @@
             container.classList.remove('container');
             container.classList.add('container-fluid');
         }
+    </script>
+    <script>
+        function myFunction(stream_id) {
+            var r = confirm("Siz rostdan ham oqimni o'chirmoqchimisiz?");
+            if (r == true) {
+                $.ajax({
+                    type: "POST",
+                    url: "stream/" + stream_id,
+                    data: {
+                        'csrfmiddlewaretoken': 'UX6SP84ktpOmAgmteATzaoey1J0gmazZpDWBUPlRNlorXtCw1xi2qd2P7eEN5HaZ'
+                    },
+                    dataType: "text",
+                    success: function (response) {
+                        window.location.reload();
+                    }
+                });
+                console.log(stream_id);
+            } else {
+                console.log("CANCEL");
+            }
+        }
+
+        $(".card-body .copy_ref_bn").on('click', function () {
+            var copyText = $(this).parent().find('.ref_link').get(0);
+
+            copyText.select();
+            document.execCommand("copy");
+            $(this).text('Nusxa olindi');
+        });
     </script>
 {% endblock %}
