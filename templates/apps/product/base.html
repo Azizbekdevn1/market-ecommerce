@@ -151,7 +151,7 @@
                         </a>
                             <!-- more inner pages-->
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="dashboard/project-management.html"
+                        <li class="nav-item"><a class="nav-link" href="{% url 'wishlist_list' %}"
                                                 aria-expanded="false">
                             <div class="d-flex align-items-center"><span
                                     class="nav-link-text ps-1">Yoqtirgan mahsulotlarim</span>
@@ -167,14 +167,14 @@
                             </a>
                                 <!-- more inner pages-->
                             </li>
-                            <li class="nav-item"><a class="nav-link" href="{% url 'streams' %}" aria-expanded="false">
+                            <li class="nav-item"><a class="nav-link" href="{% url 'stream' %}" aria-expanded="false">
                                 <div class="d-flex align-items-center"><span
                                         class="nav-link-text ps-1">Oqim</span>
                                 </div>
                             </a>
                                 <!-- more inner pages-->
                             </li>
-                            <li class="nav-item"><a class="nav-link" href="index.html" aria-expanded="false">
+                            <li class="nav-item"><a class="nav-link" href="{% url 'statistic' %}" aria-expanded="false">
                                 <div class="d-flex align-items-center"><span
                                         class="nav-link-text ps-1">Statistika</span>
                                 </div>
@@ -420,7 +420,7 @@
                                     <a class="dropdown-item" href="#!">Set status</a>
                                     <a class="dropdown-item" href="{% url 'profile' %}">Profile &amp; account</a>
                                     {% if user.is_operator %}
-                                        <a class="dropdown-item" href="#!">Operator</a>
+                                        <a class="dropdown-item" href="{% url 'operator' %}">Operator</a>
                                     {% endif %}
 
                                     <div class="dropdown-divider"></div>

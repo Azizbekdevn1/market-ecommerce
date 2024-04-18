@@ -70,7 +70,7 @@
                         <div class="border rounded-1 h-100 d-flex flex-column justify-content-between pb-3">
                             <div class="overflow-hidden">
                                 <div class="position-relative rounded-top overflow-hidden">
-                                    <a class="d-block" href="{% url 'product-detail' product.slug %}">
+                                    <a class="d-block" href="{% url 'product_detail' product.slug %}">
                                         <img class="img-fluid rounded-top" src="{{ product.image.image.url }}"
                                                 {% if product.is_new %}
                                              alt=""></a><span
@@ -82,7 +82,7 @@
                                 </div>
                                 <div class="p-3">
                                     <h5 class="fs-0"><a class="text-dark"
-                                                        href="{% url 'product-detail' product.slug %}">{{ product.name }}</a>
+                                                        href="{% url 'product_detail' product.slug %}">{{ product.name }}</a>
                                     </h5>
                                     <p class="fs--1 mb-3"><a class="text-500" href="#!">{{ product.category.name }}</a>
                                     </p>

@@ -197,6 +197,7 @@ class Stream(Model):
     user = ForeignKey('apps.User', CASCADE, related_name='streams')
     product = ForeignKey('apps.Product', CASCADE)
 
+
     class Meta:
         verbose_name = "Oqim"
         verbose_name_plural = "Oqimlar ro'yhati"

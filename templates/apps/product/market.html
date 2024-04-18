@@ -16,7 +16,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" action="{% url 'streams' %}" class="form-class">
+                        <form method="POST" action="{% url 'stream' %}" class="form-class">
                             {% csrf_token %}
                             <input type="hidden" id="hidden_product" value="test" name="product">
                             Oqim nomi <input type="text" name="name" class="form-control" placeholder="">
@@ -98,12 +98,12 @@
                 {% for pro in products %}
                     <div class="col-sm-4 p-2">
                         <div class="card">
-                            <a href="/product-detail/zikr-ring" target="_blank">
+                            <a href="{% url 'product_detail' pro.slug %}" target="_blank">
                                 <img class="card-img-top" src="{{ pro.image.image.url }}" alt="Zikr ring">
                             </a>
                             <div class="card-body">
                                 <h5 class="card-title">
-                                    <a href="/product-detail/zikr-ring" target="_blank">
+                                    <a href="{% url 'product_detail' pro.slug %}" target="_blank">
                                         {{ pro.name }}
                                     </a>
                                 </h5>
@@ -134,7 +134,7 @@
                                     data-bs-target="#exampleModal" name="{{ pro.pk }}">
                                 Oqim yaratish
                             </button>
-                            <a href="{% url 'product-detail' pro.pk %}"
+                            <a href="{% url 'product_detail' pro.pk %}"
                                class="btn bg-danger text-white mt-2">Batafsil</a>
                         </div>
                     </div>

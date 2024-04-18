@@ -3,7 +3,7 @@ from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, PasswordChangeView
 from django.core.mail import send_mail
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.views import View
 from django.views.generic import ListView, DetailView, FormView, TemplateView, UpdateView
@@ -16,7 +16,7 @@ from .mixins import NotLoginRequiredMixin
 class ProductListView(ListView):
     model = Product
     queryset = Product.objects.order_by('-id')
-    template_name = 'apps/product/product-grid.html'
+    template_name = 'apps/product/product_grid.html'
     context_object_name = 'products'
     paginate_by = 9
 
@@ -34,7 +34,7 @@ class ProductListView(ListView):
 
 class ProductDetailView(DetailView):
     model = Product
-    template_name = 'apps/product/product-details.html'
+    template_name = 'apps/product/product_details.html'
     context_object_name = 'product'
     slug_url_kwarg = 'slug'
 
@@ -83,7 +83,7 @@ class CustomUserLogoutView(TemplateView):
 
 class OrderView(FormView):
     form_class = OrderModelForm
-    template_name = 'apps/product/product-details.html'
+    template_name = 'apps/product/product_details.html'
 
     def form_valid(self, form):
         order = form.save()
@@ -173,10 +173,25 @@ class StreamListView(LoginRequiredMixin, FormView):
         stream = form.save(commit=False)
         stream.user = self.request.user
         stream.save()
-        return redirect('streams')
+        return redirect('stream')
 
 
 class StreamDetailView(DetailView):
     model = Stream
+    template_name = 'apps/product/product_details.html'
+    context_object_name = 'product'
 
-    template_name = 'apps/product/oqim.html'
+    def get_object(self, queryset=None):
+        pk = self.kwargs.get('pk')
+        stream = get_object_or_404(Stream.objects.all(), pk=pk)
+        return stream.product
+
+
+class StatisticView(ListView):
+    model = Stream
+    template_name = 'apps/product/statistic.html'
+
+
+class OperatorView(ListView):
+    model = Order
+    template_name = 'apps/product/operator.html'

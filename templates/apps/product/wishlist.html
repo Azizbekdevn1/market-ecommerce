@@ -40,13 +40,13 @@
                 <div class="row gx-card mx-0 align-items-center border-bottom border-200">
                     <div class="col-8 py-3">
                         <div class="d-flex align-items-center"><a
-                                href="{% url 'product-detail' wishlist.product.pk %}"><img
+                                href="{% url 'product_detail' wishlist.product.slug %}"><img
                                 class="img-fluid rounded-1 me-3 d-none d-md-block"
                                 src="{{ wishlist.product.image.image.url }}"
                                 alt="" width="60"></a>
                             <div class="flex-1">
                                 <h5 class="fs-0"><a class="text-900"
-                                                    href="{% url 'product-detail' wishlist.product.pk %}">{{ wishlist.product.name }}</a>
+                                                    href="{% url 'product_detail' wishlist.product.slug %}">{{ wishlist.product.name }}</a>
                                 </h5>
                                 <div class="fs--2 fs-md--1"><a class="text-danger"
                                                                href="{% url 'wishlist_delete' wishlist.product.pk %}">Remove</a>

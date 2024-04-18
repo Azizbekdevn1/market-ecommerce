@@ -4,7 +4,7 @@ from django.urls import path
 
 from apps.views import ProductListView, ProductDetailView, RegisterFormView, CustomLoginView, ProfileView, \
     CustomUserLogoutView, OrderView, OrderedTemplateView, ProfileSettingsView, ChangePasswordView, WishlistView, \
-    WishlistsView, WishlistRemoveView, MarketView, StreamListView, StreamDetailView
+    WishlistsView, WishlistRemoveView, MarketView, StreamListView, StreamDetailView, StatisticView,OperatorView
 from root import settings
 from .tasks import add_data
 
@@ -21,7 +21,7 @@ def trigger_error(request):
 urlpatterns = [
                   path('', ProductListView.as_view(), name='product-list'),
                   path('data/', djagshjhags),
-                  path('product/<slug:slug>/', ProductDetailView.as_view(), name='product-detail'),
+                  path('product/<slug:slug>/', ProductDetailView.as_view(), name='product_detail'),
                   path('register/', RegisterFormView.as_view(), name='register'),
                   path('login/', CustomLoginView.as_view(), name='login'),
                   path('profile/', ProfileView.as_view(), name='profile'),
@@ -34,7 +34,9 @@ urlpatterns = [
                   path('wishlist/', WishlistsView.as_view(), name='wishlist_list'),
                   path('wishlist/delete/<int:product_id>', WishlistRemoveView.as_view(), name='wishlist_delete'),
                   path('market/', MarketView.as_view(), name='market'),
-                  path('streams/', StreamListView.as_view(), name='streams'),
-                  path('streams/<int:pk>/', StreamDetailView.as_view(), name='stream_detail'),
+                  path('stream/', StreamListView.as_view(), name='stream'),
+                  path('stream/<int:pk>/', StreamDetailView.as_view(), name='stream_detail'),
+                  path('statistics/', StatisticView.as_view(), name='statistic'),
+                  path('operator/', OperatorView.as_view(), name='operator'),
                   path('sentry-debug/', trigger_error),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

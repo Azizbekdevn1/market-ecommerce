@@ -1,0 +1,80 @@
+{% extends 'apps/product/base.html' %}
+{% load static %}
+{% load custom_tags %}
+{% block content %}
+    <div class="card mb-3">
+        <div class="card-body">
+            <div class="container">
+                <div class="container border-bottom-4">
+                    <div class="header_tab_menu">
+                        <div class="header_menu" style="overflow: auto">
+                            <a href="/admin_page/stats?period=today" class="btn btn-default">Bugun</a>
+                            <a href="/admin_page/stats?period=last_day" class="btn btn-default">Kechagi</a>
+                            <a href="/admin_page/stats?period=wekly" class="btn btn-default">Haftalik</a>
+                            <a href="/admin_page/stats?period=monthly" class="btn btn-default">Oylik</a>
+                            <a href="/admin_page/stats?period=all" class="btn btn-default">Hammasi</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="text-center">
+                        <tr>
+                            <th scope="col">Oqim</th>
+                            <th scope="col">Mahsulot</th>
+                            <th scope="col">Tashrif</th>
+                            <th scope="col">Yangi</th>
+                            <th scope="col">Dastavkaga tayyor</th>
+                            <th scope="col">Yetkazilmoqda</th>
+                            <th scope="col">Yetqazib berildi</th>
+                            <th scope="col">Telefon ko'tarmadi</th>
+                            <th scope="col">Bekor qilindi</th>
+                            <th scope="col">Arxivlandi</th>
+                        </tr>
+                        <tr class="bg-info">
+                            <td> JAMI</td>
+                            <td></td>
+                            <td> 7</td>
+                            <td> 0</td>
+                            <td> 0</td>
+                            <td> 0</td>
+                            <td> 0</td>
+                            <td> 0</td>
+                            <td> 0</td>
+                            <td> 0</td>
+                        </tr>
+                        </thead>
+                        <tbody class="text-center">
+                        {% for stream in user.streams.all %}
+                            <tr>
+                                <th>{{ stream.name }}</th>
+                                <th>{{ stream.product.name }}</th>
+                                <td>6</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                        {% endfor %}
+                        <tr class="bg-info">
+                            <td> JAMI</td>
+                            <td></td>
+                            <td> 7</td>
+                            <td> 0</td>
+                            <td> 0</td>
+                            <td> 0</td>
+                            <td> 0</td>
+                            <td> 0</td>
+                            <td> 0</td>
+                            <td> 0</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
