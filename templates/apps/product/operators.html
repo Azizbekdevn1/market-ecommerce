@@ -1,0 +1,2000 @@
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        Operatorlar bo'limi
+        - alijahon.uz</title>
+    <link rel="stylesheet" href="{% static 'apps/bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'apps/bootstrap/css/font-awesome.min.css' %}">
+    <link href="{% static 'apps/bootstrap/css/multiple-select.min.css' %}" rel="stylesheet">
+    <style>
+        select {
+            width: 100%;
+        }
+    </style>
+
+</head>
+<body>
+<div>
+    <nav class="navbar navbar-dark bg-dark text-white" style="height: 10%;">
+
+
+        <div style="margin-left: 15px;"><a href="/operator/prodcut_add">Zakaz + </a></div>
+
+
+        <div>Buyurtmalar</div>
+        <h4>ID: 721 </h4>
+        <a href="/admin_page" class="btn btn-danger btn-sm">Asosiy panel</a>
+    </nav>
+    <div class="row">
+        <div class="col-md-2 h-70 text-center" style="background-color: #38ffae; padding-right: 0; position:absolute;">
+            <div class="list-group text-light w-100 h-100">
+                <a style="height: 13%" href="/operator/new"
+                   class="btn btn-primary list-group-item text-dark mt-1  active ">
+                    <div>
+                        <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+                    </div>
+                    <h6>Yangi buyurtmalar</h6>
+                </a>
+                <a style="height: 13%" href="/operator/ready"
+                   class="btn btn-primary list-group-item text-dark mt-1 ">
+                    <div>
+                        <i class="fa fa-truck" aria-hidden="true"></i>
+                    </div>
+                    <h6>Dostavka tayyor</h6>
+                </a>
+                <a style="height: 13%" href="/operator/delivering"
+                   class="btn btn-primary list-group-item text-dark mt-1 ">
+                    <div>
+                        <i class="fa fa-truck" aria-hidden="true"></i>
+                    </div>
+                    <h6>Yetkazilmoqda</h6>
+                </a>
+                <a style="height: 13%" href="/operator/waiting"
+                   class="btn btn-primary list-group-item text-dark mt-1 ">
+                    <div>
+                        <i class="fa fa-clock-o" aria-hidden="true"></i>
+                    </div>
+                    <h6>Keyin oladi</h6>
+                </a>
+                <a style="height: 13%" href="/operator/archived"
+                   class="btn btn-primary list-group-item text-dark mt-1 ">
+                    <div>
+                        <i class="fa fa-archive" aria-hidden="true"></i>
+                    </div>
+                    <h6>Arxivlandi</h6>
+                </a>
+                <a style="height: 13%" href="/operator/broken"
+                   class="btn btn-primary list-group-item text-dark mt-1 ">
+                    <div>
+                        <i class="fa fa-chain-broken" aria-hidden="true"></i>
+                    </div>
+                    <h6>Nosoz, bekor qilindi</h6>
+                </a>
+                <a style="height: 13%" href="/operator/delivered"
+                   class="btn btn-primary list-group-item text-dark mt-1 ">
+                    <div>
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                    </div>
+                    <h6>Yetkazib berildi</h6>
+                </a>
+                <a style="height: 13%" href="/operator/cancelled"
+                   class="btn btn-primary list-group-item text-dark mt-1 ">
+                    <div>
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                    </div>
+                    <h6>Qaytib keldi</h6>
+                </a>
+                <a style="height: 13%" href="/operator/hold"
+                   class="btn btn-primary list-group-item text-dark mt-1 ">
+                    <div>
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                    </div>
+                    <h6>Hold</h6>
+                </a>
+                <a style="height: 13%" href="/operator/all"
+                   class="btn btn-primary list-group-item text-dark mt-1 ">
+                    <div>
+                        <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+                    </div>
+                    <h6>Hammasi</h6>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-10" style="margin-left: 16%;">
+
+            <div class="bg-light w-75 m-auto mt-5">
+
+                <form method="GET">
+                    <div>
+                        <p>
+                            <label for="id_product">Mahsulot:</label>
+                            <select name="product" id="id_product" multiple>
+                                <option value="1">Oyoq kiyim uchun maxsus shkaf</option>
+
+                                <option value="3">IKKI QAVATLI komplikt tuplam</option>
+
+                                <option value="4">JANNATIM ONAM DAVLATIM OTAM</option>
+
+                                <option value="5">Afgoniston qozoni</option>
+
+                                <option value="6">TRANSFORMER JOYNAMOZ</option>
+
+                                <option value="7">Nano Botox</option>
+
+                                <option value="8">TISH GEL</option>
+
+                                <option value="9">GO TOX</option>
+
+                                <option value="10">ZOLOTOY OLEN</option>
+
+                                <option value="11">QURON LAMPA</option>
+
+                                <option value="12">Bendax</option>
+
+                                <option value="13">BEARD OIL</option>
+
+                                <option value="14">SAMYUN WAN</option>
+
+                                <option value="15">DEMOK</option>
+
+                                <option value="16">Islomiy Sovg’alar to’plami</option>
+
+                                <option value="17">ICE CREAM MASK</option>
+
+                                <option value="18">joy nomoz kottalar</option>
+
+                                <option value="19">Chernika</option>
+
+                                <option value="21">RAPM</option>
+
+                                <option value="22">GREN MASK</option>
+
+                                <option value="23">Minoxidil 10%</option>
+
+                                <option value="24">MINOXIDIL 5%</option>
+
+                                <option value="25">QORA SEDANA</option>
+
+                                <option value="26">Termal Mest</option>
+
+                                <option value="28">Toilet Rack</option>
+
+                                <option value="29">UZАMAX</option>
+
+                                <option value="31">GOLD Электрон қаламли Қуръони Карим тўплами.</option>
+
+                                <option value="32">NAYZER</option>
+
+                                <option value="33">ZAMONAVIY maydalagich</option>
+
+                                <option value="34">O&#x27;sha mashxur ozdiruvchi mayka endi ayollar uchun ham</option>
+
+                                <option value="35">erkaklar uchun Slim aktiv mayka</option>
+
+                                <option value="37">Ko&#x27;pfunksiyalik High Speedy Chopper</option>
+
+                                <option value="38">Ko&#x27;pfunksiyalik Max Chopper 2</option>
+
+                                <option value="39">Chopper shisha orginal</option>
+
+                                <option value="40">Saodat Asri Qissalari</option>
+
+                                <option value="43">UZBEKCHA USTOZ JOYNOMOZ BOLALAR UCHUN</option>
+
+                                <option value="46">ELIKTRON KARSET</option>
+
+                                <option value="47">Depilyatsiya spray</option>
+
+                                <option value="55">hc-916 Moshinka</option>
+
+                                <option value="56">VGR V-030 Moshinka</option>
+
+                                <option value="57">Montalin original INDONEZIYA.</option>
+
+                                <option value="58">Lver Zime</option>
+
+                                <option value="60">Oyoqdagi qiyshayishni to&#x27;g&#x27;rilash uchun Fiksator</option>
+
+                                <option value="62">soft</option>
+
+                                <option value="63">sekret kamera</option>
+
+                                <option value="64">sharbat tayyorlagich</option>
+
+                                <option value="65">power belt</option>
+
+                                <option value="66">Tish oqartiruvchi pasta</option>
+
+                                <option value="67">SMART CHIROQ</option>
+
+                                <option value="70">TETAN gel</option>
+
+                                <option value="71">PAYĞAMBARLAR TARIXI</option>
+
+                                <option value="73">KISGICHLI QIRĞICH Idish</option>
+
+                                <option value="74">Riyozus solyiin muxtasar sharqi</option>
+
+                                <option value="75">Mini seyf</option>
+
+                                <option value="76">Mini elektron seyf</option>
+
+                                <option value="77">KABA NABOR</option>
+
+                                <option value="78">Qora sedana Tebomed</option>
+
+                                <option value="80">Q7</option>
+
+                                <option value="82">24 carat</option>
+
+                                <option value="83">Hijoma bonkasi</option>
+
+                                <option value="84">SOCH-SOQOL OLISH MASHENKASI</option>
+
+                                <option value="86">VIBRA STIK</option>
+
+                                <option value="87">BILAYT</option>
+
+                                <option value="88">CHOL KREM</option>
+
+                                <option value="91">Ichimlik suv nasos</option>
+
+                                <option value="93">Ruchkali kamera</option>
+
+                                <option value="94">ELEKTRON TASBEH</option>
+
+                                <option value="96">Kaba nabor 279</option>
+
+                                <option value="97">Pichoq chaxi</option>
+
+                                <option value="98">Tez fursat ichida gemaroydan butunlat xalos bulish</option>
+
+                                <option value="99">Relax masajyor</option>
+
+                                <option value="100">TIKUV MASHINASI</option>
+
+                                <option value="101">Kuz qamashishiga qarshi</option>
+
+                                <option value="102">Filex Forte Gemaroyga Qarshi</option>
+
+                                <option value="103">UMRA IBODATI TAVSIYALARI</option>
+
+                                <option value="104">Mini JPS</option>
+
+                                <option value="105">Orasore</option>
+
+                                <option value="106">3D EKRAN</option>
+
+                                <option value="108">IBODATI ISLOMIYA</option>
+
+                                <option value="109">Luma smeli tish</option>
+
+                                <option value="110">Attomic zapper</option>
+
+                                <option value="111">Asanka</option>
+
+                                <option value="113">Olamlarga raxmat payğambar</option>
+
+                                <option value="115">DESAR</option>
+
+                                <option value="116">Tilla rang culon</option>
+
+                                <option value="117">ZIKR_RING</option>
+
+                                <option value="118">Oyoq terlashiga qarshi TEYMUROVA Sprayi</option>
+
+                                <option value="119">1 TA KOʻZ OYNAKDA 5 XIL RANG</option>
+
+                                <option value="120">Katyusha õlik terilar uchun</option>
+
+                                <option value="121">MINI ELEKTRIK DAZMOL</option>
+
+                                <option value="122">MISIR CHOY</option>
+
+                                <option value="123">Egiluvchan oyna</option>
+
+                                <option value="124">MINI KONDETSANER</option>
+
+                                <option value="125">Cushion</option>
+
+                                <option value="126">suv Purkagich</option>
+
+                                <option value="127">O&#x27;zbekiston uchun pashshalardan himoya!</option>
+
+                                <option value="128">SUYANCHIQLI JOYNOMOZ</option>
+
+                                <option value="130">Nij dil</option>
+
+                                <option value="131">4inONE QAHVA</option>
+
+                                <option value="132">Namoz kiyim ayollar uchun</option>
+
+                                <option value="133">Kundur</option>
+
+                                <option value="134">KOMPYUTOR NURIDAN XIMOYALOVCHI ACHKI</option>
+
+                                <option value="137">Magnetli pardalar</option>
+
+                                <option value="138">Karchir shlank</option>
+
+                                <option value="139">CARB CLEANER</option>
+
+                                <option value="140">ANTI-RUST ZANGDAN QUTULING</option>
+
+                                <option value="141">Matcha yoqimli ozdiruvchi choy</option>
+
+                                <option value="142">SAMODAGI KABA</option>
+
+                                <option value="143">Bolalar uchun rezina tish cho&#x27;tka!</option>
+
+                                <option value="144">CL-63B LED LAMPA</option>
+
+                                <option value="145">KINOKI</option>
+
+                                <option value="146">Bolajonlar uchun 86+25</option>
+
+                                <option value="147">Mini bassen 183+51sm</option>
+
+                                <option value="148">Pichoq nabor</option>
+
+                                <option value="149">Showery eko dush</option>
+
+                                <option value="150">Quloq yallig&#x27;lanishiga qarshi Fitasvecha</option>
+
+                                <option value="151">Havo urindiq</option>
+
+                                <option value="152">Macun</option>
+
+                                <option value="153">Slim patch 30</option>
+
+                                <option value="156">Slim patch 10</option>
+
+                                <option value="157">Mikrofiber sochiqlari</option>
+
+                                <option value="158">Gren Mask 85</option>
+
+                                <option value="159">Kinoki 86</option>
+
+                                <option value="160">Tuz cuwyom</option>
+
+                                <option value="161">Mini kandetsaner /</option>
+
+                                <option value="162">MAGIC KUSHION</option>
+
+                                <option value="163">Bendax 99</option>
+
+                                <option value="164">EXCITE TOPLAM</option>
+
+                                <option value="165">Soft149</option>
+
+                                <option value="166">SAMYUN WAN129</option>
+
+                                <option value="167">Mini Uvlajnetil</option>
+
+                                <option value="168">Samsung GUSTO 3</option>
+
+                                <option value="169">Ultra pro sovutgich</option>
+
+                                <option value="170">Caboki</option>
+
+                                <option value="171">Matcha choy</option>
+
+                                <option value="172">King yes spray</option>
+
+                                <option value="173">Psoryaz maz</option>
+
+                                <option value="174">Mini karcher</option>
+
+                                <option value="175">Avtomobil old oynasi uchun soyabon</option>
+
+                                <option value="176">Ginseng Kianpi Pin</option>
+
+                                <option value="177">Veins varekoz pach</option>
+
+                                <option value="178">Placenta extract gel</option>
+
+                                <option value="179">Karite</option>
+
+                                <option value="180">Gemaroy kasalligiga qarshi samarali vosita</option>
+
+                                <option value="181">Tozalovchi kukun vannaxonalarga</option>
+
+                                <option value="182">Deargon moshina uchun</option>
+
+                                <option value="183">Turbinali kir yuvish mashinasi</option>
+
+                                <option value="184">2dyuli, avtomobil uchun vacuum</option>
+
+                                <option value="185">Protes palerofka</option>
+
+                                <option value="186">Nokia 2720</option>
+
+                                <option value="187">GERBER nabor</option>
+
+                                <option value="188">Kafel tozalaydigan</option>
+
+                                <option value="189">Wi-Fe mini kamera</option>
+
+                                <option value="190">Straight comb dazmol</option>
+
+                                <option value="191">LG FOLDER 2</option>
+
+                                <option value="192">Kolenniy patch</option>
+
+                                <option value="193">Legend Samsung GUSTO 3 GSM</option>
+
+                                <option value="194">Vibra stick2</option>
+
+                                <option value="195">Quloq tozalagich</option>
+
+                                <option value="196">Slim patch</option>
+
+                                <option value="197">Termal Mest</option>
+
+                                <option value="198">Video regstrator</option>
+
+                                <option value="200">Mini Blendir</option>
+
+                                <option value="201">Q7 SHOKALAD</option>
+
+                                <option value="202">Beard Cutter - Mini soqol olgich</option>
+
+                                <option value="203">VGR-390</option>
+
+                                <option value="204">FERAMON ATIR</option>
+
+                                <option value="205">UPSIZE</option>
+
+                                <option value="206">Tetan gel</option>
+
+                                <option value="207">Slimmer Disk</option>
+
+                                <option value="208">Ko&#x27;p funksiyalik belkurak</option>
+
+                                <option value="209">Koptok</option>
+
+                                <option value="210">STUD 5000</option>
+
+                                <option value="211">Elektron tish cho&#x27;tka</option>
+
+                                <option value="212">GUCCi Smartwatch</option>
+
+                                <option value="214">ZOOM LED</option>
+
+                                <option value="215">Qur’oni karimning mashhur suralari fazilati</option>
+
+                                <option value="216">SMART SHAVER</option>
+
+                                <option value="217">Baniyat Shifo</option>
+
+                                <option value="219">Mini Laser stage ligting</option>
+
+                                <option value="220">Mini soch dazmol</option>
+
+                                <option value="221">Ogohlantirish LED chirogi</option>
+
+                                <option value="222">Bracelet</option>
+
+                                <option value="223">ANTI - FOG</option>
+
+                                <option value="224">Orto Pro TizzaBand</option>
+
+                                <option value="225">Qorbobo kiyim</option>
+
+                                <option value="226">Tirnoq uchun nabor</option>
+
+                                <option value="227">Bolalar uchun Proyektor</option>
+
+                                <option value="229">Turk asali</option>
+
+                                <option value="232">Erkaklar uchun nobor</option>
+
+                                <option value="233">Planshet</option>
+
+                                <option value="234">EMES masajyori</option>
+
+                                <option value="235">Epilator painless</option>
+
+                                <option value="236">FOSFOR NAKLEYKA</option>
+
+                                <option value="237">FOSFOR kalpachoklar</option>
+
+                                <option value="238">Riyozus Solihiyn muxtasar sharxi</option>
+
+                                <option value="239">Iktasi Birda Peoneer</option>
+
+                                <option value="240">Ayollar ibodatiga xos masalalar</option>
+
+                                <option value="241">ShAMOILI MUXAMMADIYA</option>
+
+                                <option value="242">Fosfor boltlar</option>
+
+                                <option value="243">Mini kamera</option>
+
+                                <option value="244">ПАЙҒАМБАРЛАР ХАҚИДАГИ КИТОБ</option>
+
+                                <option value="245">TURK ASALI</option>
+
+                                <option value="246">SHAMS Qora sedana</option>
+
+                                <option value="247">CULON</option>
+
+                                <option value="248">BOLALAR UCHUN O&#x27;RDAKCHA</option>
+
+                                <option value="250">Bendax</option>
+
+                                <option value="251">Samyun wan</option>
+
+                                <option value="252">KARCHIRLI SHLANK 15 metr</option>
+
+                                <option value="253">Ajoyib charx</option>
+
+                                <option value="254">Vibratone</option>
+
+                                <option value="255">KODES</option>
+
+                                <option value="256">Sumkalik joynamoz</option>
+
+                                <option value="257">Dr-Racher sovuni</option>
+
+                                <option value="258">Multi Massajyor</option>
+
+                                <option value="259">KUMUSH RANG CULON</option>
+
+                                <option value="260">BRASLED</option>
+
+                                <option value="261">Ramazon oyi sovg&#x27;asi</option>
+
+                                <option value="262">YUZ UCHUN MASAJYOR</option>
+
+                                <option value="263">UCHAR FEYA</option>
+
+                                <option value="264">MAHZUN BO&#x27;LMA</option>
+
+                                <option value="265">Solihlar gulshani</option>
+
+                                <option value="266">VGR - Beard Cutter</option>
+
+                                <option value="267">Planshet doska va ajoyib proyektor</option>
+
+                                <option value="268">Quroni Karim Kitobi va Al husna</option>
+
+                                <option value="269">Samyun Wan ➖ Bendax</option>
+
+                                <option value="270">VERTALYOT</option>
+
+                                <option value="271">UCHUVCHI KO&#x27;PTOK</option>
+
+                                <option value="272">Remover krem - Remover kristali</option>
+
+                                <option value="273">T800 ULTRA Smart Watch</option>
+
+                                <option value="274">TIRNOQLAR UCHUN NABOR ➖ QULOQ TOZALAGICH</option>
+
+                                <option value="275">Mafiya O&#x27;yini</option>
+
+                                <option value="276">Oqargan sochlarni qoraytiradigan sovun</option>
+
+                                <option value="277">Benda–Samyunwan–Gren mask</option>
+
+                                <option value="278">Beard oil–Beart cutter</option>
+
+                                <option value="279">KARCHIRLI SHLANK 22.5 metr</option>
+
+                                <option value="280">KARCHIRLI SHLANK 30 metr</option>
+
+                                <option value="281">KARCHIRLI SHLANK 45 metr</option>
+
+                                <option value="282">Avto Jalyuzi</option>
+
+                                <option value="283">FRESH Meni blender</option>
+
+                                <option value="284">Intex bassen 244sm 61sm</option>
+
+                                <option value="285">Bassen 305sm×76sm</option>
+
+                                <option value="286">Index bassen 450x220x84</option>
+
+                                <option value="287">Index bassen 3mx2mx75sm</option>
+
+                                <option value="288">Smart Watch va Airpods</option>
+
+                                <option value="289">Moshina labovoy klik / WIND SHIELD</option>
+
+                                <option value="290">Ko&#x27;p funksiyalik braslet</option>
+
+                                <option value="291">EMS OYOQ MASSAJYORI MINI MASSAJYOR</option>
+
+                                <option value="292">DOMINO TERUVCHI POYEZDCHA</option>
+
+                                <option value="293">CHUCHVARA TUGISH</option>
+
+                                <option value="294">EMS oyoq masajyor</option>
+
+                                <option value="295">T800</option>
+
+                                <option value="296">ELEKTRON TERI TOZALAGICH</option>
+
+                                <option value="297">FORMULA ATIR</option>
+
+                                <option value="298">FRESH Meni blender</option>
+
+                                <option value="299">1 TA KOʻZ OYNAKDA 5 XIL RANG</option>
+
+                                <option value="300">Chopper Temirli</option>
+
+                                <option value="301">Avtomobil old oynasi uchun soyabon</option>
+
+                                <option value="302">Super tozalovchi kukun !!</option>
+
+                                <option value="303">CHUCHVARA TUGISH</option>
+
+                                <option value="304">Freshness Dry</option>
+
+                                <option value="305">Super tozalovchi sovun</option>
+
+                                <option value="306">Elektron Killer Pashshalar uchun!</option>
+
+                                <option value="307">SUPER VAKUM USKUNA</option>
+
+                                <option value="308">Polda turadigan konditsioner</option>
+
+                                <option value="309">MINE SHAVER</option>
+
+                                <option value="310">Mini tikish moshinka</option>
+
+                                <option value="311">OQARTIRUVCHI KREM</option>
+
+                                <option value="312">KIRKA ATR</option>
+
+                                <option value="313">Oqartiruvchi super krem</option>
+
+                                <option value="314">KIRKA ATR</option>
+
+                                <option value="315">Video regstrator</option>
+
+                                <option value="316">Buyin uchun ems kabelik massajyor</option>
+
+                                <option value="317">Slim body ozdiruvchi ayollar uchun</option>
+
+                                <option value="318">Dior orginal 5 talik atir naborlarimiz</option>
+
+                                <option value="319">Gold mask retinol</option>
+
+                                <option value="320">Meni ZOOM LED</option>
+
+                                <option value="321">Gold mask retinol</option>
+
+                                <option value="322">Vitek....</option>
+
+                                <option value="323">Tabiiy krem</option>
+
+                                <option value="324">Video regstrator</option>
+
+                                <option value="325">Kapilka</option>
+
+                                <option value="326">snail krem</option>
+
+                                <option value="327">Dragon krem</option>
+
+                                <option value="328">Slim body ozdiruvchi ayollar uchun</option>
+
+                                <option value="329">UNIVERSAL MARKER</option>
+
+                                <option value="330">HAIR REMOVAL KREM 2 TALIK</option>
+
+                                <option value="331">Posture Support</option>
+
+                                <option value="332">Black Hair shampun</option>
+
+                                <option value="333">BOSCH SUPER SIFATLI BLENDER</option>
+
+                                <option value="334">Black Hair shampun</option>
+
+                                <option value="335">MEIDIAN Krem</option>
+
+                                <option value="337">LANBENA Maska</option>
+
+                                <option value="338">Vitek</option>
+
+                                <option value="339">Slim body ozdiruvchi ayollar uchun</option>
+
+                                <option value="340">Macun</option>
+
+                                <option value="341">Armeyiski maska</option>
+
+                                <option value="342">Armeyiski maska</option>
+
+                                <option value="343">Termal Mest</option>
+
+                                <option value="344">NARKOTIQUE</option>
+
+                                <option value="345">Vosmoy element</option>
+
+                                <option value="346">SUAVAGI DIOR</option>
+
+                                <option value="347">Supper Kislata Mannol</option>
+
+                                <option value="348">Avtomobil Eshigi Uchun sticer</option>
+
+                                <option value="349">KIRKA 50ml</option>
+
+                                <option value="350">Kalgotka</option>
+
+                                <option value="351">Q7 Shokalad</option>
+
+                                <option value="352">Kirka 45ml</option>
+
+                                <option value="353">Avtomobil Eshigi Uchun sticer</option>
+
+                                <option value="354">vetik</option>
+
+                                <option value="355">BLEU CHANEL</option>
+
+                                <option value="356">TOP ATIRLAR</option>
+
+                                <option value="357">46 BIG Nabor</option>
+
+                                <option value="358">Varikoz Naski</option>
+
+                                <option value="359">mini zoom led</option>
+
+                                <option value="360">SHARP TOOL Charx</option>
+
+                                <option value="361">Star Master led</option>
+
+                                <option value="362">Muallimi Soniy (Tajvid qoidalari bilan]</option>
+
+                                <option value="363">TOP ATIRLAR</option>
+
+                                <option value="364">Tetan gel</option>
+
+                                <option value="365">Slim body ozdiruvchi ayollar uchun</option>
+
+                                <option value="366">Posture Support</option>
+
+                                <option value="367">Vitik katta Elektrolux</option>
+
+                                <option value="368">Pushka Pechka 3kv</option>
+
+                                <option value="369">Savdogarlar Ustozi yoxud Haqiqiy omad kaliti</option>
+
+                                <option value="370">Ayollar uchun Binni shapka</option>
+
+                                <option value="371">TOP ATIRLAR</option>
+
+                                <option value="372">Black Hair shampun</option>
+
+                                <option value="373">Drxam Mousuf Narkotik 3 tasi birda</option>
+
+                                <option value="374">Drxam Mousuf Narkotik 3 tasi birda</option>
+
+                                <option value="375">Alloxning elchisi MUXAMMAD</option>
+
+                                <option value="376">BEARD OIL</option>
+
+                                <option value="377">Dayson fen</option>
+
+                                <option value="378">Hayaati Vasmoy Magienoire 3 tasi birda</option>
+
+                                <option value="379">Hayaati Vasmoy Magienoire 3 tasi birda</option>
+
+                                <option value="380">Rosululloh (s.a.v) bilan 1 soat</option>
+
+                                <option value="381">Million dollarlik xatolar</option>
+
+                                <option value="382">Tilla rang culon</option>
+
+                                <option value="383">3D ekran yangichasi</option>
+
+                                <option value="384">AVF ET Allohim</option>
+
+                                <option value="385">Vaqtning qadri</option>
+
+                                <option value="386">Universal nabor</option>
+
+                                <option value="387">Kavrak</option>
+
+                                <option value="388">Collagen shampun</option>
+
+                                <option value="389">Genger sovun</option>
+
+                            </select>
+
+
+                        </p>
+
+
+                        <p>
+                            <label for="id_location">Viloyat:</label>
+                            <select name="location" id="id_location" multiple>
+                                <option value="Viloyatni tanlang">Viloyatni tanlang</option>
+
+                                <option value="tashkent">Toshkent shahar</option>
+
+                                <option value="andijon">Andijon viloyati</option>
+
+                                <option value="buxoro">Buxoro viloyati</option>
+
+                                <option value="fargona">Fargʻona viloyati</option>
+
+                                <option value="jizzax">Jizzax viloyati</option>
+
+                                <option value="namangan">Namangan viloyati</option>
+
+                                <option value="navoiy">Navoiy viloyati</option>
+
+                                <option value="qashqadaryo">Qashqadaryo viloyati</option>
+
+                                <option value="qoraqalpogiston">Qoraqalpogʻiston Respublika</option>
+
+                                <option value="samarqand">Samarqand viloyati</option>
+
+                                <option value="sirdaryo">Sirdaryo viloyati</option>
+
+                                <option value="surxondaryo">Surxondaryo viloyati</option>
+
+                                <option value="toshkent">Toshkent viloyati</option>
+
+                                <option value="xorazm">Xorazm viloyati</option>
+
+                            </select>
+
+
+                        </p>
+
+
+                        <p>
+                            <label for="id_region">Tuman:</label>
+                            <select name="region" id="id_region" multiple>
+                                <option value="Amudaryo tumani">Amudaryo tumani</option>
+
+                                <option value="Beruniy tumani">Beruniy tumani</option>
+
+                                <option value="Kegayli tumani">Kegayli tumani</option>
+
+                                <option value="Qonliko&#x27;l tumani">Qonliko&#x27;l tumani</option>
+
+                                <option value="Qorao&#x27;zak tumani">Qorao&#x27;zak tumani</option>
+
+                                <option value="Qo&#x27;ng&#x27;irot tumani">Qo&#x27;ng&#x27;irot tumani</option>
+
+                                <option value="Mo&#x27;ynoq tumani">Mo&#x27;ynoq tumani</option>
+
+                                <option value="Nukus tumani">Nukus tumani</option>
+
+                                <option value="Nukus shahri">Nukus shahri</option>
+
+                                <option value="Taxtako&#x27;pir tumani">Taxtako&#x27;pir tumani</option>
+
+                                <option value="To&#x27;rtko&#x27;l tumani">To&#x27;rtko&#x27;l tumani</option>
+
+                                <option value="Xo&#x27;jayli tumani">Xo&#x27;jayli tumani</option>
+
+                                <option value="Chimboy tumani">Chimboy tumani</option>
+
+                                <option value="Shumanay tumani">Shumanay tumani</option>
+
+                                <option value="Ellikqal&#x27;a tumani">Ellikqal&#x27;a tumani</option>
+
+                                <option value="Andijon shahri">Andijon shahri</option>
+
+                                <option value="Andijon tumani">Andijon tumani</option>
+
+                                <option value="Asaka tumani">Asaka tumani</option>
+
+                                <option value="Baliqchi tumani">Baliqchi tumani</option>
+
+                                <option value="Buloqboshi tumani">Buloqboshi tumani</option>
+
+                                <option value="Bo&#x27;z tumani">Bo&#x27;z tumani</option>
+
+                                <option value="Jalaquduq tumani">Jalaquduq tumani</option>
+
+                                <option value="Izbosgan tumani">Izbosgan tumani</option>
+
+                                <option value="Qorasuv shahri">Qorasuv shahri</option>
+
+                                <option value="Qo&#x27;rg&#x27;ontepa tumani">Qo&#x27;rg&#x27;ontepa tumani</option>
+
+                                <option value="Marhamat tumani">Marhamat tumani</option>
+
+                                <option value="Oltinko&#x27;l tumani">Oltinko&#x27;l tumani</option>
+
+                                <option value="Paxtaobod tumani">Paxtaobod tumani</option>
+
+                                <option value="Ulug&#x27;nor tumani">Ulug&#x27;nor tumani</option>
+
+                                <option value="Xonabod tumani">Xonabod tumani</option>
+
+                                <option value="Xo&#x27;jaobod tumani">Xo&#x27;jaobod tumani</option>
+
+                                <option value="Shahrixon tumani">Shahrixon tumani</option>
+
+                                <option value="Buxoro shahri">Buxoro shahri</option>
+
+                                <option value="Buxoro tumani">Buxoro tumani</option>
+
+                                <option value="Vobkent tumani">Vobkent tumani</option>
+
+                                <option value="G&#x27;ijduvon tumani">G&#x27;ijduvon tumani</option>
+
+                                <option value="Jondor tumani">Jondor tumani</option>
+
+                                <option value="Kogon tumani">Kogon tumani</option>
+
+                                <option value="Kogon shahri">Kogon shahri</option>
+
+                                <option value="Qorako&#x27;l tumani">Qorako&#x27;l tumani</option>
+
+                                <option value="Qorovulbozor tumani">Qorovulbozor tumani</option>
+
+                                <option value="Olot tumani">Olot tumani</option>
+
+                                <option value="Peshku tumani">Peshku tumani</option>
+
+                                <option value="Romitan tumani">Romitan tumani</option>
+
+                                <option value="Shofirkon tumani">Shofirkon tumani</option>
+
+                                <option value="Arnasoy tumani">Arnasoy tumani</option>
+
+                                <option value="Baxmal tumani">Baxmal tumani</option>
+
+                                <option value="G&#x27;allaorol tumani">G&#x27;allaorol tumani</option>
+
+                                <option value="Do&#x27;stlik tumani">Do&#x27;stlik tumani</option>
+
+                                <option value="Sh.Rashidov tumani">Sh.Rashidov tumani</option>
+
+                                <option value="Jizzax shahri">Jizzax shahri</option>
+
+                                <option value="Zarbdor tumani">Zarbdor tumani</option>
+
+                                <option value="Zafarobod tumani">Zafarobod tumani</option>
+
+                                <option value="Zomin tumani">Zomin tumani</option>
+
+                                <option value="Mirzacho&#x27;l tumani">Mirzacho&#x27;l tumani</option>
+
+                                <option value="Paxtakor tumani">Paxtakor tumani</option>
+
+                                <option value="Forish tumani">Forish tumani</option>
+
+                                <option value="Yangiobod tumani">Yangiobod tumani</option>
+
+                                <option value="G&#x27;uzor tumani">G&#x27;uzor tumani</option>
+
+                                <option value="Dehqonobod tumani">Dehqonobod tumani</option>
+
+                                <option value="Qamashi tumani">Qamashi tumani</option>
+
+                                <option value="Qarshi tumani">Qarshi tumani</option>
+
+                                <option value="Qarshi shahri">Qarshi shahri</option>
+
+                                <option value="Kasbi tumani">Kasbi tumani</option>
+
+                                <option value="Kitob tumani">Kitob tumani</option>
+
+                                <option value="Koson tumani">Koson tumani</option>
+
+                                <option value="Mirishkor tumani">Mirishkor tumani</option>
+
+                                <option value="Muborak tumani">Muborak tumani</option>
+
+                                <option value="Nishon tumani">Nishon tumani</option>
+
+                                <option value="Chiroqchi tumani">Chiroqchi tumani</option>
+
+                                <option value="Shahrisabz tumani">Shahrisabz tumani</option>
+
+                                <option value="Yakkabog&#x27; tumani">Yakkabog&#x27; tumani</option>
+
+                                <option value="Zarafshon shahri">Zarafshon shahri</option>
+
+                                <option value="Karmana tumani">Karmana tumani</option>
+
+                                <option value="Qiziltepa tumani">Qiziltepa tumani</option>
+
+                                <option value="Konimex tumani">Konimex tumani</option>
+
+                                <option value="Navbahor tumani">Navbahor tumani</option>
+
+                                <option value="Navoiy shahri">Navoiy shahri</option>
+
+                                <option value="Nurota tumani">Nurota tumani</option>
+
+                                <option value="Tomdi tumani">Tomdi tumani</option>
+
+                                <option value="Uchquduq tumani">Uchquduq tumani</option>
+
+                                <option value="Xatirchi tumani">Xatirchi tumani</option>
+
+                                <option value="Kosonsoy tumani">Kosonsoy tumani</option>
+
+                                <option value="Mingbuloq tumani">Mingbuloq tumani</option>
+
+                                <option value="Namangan tumani">Namangan tumani</option>
+
+                                <option value="Namangan shahri">Namangan shahri</option>
+
+                                <option value="Norin tumani">Norin tumani</option>
+
+                                <option value="Pop tumani">Pop tumani</option>
+
+                                <option value="To&#x27;raqo&#x27;rg&#x27;on tumani">To&#x27;raqo&#x27;rg&#x27;on
+                                    tumani
+                                </option>
+
+                                <option value="Uychi tumani">Uychi tumani</option>
+
+                                <option value="Uchqo&#x27;rg&#x27;on tumani">Uchqo&#x27;rg&#x27;on tumani</option>
+
+                                <option value="Chortoq tumani">Chortoq tumani</option>
+
+                                <option value="Chust tumani">Chust tumani</option>
+
+                                <option value="Yangiqo&#x27;rg&#x27;on tumani">Yangiqo&#x27;rg&#x27;on tumani</option>
+
+                                <option value="Bulung&#x27;ur tumani">Bulung&#x27;ur tumani</option>
+
+                                <option value="Jomboy tumani">Jomboy tumani</option>
+
+                                <option value="Ishtixon tumani">Ishtixon tumani</option>
+
+                                <option value="Kattaqo&#x27;rg&#x27;on tumani">Kattaqo&#x27;rg&#x27;on tumani</option>
+
+                                <option value="Kattaqo&#x27;rg&#x27;on shahri">Kattaqo&#x27;rg&#x27;on shahri</option>
+
+                                <option value="Qo&#x27;shrabot tumani">Qo&#x27;shrabot tumani</option>
+
+                                <option value="Narpay tumani">Narpay tumani</option>
+
+                                <option value="Nurabod tumani">Nurabod tumani</option>
+
+                                <option value="Oqdaryo tumani">Oqdaryo tumani</option>
+
+                                <option value="Payariq tumani">Payariq tumani</option>
+
+                                <option value="Pastarg&#x27;om tumani">Pastarg&#x27;om tumani</option>
+
+                                <option value="Paxtachi tumani">Paxtachi tumani</option>
+
+                                <option value="Samarqand tumani">Samarqand tumani</option>
+
+                                <option value="Samarqand shahri">Samarqand shahri</option>
+
+                                <option value="Toyloq tumani">Toyloq tumani</option>
+
+                                <option value="Urgut tumani">Urgut tumani</option>
+
+                                <option value="Angor tumani">Angor tumani</option>
+
+                                <option value="Boysun tumani">Boysun tumani</option>
+
+                                <option value="Denov tumani">Denov tumani</option>
+
+                                <option value="Jarqo&#x27;rg&#x27;on tumani">Jarqo&#x27;rg&#x27;on tumani</option>
+
+                                <option value="Qiziriq tumani">Qiziriq tumani</option>
+
+                                <option value="Qo&#x27;mqo&#x27;rg&#x27;on tumani">Qo&#x27;mqo&#x27;rg&#x27;on tumani
+                                </option>
+
+                                <option value="Muzrabot tumani">Muzrabot tumani</option>
+
+                                <option value="Oltinsoy tumani">Oltinsoy tumani</option>
+
+                                <option value="Sariosiyo tumani">Sariosiyo tumani</option>
+
+                                <option value="Termiz tumani">Termiz tumani</option>
+
+                                <option value="Termiz shahri">Termiz shahri</option>
+
+                                <option value="Uzun tumani">Uzun tumani</option>
+
+                                <option value="Sherobod tumani">Sherobod tumani</option>
+
+                                <option value="Sho&#x27;rchi tumani">Sho&#x27;rchi tumani</option>
+
+                                <option value="Boyovut tumani">Boyovut tumani</option>
+
+                                <option value="Guliston tumani">Guliston tumani</option>
+
+                                <option value="Guliston shahri">Guliston shahri</option>
+
+                                <option value="Mirzaobod tumani">Mirzaobod tumani</option>
+
+                                <option value="Oqoltin tumani">Oqoltin tumani</option>
+
+                                <option value="Sayxunobod tumani">Sayxunobod tumani</option>
+
+                                <option value="Sardoba tumani">Sardoba tumani</option>
+
+                                <option value="Sirdaryo tumani">Sirdaryo tumani</option>
+
+                                <option value="Xavos tumani">Xavos tumani</option>
+
+                                <option value="Shirin shahri">Shirin shahri</option>
+
+                                <option value="Yangiyer shahri">Yangiyer shahri</option>
+
+                                <option value="Angiren shahri">Angiren shahri</option>
+
+                                <option value="Bekabod tumani">Bekabod tumani</option>
+
+                                <option value="Bekabod shahri">Bekabod shahri</option>
+
+                                <option value="Bo&#x27;ka tumani">Bo&#x27;ka tumani</option>
+
+                                <option value="Bo&#x27;stonliq tumani">Bo&#x27;stonliq tumani</option>
+
+                                <option value="Zangiota tumani">Zangiota tumani</option>
+
+                                <option value="Qibray tumani">Qibray tumani</option>
+
+                                <option value="Quyichirchiq tumani">Quyichirchiq tumani</option>
+
+                                <option value="Oqqo&#x27;rg&#x27;on tumani">Oqqo&#x27;rg&#x27;on tumani</option>
+
+                                <option value="Olmaliq shahri">Olmaliq shahri</option>
+
+                                <option value="Ohangaron tumani">Ohangaron tumani</option>
+
+                                <option value="Parkent tumani">Parkent tumani</option>
+
+                                <option value="Piskent tumani">Piskent tumani</option>
+
+                                <option value="O&#x27;rtachirchiq tumani">O&#x27;rtachirchiq tumani</option>
+
+                                <option value="Chinoz tumani">Chinoz tumani</option>
+
+                                <option value="Chirchiq shahri">Chirchiq shahri</option>
+
+                                <option value="Yuqorichirchiq tumani">Yuqorichirchiq tumani</option>
+
+                                <option value="Yangiyo&#x27;l tumani">Yangiyo&#x27;l tumani</option>
+
+                                <option value="Beshariq tumani">Beshariq tumani</option>
+
+                                <option value="Bog&#x27;dod tumani">Bog&#x27;dod tumani</option>
+
+                                <option value="Buvayda tumani">Buvayda tumani</option>
+
+                                <option value="Dang&#x27;ara tumani">Dang&#x27;ara tumani</option>
+
+                                <option value="Yozyovon tumani">Yozyovon tumani</option>
+
+                                <option value="Quva tumani">Quva tumani</option>
+
+                                <option value="Quvasoy shahri">Quvasoy shahri</option>
+
+                                <option value="Qo&#x27;qon shahri">Qo&#x27;qon shahri</option>
+
+                                <option value="Qo&#x27;shtepa tumani">Qo&#x27;shtepa tumani</option>
+
+                                <option value="Marg&#x27;ilon shahri">Marg&#x27;ilon shahri</option>
+
+                                <option value="Oltiariq tumani">Oltiariq tumani</option>
+
+                                <option value="Rishton tumani">Rishton tumani</option>
+
+                                <option value="So&#x27;x tumani">So&#x27;x tumani</option>
+
+                                <option value="Toshloq tumani">Toshloq tumani</option>
+
+                                <option value="Uchko&#x27;prik tumani">Uchko&#x27;prik tumani</option>
+
+                                <option value="O&#x27;zbekiston tumani">O&#x27;zbekiston tumani</option>
+
+                                <option value="Farg&#x27;ona tumani">Farg&#x27;ona tumani</option>
+
+                                <option value="Farg&#x27;ona shahri">Farg&#x27;ona shahri</option>
+
+                                <option value="Furqat tumani">Furqat tumani</option>
+
+                                <option value="Bog&#x27;ot tumani">Bog&#x27;ot tumani</option>
+
+                                <option value="Gurlan tumani">Gurlan tumani</option>
+
+                                <option value="Qo&#x27;shko&#x27;pir tumani">Qo&#x27;shko&#x27;pir tumani</option>
+
+                                <option value="Urganch tumani">Urganch tumani</option>
+
+                                <option value="Urganch shahri">Urganch shahri</option>
+
+                                <option value="Xiva tumani">Xiva tumani</option>
+
+                                <option value="Xazarasp tumani">Xazarasp tumani</option>
+
+                                <option value="Xonqa tumani">Xonqa tumani</option>
+
+                                <option value="Shavot tumani">Shavot tumani</option>
+
+                                <option value="Yangiariq tumani">Yangiariq tumani</option>
+
+                                <option value="Yangibozor tumani">Yangibozor tumani</option>
+
+                                <option value="Bektemir tumani">Bektemir tumani</option>
+
+                                <option value="Mirzo Ulug&#x27;bek tumani">Mirzo Ulug&#x27;bek tumani</option>
+
+                                <option value="Mirobod tumani">Mirobod tumani</option>
+
+                                <option value="Olmazor tumani">Olmazor tumani</option>
+
+                                <option value="Sirg&#x27;ali tumani">Sirg&#x27;ali tumani</option>
+
+                                <option value="Uchtepa tumani">Uchtepa tumani</option>
+
+                                <option value="Yashnobod tumani">Yashnobod tumani</option>
+
+                                <option value="Chilonzor tumani">Chilonzor tumani</option>
+
+                                <option value="Shayxontohur tumani">Shayxontohur tumani</option>
+
+                                <option value="Yunusobod tumani">Yunusobod tumani</option>
+
+                                <option value="Yakkasaroy tumani">Yakkasaroy tumani</option>
+
+                                <option value="Taxiatosh shahri">Taxiatosh shahri</option>
+
+                                <option value="Asaka shahri">Asaka shahri</option>
+
+                                <option value="Bandixon tumani">Bandixon tumani</option>
+
+                                <option value="Ohangaron shahri">Ohangaron shahri</option>
+
+                                <option value="Yangiyo&#x27;l shahri">Yangiyo&#x27;l shahri</option>
+
+                                <option value="Toshkent tumani">Toshkent tumani</option>
+
+                                <option value="Xiva shahri">Xiva shahri</option>
+
+                                <option value="Do&#x27;stlik shahri">Do&#x27;stlik shahri</option>
+
+                                <option value="Yangihayot tumani">Yangihayot tumani</option>
+
+                                <option value="Tuproqqala tumani">Tuproqqala tumani</option>
+
+                                <option value="Davlatobod tumani">Davlatobod tumani</option>
+
+                                <option value="G&#x27;ozg&#x27;on shahri">G&#x27;ozg&#x27;on shahri</option>
+
+                                <option value="Bo&#x27;zatov tumani">Bo&#x27;zatov tumani</option>
+
+                                <option value="Shahrisabz shahri">Shahrisabz shahri</option>
+
+                                <option value="Ko&#x27;kdala tumani">Ko&#x27;kdala tumani</option>
+
+                            </select>
+
+
+                        </p>
+
+
+                        <p>
+                            <label for="id_name">Mahsulot nomi:</label>
+                            <input type="text" name="name" id="id_name">
+
+
+                        </p></div>
+                    <input class="btn btn-primary" type="submit" value="Saqlash">
+                </form>
+
+
+                <div class="card border-dark mt-5">
+
+                    <div class="card-body">
+                        <h2 class="card-title">EMS oyoq masajyor - 69000 so'm</h2>
+                        <h3 class="card-title text-danger">ZAKAZ ID: #1745974</h3>
+                        <ul class="text-muted">
+                            <li class="">Reklama tarqatuvchi ID: 998932520255</li>
+                            <li class="">Client: Нодирбой Уткиров - +9989XXXXXXXX</li>
+                            <li class="">Address: Viloyatni tanlang None</li>
+                            <li class="">Narxi: 69000 so'm + <p style="color: red; display: inline;">
+                                AKSIYA</p></li>
+
+                            <li class="">Soni: 1ta</li>
+                            <li class="">Vaqti: 6-Fevral, 2024-yil 15:14</li>
+                            <li class="">Yangilangan vaqti: 6-Fevral, 2024-yil 20:35</li>
+                            <li class="">Holati: yangi</li>
+                        </ul>
+                        <a href="/operator/order/1745974" class="btn btn-primary"
+                           style="float: left; margin-right: 10px;">
+
+                            Qabul qilish
+
+                        </a>
+                        <form action="/operator/new/hold" method="post">
+                            <input type="hidden" name="csrfmiddlewaretoken"
+                                   value="ktKqqAXPWFf72f0l3IUaASIBGWWPsdQkG0p40DAMvhVpXYyrTw3jM0cjZ8vOJKye">
+                            <input type="text" hidden name="order" value="1745974">
+                            <input class="btn btn-primary" type="submit" value="Hold"
+                                   style="float: right; margin-right: 10px;">
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card border-dark mt-5">
+
+                    <div class="card-body">
+                        <h2 class="card-title">EMS oyoq masajyor - 69000 so'm</h2>
+                        <h3 class="card-title text-danger">ZAKAZ ID: #1745997</h3>
+                        <ul class="text-muted">
+                            <li class="">Reklama tarqatuvchi ID: 998932520255</li>
+                            <li class="">Client: Yarov Batir - +9989XXXXXXXX</li>
+                            <li class="">Address: Viloyatni tanlang None</li>
+                            <li class="">Narxi: 69000 so'm + <p style="color: red; display: inline;">
+                                AKSIYA</p></li>
+
+                            <li class="">Soni: 1ta</li>
+                            <li class="">Vaqti: 6-Fevral, 2024-yil 15:20</li>
+                            <li class="">Yangilangan vaqti: 6-Fevral, 2024-yil 20:35</li>
+                            <li class="">Holati: yangi</li>
+                        </ul>
+                        <a href="/operator/order/1745997" class="btn btn-primary"
+                           style="float: left; margin-right: 10px;">
+
+                            Qabul qilish
+
+                        </a>
+                        <form action="/operator/new/hold" method="post">
+                            <input type="hidden" name="csrfmiddlewaretoken"
+                                   value="ktKqqAXPWFf72f0l3IUaASIBGWWPsdQkG0p40DAMvhVpXYyrTw3jM0cjZ8vOJKye">
+                            <input type="text" hidden name="order" value="1745997">
+                            <input class="btn btn-primary" type="submit" value="Hold"
+                                   style="float: right; margin-right: 10px;">
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card border-dark mt-5">
+
+                    <div class="card-body">
+                        <h2 class="card-title">Kirka 45ml - 47000 so'm</h2>
+                        <h3 class="card-title text-danger">ZAKAZ ID: #1746154</h3>
+                        <ul class="text-muted">
+                            <li class="">Reklama tarqatuvchi ID: 998336331999</li>
+                            <li class="">Client: Исломбек - +9989XXXXXXXX</li>
+                            <li class="">Address: Viloyatni tanlang None</li>
+                            <li class="">Narxi: 47000 so'm <strong>+ 30000</strong> so'm</li>
+
+                            <li class="">Soni: 1ta</li>
+                            <li class="">Vaqti: 6-Fevral, 2024-yil 15:48</li>
+                            <li class="">Yangilangan vaqti: 7-Fevral, 2024-yil 14:26</li>
+                            <li class="">Holati: yangi</li>
+                        </ul>
+                        <a href="/operator/order/1746154" class="btn btn-primary"
+                           style="float: left; margin-right: 10px;">
+
+                            Qabul qilish
+
+                        </a>
+                        <form action="/operator/new/hold" method="post">
+                            <input type="hidden" name="csrfmiddlewaretoken"
+                                   value="ktKqqAXPWFf72f0l3IUaASIBGWWPsdQkG0p40DAMvhVpXYyrTw3jM0cjZ8vOJKye">
+                            <input type="text" hidden name="order" value="1746154">
+                            <input class="btn btn-primary" type="submit" value="Hold"
+                                   style="float: right; margin-right: 10px;">
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card border-dark mt-5">
+
+                    <div class="card-body">
+                        <h2 class="card-title">EMS oyoq masajyor - 69000 so'm</h2>
+                        <h3 class="card-title text-danger">ZAKAZ ID: #1746296</h3>
+                        <ul class="text-muted">
+                            <li class="">Reklama tarqatuvchi ID: 998932520255</li>
+                            <li class="">Client: khasan0vvv - +9989XXXXXXXX</li>
+                            <li class="">Address: Viloyatni tanlang None</li>
+                            <li class="">Narxi: 69000 so'm + <p style="color: red; display: inline;">
+                                AKSIYA</p></li>
+
+                            <li class="">Soni: 1ta</li>
+                            <li class="">Vaqti: 6-Fevral, 2024-yil 16:15</li>
+                            <li class="">Yangilangan vaqti: 6-Fevral, 2024-yil 20:34</li>
+                            <li class="">Holati: yangi</li>
+                        </ul>
+                        <a href="/operator/order/1746296" class="btn btn-primary"
+                           style="float: left; margin-right: 10px;">
+
+                            Qabul qilish
+
+                        </a>
+                        <form action="/operator/new/hold" method="post">
+                            <input type="hidden" name="csrfmiddlewaretoken"
+                                   value="ktKqqAXPWFf72f0l3IUaASIBGWWPsdQkG0p40DAMvhVpXYyrTw3jM0cjZ8vOJKye">
+                            <input type="text" hidden name="order" value="1746296">
+                            <input class="btn btn-primary" type="submit" value="Hold"
+                                   style="float: right; margin-right: 10px;">
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card border-dark mt-5">
+
+                    <div class="card-body">
+                        <h2 class="card-title">Genger sovun - 59000 so'm</h2>
+                        <h3 class="card-title text-danger">ZAKAZ ID: #1746385</h3>
+                        <ul class="text-muted">
+                            <li class="">Reklama tarqatuvchi ID: 998946131440</li>
+                            <li class="">Client: Abbos - +9989XXXXXXXX</li>
+                            <li class="">Address: Viloyatni tanlang None</li>
+                            <li class="">Narxi: 59000 so'm <strong>+ 30000</strong> so'm</li>
+
+                            <li class="">Soni: 1ta</li>
+                            <li class="">Vaqti: 6-Fevral, 2024-yil 16:31</li>
+                            <li class="">Yangilangan vaqti: 7-Fevral, 2024-yil 1:09</li>
+                            <li class="">Holati: yangi</li>
+                        </ul>
+                        <a href="/operator/order/1746385" class="btn btn-primary"
+                           style="float: left; margin-right: 10px;">
+
+                            Qabul qilish
+
+                        </a>
+                        <form action="/operator/new/hold" method="post">
+                            <input type="hidden" name="csrfmiddlewaretoken"
+                                   value="ktKqqAXPWFf72f0l3IUaASIBGWWPsdQkG0p40DAMvhVpXYyrTw3jM0cjZ8vOJKye">
+                            <input type="text" hidden name="order" value="1746385">
+                            <input class="btn btn-primary" type="submit" value="Hold"
+                                   style="float: right; margin-right: 10px;">
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card border-dark mt-5">
+
+                    <div class="card-body">
+                        <h2 class="card-title">Varikoz Naski - 55000 so'm</h2>
+                        <h3 class="card-title text-danger">ZAKAZ ID: #1746492</h3>
+                        <ul class="text-muted">
+                            <li class="">Reklama tarqatuvchi ID: 998942414343</li>
+                            <li class="">Client: Нодира - +9989XXXXXXXX</li>
+                            <li class="">Address: Viloyatni tanlang None</li>
+                            <li class="">Narxi: 55000 so'm <strong>+ 30000</strong> so'm</li>
+
+                            <li class="">Soni: 1ta</li>
+                            <li class="">Vaqti: 6-Fevral, 2024-yil 16:48</li>
+                            <li class="">Yangilangan vaqti: 7-Fevral, 2024-yil 1:31</li>
+                            <li class="">Holati: yangi</li>
+                        </ul>
+                        <a href="/operator/order/1746492" class="btn btn-primary"
+                           style="float: left; margin-right: 10px;">
+
+                            Qabul qilish
+
+                        </a>
+                        <form action="/operator/new/hold" method="post">
+                            <input type="hidden" name="csrfmiddlewaretoken"
+                                   value="ktKqqAXPWFf72f0l3IUaASIBGWWPsdQkG0p40DAMvhVpXYyrTw3jM0cjZ8vOJKye">
+                            <input type="text" hidden name="order" value="1746492">
+                            <input class="btn btn-primary" type="submit" value="Hold"
+                                   style="float: right; margin-right: 10px;">
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card border-dark mt-5">
+
+                    <div class="card-body">
+                        <h2 class="card-title">FRESH Meni blender - 89000 so'm</h2>
+                        <h3 class="card-title text-danger">ZAKAZ ID: #1746524</h3>
+                        <ul class="text-muted">
+                            <li class="">Reklama tarqatuvchi ID: 998335726021</li>
+                            <li class="">Client: - +9989XXXXXXXX</li>
+                            <li class="">Address: Viloyatni tanlang None</li>
+                            <li class="">Narxi: 89000 so'm <strong>+ 30000</strong> so'm</li>
+
+                            <li class="">Soni: 1ta</li>
+                            <li class="">Vaqti: 6-Fevral, 2024-yil 16:54</li>
+                            <li class="">Yangilangan vaqti: 6-Fevral, 2024-yil 21:19</li>
+                            <li class="">Holati: yangi</li>
+                        </ul>
+                        <a href="/operator/order/1746524" class="btn btn-primary"
+                           style="float: left; margin-right: 10px;">
+
+                            Qabul qilish
+
+                        </a>
+                        <form action="/operator/new/hold" method="post">
+                            <input type="hidden" name="csrfmiddlewaretoken"
+                                   value="ktKqqAXPWFf72f0l3IUaASIBGWWPsdQkG0p40DAMvhVpXYyrTw3jM0cjZ8vOJKye">
+                            <input type="text" hidden name="order" value="1746524">
+                            <input class="btn btn-primary" type="submit" value="Hold"
+                                   style="float: right; margin-right: 10px;">
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card border-dark mt-5">
+
+                    <div class="card-body">
+                        <h2 class="card-title">EMS oyoq masajyor - 69000 so'm</h2>
+                        <h3 class="card-title text-danger">ZAKAZ ID: #1746542</h3>
+                        <ul class="text-muted">
+                            <li class="">Reklama tarqatuvchi ID: 998932520255</li>
+                            <li class="">Client: Асилбек - +9989XXXXXXXX</li>
+                            <li class="">Address: Viloyatni tanlang None</li>
+                            <li class="">Narxi: 69000 so'm + <p style="color: red; display: inline;">
+                                AKSIYA</p></li>
+
+                            <li class="">Soni: 1ta</li>
+                            <li class="">Vaqti: 6-Fevral, 2024-yil 16:59</li>
+                            <li class="">Yangilangan vaqti: 7-Fevral, 2024-yil 1:31</li>
+                            <li class="">Holati: yangi</li>
+                        </ul>
+                        <a href="/operator/order/1746542" class="btn btn-primary"
+                           style="float: left; margin-right: 10px;">
+
+                            Qabul qilish
+
+                        </a>
+                        <form action="/operator/new/hold" method="post">
+                            <input type="hidden" name="csrfmiddlewaretoken"
+                                   value="ktKqqAXPWFf72f0l3IUaASIBGWWPsdQkG0p40DAMvhVpXYyrTw3jM0cjZ8vOJKye">
+                            <input type="text" hidden name="order" value="1746542">
+                            <input class="btn btn-primary" type="submit" value="Hold"
+                                   style="float: right; margin-right: 10px;">
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card border-dark mt-5">
+
+                    <div class="card-body">
+                        <h2 class="card-title">EMS oyoq masajyor - 69000 so'm</h2>
+                        <h3 class="card-title text-danger">ZAKAZ ID: #1746558</h3>
+                        <ul class="text-muted">
+                            <li class="">Reklama tarqatuvchi ID: 998932520255</li>
+                            <li class="">Client: Muhammad aliy - +9989XXXXXXXX</li>
+                            <li class="">Address: Viloyatni tanlang None</li>
+                            <li class="">Narxi: 69000 so'm + <p style="color: red; display: inline;">
+                                AKSIYA</p></li>
+
+                            <li class="">Soni: 1ta</li>
+                            <li class="">Vaqti: 6-Fevral, 2024-yil 17:02</li>
+                            <li class="">Yangilangan vaqti: 6-Fevral, 2024-yil 20:34</li>
+                            <li class="">Holati: yangi</li>
+                        </ul>
+                        <a href="/operator/order/1746558" class="btn btn-primary"
+                           style="float: left; margin-right: 10px;">
+
+                            Qabul qilish
+
+                        </a>
+                        <form action="/operator/new/hold" method="post">
+                            <input type="hidden" name="csrfmiddlewaretoken"
+                                   value="ktKqqAXPWFf72f0l3IUaASIBGWWPsdQkG0p40DAMvhVpXYyrTw3jM0cjZ8vOJKye">
+                            <input type="text" hidden name="order" value="1746558">
+                            <input class="btn btn-primary" type="submit" value="Hold"
+                                   style="float: right; margin-right: 10px;">
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card border-dark mt-5">
+
+                    <div class="card-body">
+                        <h2 class="card-title">UZBEKCHA USTOZ JOYNOMOZ BOLALAR UCHUN - 289000 so'm</h2>
+                        <h3 class="card-title text-danger">ZAKAZ ID: #1746613</h3>
+                        <ul class="text-muted">
+                            <li class="">Reklama tarqatuvchi ID: 998911408028</li>
+                            <li class="">Client: - +9989XXXXXXXX</li>
+                            <li class="">Address: Viloyatni tanlang None</li>
+                            <li class="">Narxi: 289000 so'm</li>
+
+                            <li class="">Soni: 1ta</li>
+                            <li class="">Vaqti: 6-Fevral, 2024-yil 17:11</li>
+                            <li class="">Yangilangan vaqti: 7-Fevral, 2024-yil 12:33</li>
+                            <li class="">Holati: yangi</li>
+                        </ul>
+                        <a href="/operator/order/1746613" class="btn btn-primary"
+                           style="float: left; margin-right: 10px;">
+
+                            Qabul qilish
+
+                        </a>
+                        <form action="/operator/new/hold" method="post">
+                            <input type="hidden" name="csrfmiddlewaretoken"
+                                   value="ktKqqAXPWFf72f0l3IUaASIBGWWPsdQkG0p40DAMvhVpXYyrTw3jM0cjZ8vOJKye">
+                            <input type="text" hidden name="order" value="1746613">
+                            <input class="btn btn-primary" type="submit" value="Hold"
+                                   style="float: right; margin-right: 10px;">
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card border-dark mt-5">
+
+                    <div class="card-body">
+                        <h2 class="card-title">Video regstrator - 169000 so'm</h2>
+                        <h3 class="card-title text-danger">ZAKAZ ID: #1746622</h3>
+                        <ul class="text-muted">
+                            <li class="">Reklama tarqatuvchi ID: 998977223467</li>
+                            <li class="">Client: Toxir - +9989XXXXXXXX</li>
+                            <li class="">Address: Viloyatni tanlang None</li>
+                            <li class="">Narxi: 169000 so'm <strong>+ 30000</strong> so'm</li>
+
+                            <li class="">Soni: 1ta</li>
+                            <li class="">Vaqti: 6-Fevral, 2024-yil 17:12</li>
+                            <li class="">Yangilangan vaqti: 6-Fevral, 2024-yil 22:09</li>
+                            <li class="">Holati: yangi</li>
+                        </ul>
+                        <a href="/operator/order/1746622" class="btn btn-primary"
+                           style="float: left; margin-right: 10px;">
+
+                            Qabul qilish
+
+                        </a>
+                        <form action="/operator/new/hold" method="post">
+                            <input type="hidden" name="csrfmiddlewaretoken"
+                                   value="ktKqqAXPWFf72f0l3IUaASIBGWWPsdQkG0p40DAMvhVpXYyrTw3jM0cjZ8vOJKye">
+                            <input type="text" hidden name="order" value="1746622">
+                            <input class="btn btn-primary" type="submit" value="Hold"
+                                   style="float: right; margin-right: 10px;">
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card border-dark mt-5">
+
+                    <div class="card-body">
+                        <h2 class="card-title">KOMPYUTOR NURIDAN XIMOYALOVCHI ACHKI - 69000 so'm</h2>
+                        <h3 class="card-title text-danger">ZAKAZ ID: #1746657</h3>
+                        <ul class="text-muted">
+                            <li class="">Reklama tarqatuvchi ID: 998901268801</li>
+                            <li class="">Client: Dilshod - +9989XXXXXXXX</li>
+                            <li class="">Address: Viloyatni tanlang None</li>
+                            <li class="">Narxi: 69000 so'm <strong>+ 30000</strong> so'm</li>
+
+                            <li class="">Soni: 1ta</li>
+                            <li class="">Vaqti: 6-Fevral, 2024-yil 17:17</li>
+                            <li class="">Yangilangan vaqti: 6-Fevral, 2024-yil 21:01</li>
+                            <li class="">Holati: yangi</li>
+                        </ul>
+                        <a href="/operator/order/1746657" class="btn btn-primary"
+                           style="float: left; margin-right: 10px;">
+
+                            Qabul qilish
+
+                        </a>
+                        <form action="/operator/new/hold" method="post">
+                            <input type="hidden" name="csrfmiddlewaretoken"
+                                   value="ktKqqAXPWFf72f0l3IUaASIBGWWPsdQkG0p40DAMvhVpXYyrTw3jM0cjZ8vOJKye">
+                            <input type="text" hidden name="order" value="1746657">
+                            <input class="btn btn-primary" type="submit" value="Hold"
+                                   style="float: right; margin-right: 10px;">
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card border-dark mt-5">
+
+                    <div class="card-body">
+                        <h2 class="card-title">Genger sovun - 59000 so'm</h2>
+                        <h3 class="card-title text-danger">ZAKAZ ID: #1746684</h3>
+                        <ul class="text-muted">
+                            <li class="">Reklama tarqatuvchi ID: 998946131440</li>
+                            <li class="">Client: bexruz - +9989XXXXXXXX</li>
+                            <li class="">Address: Viloyatni tanlang None</li>
+                            <li class="">Narxi: 59000 so'm <strong>+ 30000</strong> so'm</li>
+
+                            <li class="">Soni: 1ta</li>
+                            <li class="">Vaqti: 6-Fevral, 2024-yil 17:21</li>
+                            <li class="">Yangilangan vaqti: 7-Fevral, 2024-yil 1:08</li>
+                            <li class="">Holati: yangi</li>
+                        </ul>
+                        <a href="/operator/order/1746684" class="btn btn-primary"
+                           style="float: left; margin-right: 10px;">
+
+                            Qabul qilish
+
+                        </a>
+                        <form action="/operator/new/hold" method="post">
+                            <input type="hidden" name="csrfmiddlewaretoken"
+                                   value="ktKqqAXPWFf72f0l3IUaASIBGWWPsdQkG0p40DAMvhVpXYyrTw3jM0cjZ8vOJKye">
+                            <input type="text" hidden name="order" value="1746684">
+                            <input class="btn btn-primary" type="submit" value="Hold"
+                                   style="float: right; margin-right: 10px;">
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card border-dark mt-5">
+
+                    <div class="card-body">
+                        <h2 class="card-title">Slim body ozdiruvchi ayollar uchun - 59000 so'm</h2>
+                        <h3 class="card-title text-danger">ZAKAZ ID: #1746760</h3>
+                        <ul class="text-muted">
+                            <li class="">Reklama tarqatuvchi ID: 998330404940</li>
+                            <li class="">Client: mustafa01 - +9989XXXXXXXX</li>
+                            <li class="">Address: Viloyatni tanlang None</li>
+                            <li class="">Narxi: 59000 so'm <strong>+ 30000</strong> so'm</li>
+
+                            <li class="">Soni: 1ta</li>
+                            <li class="">Vaqti: 6-Fevral, 2024-yil 17:34</li>
+                            <li class="">Yangilangan vaqti: 7-Fevral, 2024-yil 9:35</li>
+                            <li class="">Holati: yangi</li>
+                        </ul>
+                        <a href="/operator/order/1746760" class="btn btn-primary"
+                           style="float: left; margin-right: 10px;">
+
+                            Qabul qilish
+
+                        </a>
+                        <form action="/operator/new/hold" method="post">
+                            <input type="hidden" name="csrfmiddlewaretoken"
+                                   value="ktKqqAXPWFf72f0l3IUaASIBGWWPsdQkG0p40DAMvhVpXYyrTw3jM0cjZ8vOJKye">
+                            <input type="text" hidden name="order" value="1746760">
+                            <input class="btn btn-primary" type="submit" value="Hold"
+                                   style="float: right; margin-right: 10px;">
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card border-dark mt-5">
+
+                    <div class="card-body">
+                        <h2 class="card-title">KOMPYUTOR NURIDAN XIMOYALOVCHI ACHKI - 69000 so'm</h2>
+                        <h3 class="card-title text-danger">ZAKAZ ID: #1746805</h3>
+                        <ul class="text-muted">
+                            <li class="">Reklama tarqatuvchi ID: 998901268801</li>
+                            <li class="">Client: jahongir dushamov - +9989XXXXXXXX</li>
+                            <li class="">Address: Viloyatni tanlang None</li>
+                            <li class="">Narxi: 69000 so'm <strong>+ 30000</strong> so'm</li>
+
+                            <li class="">Soni: 1ta</li>
+                            <li class="">Vaqti: 6-Fevral, 2024-yil 17:39</li>
+                            <li class="">Yangilangan vaqti: 6-Fevral, 2024-yil 21:00</li>
+                            <li class="">Holati: yangi</li>
+                        </ul>
+                        <a href="/operator/order/1746805" class="btn btn-primary"
+                           style="float: left; margin-right: 10px;">
+
+                            Qabul qilish
+
+                        </a>
+                        <form action="/operator/new/hold" method="post">
+                            <input type="hidden" name="csrfmiddlewaretoken"
+                                   value="ktKqqAXPWFf72f0l3IUaASIBGWWPsdQkG0p40DAMvhVpXYyrTw3jM0cjZ8vOJKye">
+                            <input type="text" hidden name="order" value="1746805">
+                            <input class="btn btn-primary" type="submit" value="Hold"
+                                   style="float: right; margin-right: 10px;">
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card border-dark mt-5">
+
+                    <div class="card-body">
+                        <h2 class="card-title">FRESH Meni blender - 89000 so'm</h2>
+                        <h3 class="card-title text-danger">ZAKAZ ID: #1746809</h3>
+                        <ul class="text-muted">
+                            <li class="">Reklama tarqatuvchi ID: 998335726021</li>
+                            <li class="">Client: 901748392 - +9989XXXXXXXX</li>
+                            <li class="">Address: Viloyatni tanlang None</li>
+                            <li class="">Narxi: 89000 so'm <strong>+ 30000</strong> so'm</li>
+
+                            <li class="">Soni: 1ta</li>
+                            <li class="">Vaqti: 6-Fevral, 2024-yil 17:39</li>
+                            <li class="">Yangilangan vaqti: 6-Fevral, 2024-yil 21:19</li>
+                            <li class="">Holati: yangi</li>
+                        </ul>
+                        <a href="/operator/order/1746809" class="btn btn-primary"
+                           style="float: left; margin-right: 10px;">
+
+                            Qabul qilish
+
+                        </a>
+                        <form action="/operator/new/hold" method="post">
+                            <input type="hidden" name="csrfmiddlewaretoken"
+                                   value="ktKqqAXPWFf72f0l3IUaASIBGWWPsdQkG0p40DAMvhVpXYyrTw3jM0cjZ8vOJKye">
+                            <input type="text" hidden name="order" value="1746809">
+                            <input class="btn btn-primary" type="submit" value="Hold"
+                                   style="float: right; margin-right: 10px;">
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card border-dark mt-5">
+
+                    <div class="card-body">
+                        <h2 class="card-title">KOMPYUTOR NURIDAN XIMOYALOVCHI ACHKI - 69000 so'm</h2>
+                        <h3 class="card-title text-danger">ZAKAZ ID: #1746827</h3>
+                        <ul class="text-muted">
+                            <li class="">Reklama tarqatuvchi ID: 998901268801</li>
+                            <li class="">Client: Abdulaziz Yusupov - +9989XXXXXXXX</li>
+                            <li class="">Address: Viloyatni tanlang None</li>
+                            <li class="">Narxi: 69000 so'm <strong>+ 30000</strong> so'm</li>
+
+                            <li class="">Soni: 1ta</li>
+                            <li class="">Vaqti: 6-Fevral, 2024-yil 17:41</li>
+                            <li class="">Yangilangan vaqti: 6-Fevral, 2024-yil 21:00</li>
+                            <li class="">Holati: yangi</li>
+                        </ul>
+                        <a href="/operator/order/1746827" class="btn btn-primary"
+                           style="float: left; margin-right: 10px;">
+
+                            Qabul qilish
+
+                        </a>
+                        <form action="/operator/new/hold" method="post">
+                            <input type="hidden" name="csrfmiddlewaretoken"
+                                   value="ktKqqAXPWFf72f0l3IUaASIBGWWPsdQkG0p40DAMvhVpXYyrTw3jM0cjZ8vOJKye">
+                            <input type="text" hidden name="order" value="1746827">
+                            <input class="btn btn-primary" type="submit" value="Hold"
+                                   style="float: right; margin-right: 10px;">
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card border-dark mt-5">
+
+                    <div class="card-body">
+                        <h2 class="card-title">FORMULA ATIR - 86000 so'm</h2>
+                        <h3 class="card-title text-danger">ZAKAZ ID: #1746830</h3>
+                        <ul class="text-muted">
+                            <li class="">Reklama tarqatuvchi ID: 998946131440</li>
+                            <li class="">Client: Amirjon - +9989XXXXXXXX</li>
+                            <li class="">Address: Viloyatni tanlang None</li>
+                            <li class="">Narxi: 86000 so'm <strong>+ 30000</strong> so'm</li>
+
+                            <li class="">Soni: 1ta</li>
+                            <li class="">Vaqti: 6-Fevral, 2024-yil 17:42</li>
+                            <li class="">Yangilangan vaqti: 7-Fevral, 2024-yil 1:07</li>
+                            <li class="">Holati: yangi</li>
+                        </ul>
+                        <a href="/operator/order/1746830" class="btn btn-primary"
+                           style="float: left; margin-right: 10px;">
+
+                            Qabul qilish
+
+                        </a>
+                        <form action="/operator/new/hold" method="post">
+                            <input type="hidden" name="csrfmiddlewaretoken"
+                                   value="ktKqqAXPWFf72f0l3IUaASIBGWWPsdQkG0p40DAMvhVpXYyrTw3jM0cjZ8vOJKye">
+                            <input type="text" hidden name="order" value="1746830">
+                            <input class="btn btn-primary" type="submit" value="Hold"
+                                   style="float: right; margin-right: 10px;">
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card border-dark mt-5">
+
+                    <div class="card-body">
+                        <h2 class="card-title">FORMULA ATIR - 86000 so'm</h2>
+                        <h3 class="card-title text-danger">ZAKAZ ID: #1746833</h3>
+                        <ul class="text-muted">
+                            <li class="">Reklama tarqatuvchi ID: 998946131440</li>
+                            <li class="">Client: Komil - +9989XXXXXXXX</li>
+                            <li class="">Address: Viloyatni tanlang None</li>
+                            <li class="">Narxi: 86000 so'm <strong>+ 30000</strong> so'm</li>
+
+                            <li class="">Soni: 1ta</li>
+                            <li class="">Vaqti: 6-Fevral, 2024-yil 17:43</li>
+                            <li class="">Yangilangan vaqti: 7-Fevral, 2024-yil 1:07</li>
+                            <li class="">Holati: yangi</li>
+                        </ul>
+                        <a href="/operator/order/1746833" class="btn btn-primary"
+                           style="float: left; margin-right: 10px;">
+
+                            Qabul qilish
+
+                        </a>
+                        <form action="/operator/new/hold" method="post">
+                            <input type="hidden" name="csrfmiddlewaretoken"
+                                   value="ktKqqAXPWFf72f0l3IUaASIBGWWPsdQkG0p40DAMvhVpXYyrTw3jM0cjZ8vOJKye">
+                            <input type="text" hidden name="order" value="1746833">
+                            <input class="btn btn-primary" type="submit" value="Hold"
+                                   style="float: right; margin-right: 10px;">
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card border-dark mt-5">
+
+                    <div class="card-body">
+                        <h2 class="card-title">Quloq tozalagich - 56000 so'm</h2>
+                        <h3 class="card-title text-danger">ZAKAZ ID: #1746834</h3>
+                        <ul class="text-muted">
+                            <li class="">Reklama tarqatuvchi ID: 998946131440</li>
+                            <li class="">Client: Dilshodbek - +9989XXXXXXXX</li>
+                            <li class="">Address: Viloyatni tanlang None</li>
+                            <li class="">Narxi: 56000 so'm <strong>+ 30000</strong> so'm</li>
+
+                            <li class="">Soni: 1ta</li>
+                            <li class="">Vaqti: 6-Fevral, 2024-yil 17:43</li>
+                            <li class="">Yangilangan vaqti: 7-Fevral, 2024-yil 1:07</li>
+                            <li class="">Holati: yangi</li>
+                        </ul>
+                        <a href="/operator/order/1746834" class="btn btn-primary"
+                           style="float: left; margin-right: 10px;">
+
+                            Qabul qilish
+
+                        </a>
+                        <form action="/operator/new/hold" method="post">
+                            <input type="hidden" name="csrfmiddlewaretoken"
+                                   value="ktKqqAXPWFf72f0l3IUaASIBGWWPsdQkG0p40DAMvhVpXYyrTw3jM0cjZ8vOJKye">
+                            <input type="text" hidden name="order" value="1746834">
+                            <input class="btn btn-primary" type="submit" value="Hold"
+                                   style="float: right; margin-right: 10px;">
+                        </form>
+                    </div>
+                </div>
+
+
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+
+
+                        <li class="page-item"><a class="page-link " href="?page=1">1</a></li>
+
+
+                        <li class="page-item"><a class="page-link " href="?page=2">2</a></li>
+
+
+                        <li class="page-item"><a class="page-link " href="?page=3">3</a></li>
+
+
+                        <li class="page-item"><a class="page-link " href="?page=4">4</a></li>
+
+
+                        <li class="page-item"><a class="page-link " href="?page=5">5</a></li>
+
+
+                        <li class="page-item"><a class="page-link " href="?page=6">6</a></li>
+
+
+                        <li class="page-item"><a class="page-link " href="?page=7">7</a></li>
+
+
+                        <li class="page-item"><a class="page-link " href="?page=8">8</a></li>
+
+
+                        <li class="page-item"><a class="page-link " href="?page=9">9</a></li>
+
+
+                        <li class="page-item"><a class="page-link" href="?page=2">Keyingisi</a></li>
+
+
+                    </ul>
+                </nav>
+
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+<script src="https://unpkg.com/multiple-select@1.5.2/dist/multiple-select.min.js"></script>
+<script src="/static/app/js/regions_filter.js"></script>
+<script>
+    $(function () {
+        $('select').multipleSelect({
+            multiple: true,
+            multipleWidth: 500,
+            maxHeight: 200,
+            maxHeightUnit: 50,
+            filter: true
+        })
+    })
+</script>
+
+</body>
+</html>
+
+{% endblock %}

@@ -1,15 +1,11 @@
-from audioop import reverse
-from enum import IntEnum
-
-from django.contrib.auth.models import AbstractUser
-from django.core.validators import RegexValidator
-from django.db.models import CharField, PositiveIntegerField, FloatField, ForeignKey, ImageField, \
-    TextField, JSONField, Model, CASCADE, TextChoices, BooleanField, DateTimeField, SlugField, SET_NULL
-from django.utils.timezone import now
-from django_resized import ResizedImageField
 from datetime import timedelta
+from django.db.models import CharField, PositiveIntegerField, FloatField, ForeignKey, TextField, JSONField, Model, \
+    CASCADE, TextChoices, DateTimeField, SlugField, SET_NULL
 from django.utils import timezone
 from django.utils.text import slugify
+from django.utils.timezone import now
+from django_resized import ResizedImageField
+from apps.models.user import User
 
 
 class BaseModel(Model):
@@ -21,39 +17,6 @@ class BaseModel(Model):
 
     class Meta:
         abstract = True
-
-
-class User(AbstractUser):
-    class Type(TextChoices):
-        ADMIN = "admin", "Admin"
-        CURRIER = "currier", "Yetkazib beruvchi"
-        USERS = "users", "Foydalanuvchi"
-        OPERATOR = "operator", "Operator"
-        MANAGER = "manager", "Menejer"
-
-    type = CharField(max_length=20, choices=Type.choices, default=Type.USERS)
-    phone_regex = RegexValidator(regex=r'^\d{12}$',
-                                 message="Phone number must be entered in the format: '999999999'. Up to 15 digits allowed.")
-    intro = TextField(max_length=1024, blank=True, null=True, default="Here is into from user")
-    avatar = ResizedImageField(size=[168, 168], upload_to='users/images', null=True, blank=True,
-                               default='users/images/default.png')
-    banner = ResizedImageField(size=[1198, 124], upload_to='users/images', null=True, blank=True,
-                               default='users/images/default.png')
-    workout = CharField(max_length=50, blank=True, null=True, default="Here is")
-    country = CharField(max_length=30, blank=True, null=True, default="Uzbekistan")
-    is_verified = BooleanField(default=False)
-    phone = CharField(max_length=25, unique=True, validators=[phone_regex], null=True)
-
-    def __str__(self):
-        return f'{self.id} - {self.type}'
-
-    @property
-    def count_wishlist(self):
-        return self.wishlists.count()
-
-    @property
-    def is_operator(self):
-        return self.type == self.Type.OPERATOR
 
 
 class Category(Model):
@@ -171,10 +134,24 @@ class Order(Model):
     count = PositiveIntegerField(default=1)
     product = ForeignKey('apps.Product', CASCADE, to_field='slug')
     currier = ForeignKey('apps.User', SET_NULL, limit_choices_to={'type': User.Type.CURRIER}, null=True, blank=True)
+    comment = CharField(max_length=255, blank=True, null=True)
+    region = ForeignKey('apps.Region', CASCADE, verbose_name='Viloyat', blank=True, null=True)
+    stream = ForeignKey('apps.Stream', SET_NULL, blank=True, null=True)
+    district = ForeignKey('apps.District', CASCADE, verbose_name='Tuman', blank=True, null=True)
+    street = CharField(max_length=25, verbose_name="Ko'cha", blank=True, null=True)
+    operator = ForeignKey('apps.User', CASCADE, 'operator', blank=True, null=True, verbose_name='Operator')
 
     @property
     def total(self):
         return self.count * self.product.percent_product
+
+    def __str__(self):
+        return self.product.name
+
+    class Meta:
+        ordering = ['id']
+        verbose_name = 'Zakaz'
+        verbose_name_plural = 'Zakazlar'
 
 
 class Region(Model):
@@ -197,7 +174,9 @@ class Stream(Model):
     user = ForeignKey('apps.User', CASCADE, related_name='streams')
     product = ForeignKey('apps.Product', CASCADE)
 
-
     class Meta:
         verbose_name = "Oqim"
         verbose_name_plural = "Oqimlar ro'yhati"
+
+    def __str__(self):
+        return f'{self.product.name} --> {self.user}'
