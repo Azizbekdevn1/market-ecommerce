@@ -10,8 +10,8 @@
 .idea/**/shelf
 .idea
 media
-TODO
 servercommands
+TODO
 # AWS User-specific
 .idea/**/aws.xml
 
