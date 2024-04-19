@@ -7,14 +7,13 @@ from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.views import View
 from django.views.generic import ListView, DetailView, FormView, TemplateView, UpdateView
-
+from django.db.models import Q
 from apps.models import Product, User, Order, WishList, Category, Stream
 from .forms import UserRegistrationForm, OrderModelForm, StreamModelForm
 from .mixins import NotLoginRequiredMixin
 
 
 class ProductListView(ListView):
-    model = Product
     queryset = Product.objects.order_by('-id')
     template_name = 'apps/product/product_grid.html'
     context_object_name = 'products'
@@ -27,9 +26,13 @@ class ProductListView(ListView):
 
     def get_queryset(self):
         category_id = self.request.GET.get('category')
+        search = self.request.GET.get('search')
+        queryset = super().get_queryset()
         if category_id:
-            return self.queryset.filter(category_id=category_id)
-        return super().get_queryset()
+            queryset = queryset.filter(category_id=category_id)
+        if search:
+            queryset = queryset.filter(Q(name__icontains=search) | Q(description__icontains=search))
+        return queryset
 
 
 class ProductDetailView(DetailView):
@@ -97,6 +100,12 @@ class OrderedTemplateView(DetailView):
     template_name = 'apps/product/ordered.html'
     model = Order
     context_object_name = 'order'
+
+
+class OrdersListView(ListView):
+    template_name = 'apps/product/operator.html'
+    model = Order
+    context_object_name = 'orders'
 
 
 class ProfileSettingsView(UpdateView):
@@ -195,3 +204,11 @@ class StatisticView(ListView):
 class OperatorView(ListView):
     model = Order
     template_name = 'apps/product/operator.html'
+    context_object_name = 'orders'
+
+
+# ajax
+# htmx
+
+
+

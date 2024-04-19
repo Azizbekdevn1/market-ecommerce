@@ -1,9 +1,6 @@
 {% extends 'apps/product/base.html' %}
 {% load static %}
 
-
-
-
 {% block content %}
     <div class="card mb-3">
         <div class="card-header position-relative min-vh-25 mb-7">
@@ -19,8 +16,10 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-lg-8">
-                    <h4 class="mb-1">{{ user.first_name }} {{ user.last_name }}<span data-bs-toggle="tooltip" data-bs-placement="right" title=""
-                                                           data-bs-original-title="Verified" aria-label="Verified"><svg
+                    <h4 class="mb-1">{{ user.first_name }} {{ user.last_name }}<span data-bs-toggle="tooltip"
+                                                                                     data-bs-placement="right" title=""
+                                                                                     data-bs-original-title="Verified"
+                                                                                     aria-label="Verified"><svg
                             class="svg-inline--fa fa-check-circle fa-w-16 text-primary"
                             data-fa-transform="shrink-4 down-2" aria-hidden="true" focusable="false" data-prefix="fa"
                             data-icon="check-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
@@ -138,7 +137,8 @@
                         </div>
                         <div class="col-sm-6 mb-3">
                             <div class="d-flex position-relative align-items-center mb-2"><img
-                                    class="d-flex align-self-center me-2 rounded-3" src="{% static 'apps/assets/img/logos/g.png' %}"
+                                    class="d-flex align-self-center me-2 rounded-3"
+                                    src="{% static 'apps/assets/img/logos/g.png' %}"
                                     alt="" width="50">
                                 <div class="flex-1">
                                     <h6 class="fs-0 mb-0"><a class="stretched-link" href="#!">Google</a></h6>
@@ -172,7 +172,8 @@
             <div class="card mb-3">
                 <div class="card-header bg-light d-flex justify-content-between">
                     <h5 class="mb-0">Activity log</h5><a class="font-sans-serif"
-                                                         href="{% static 'apps/app/social/activity-log.html' %}">All logs</a>
+                                                         href="{% static 'apps/app/social/activity-log.html' %}">All
+                    logs</a>
                 </div>
                 <div class="card-body fs--1 p-0">
                     <a class="border-bottom-0 notification rounded-0 border-x-0 border border-300" href="#!">
@@ -245,19 +246,24 @@
                     <div class="row g-0">
                         <div class="col-6 p-1"><a class="glightbox" href="{% static 'apps/assets/img/generic/4.jpg' %}"
                                                   data-gallery="gallery1" data-glightbox="data-glightbox"><img
-                                class="img-fluid rounded" src="{% static 'apps/assets/img/generic/4.jpg' %}" alt="..."></a></div>
+                                class="img-fluid rounded" src="{% static 'apps/assets/img/generic/4.jpg' %}" alt="..."></a>
+                        </div>
                         <div class="col-6 p-1"><a class="glightbox" href="{% static 'apps/assets/img/generic/5.jpg' %}"
                                                   data-gallery="gallery1" data-glightbox="data-glightbox"><img
-                                class="img-fluid rounded" src="{% static 'apps/assets/img/generic/5.jpg' %}" alt="..."></a></div>
+                                class="img-fluid rounded" src="{% static 'apps/assets/img/generic/5.jpg' %}" alt="..."></a>
+                        </div>
                         <div class="col-4 p-1"><a class="glightbox" href="{% static 'apps/assets/img/gallery/4.jpg' %}"
                                                   data-gallery="gallery1" data-glightbox="data-glightbox"><img
-                                class="img-fluid rounded" src="{% static 'apps/assets/img/gallery/4.jpg' %}" alt="..."></a></div>
+                                class="img-fluid rounded" src="{% static 'apps/assets/img/gallery/4.jpg' %}" alt="..."></a>
+                        </div>
                         <div class="col-4 p-1"><a class="glightbox" href="{% static 'apps/assets/img/gallery/5.jpg' %}"
                                                   data-gallery="gallery1" data-glightbox="data-glightbox"><img
-                                class="img-fluid rounded" src="{% static 'apps/assets/img/gallery/5.jpg' %}" alt="..."></a></div>
+                                class="img-fluid rounded" src="{% static 'apps/assets/img/gallery/5.jpg' %}" alt="..."></a>
+                        </div>
                         <div class="col-4 p-1"><a class="glightbox" href="{% static 'apps/assets/img/gallery/3.jpg' %}"
                                                   data-gallery="gallery1" data-glightbox="data-glightbox"><img
-                                class="img-fluid rounded" src="{% static 'apps/assets/img/gallery/3.jpg' %}" alt="..."></a></div>
+                                class="img-fluid rounded" src="{% static 'apps/assets/img/gallery/3.jpg' %}" alt="..."></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -269,7 +275,8 @@
                         <h5 class="mb-0">Experience</h5>
                     </div>
                     <div class="card-body fs--1">
-                        <div class="d-flex"><a href="#!"> <img class="img-fluid" src="{% static 'apps/assets/img/logos/g.png' %}"
+                        <div class="d-flex"><a href="#!"> <img class="img-fluid"
+                                                               src="{% static 'apps/assets/img/logos/g.png' %}"
                                                                alt="" width="56"></a>
                             <div class="flex-1 position-relative ps-3">
                                 <h6 class="fs-0 mb-0">Big Data Engineer<span data-bs-toggle="tooltip"
@@ -293,7 +300,8 @@
                                 <div class="border-dashed-bottom my-3"></div>
                             </div>
                         </div>
-                        <div class="d-flex"><a href="#!"> <img class="img-fluid" src="{% static 'apps/assets/img/logos/apple.png' %}"
+                        <div class="d-flex"><a href="#!"> <img class="img-fluid"
+                                                               src="{% static 'apps/assets/img/logos/apple.png' %}"
                                                                alt="" width="56"></a>
                             <div class="flex-1 position-relative ps-3">
                                 <h6 class="fs-0 mb-0">Software Engineer<span data-bs-toggle="tooltip"
@@ -317,7 +325,8 @@
                                 <div class="border-dashed-bottom my-3"></div>
                             </div>
                         </div>
-                        <div class="d-flex"><a href="#!"> <img class="img-fluid" src="{% static 'apps/assets/img/logos/nike.png' %}"
+                        <div class="d-flex"><a href="#!"> <img class="img-fluid"
+                                                               src="{% static 'apps/assets/img/logos/nike.png' %}"
                                                                alt="" width="56"></a>
                             <div class="flex-1 position-relative ps-3">
                                 <h6 class="fs-0 mb-0">Mobile App Developer<span data-bs-toggle="tooltip"
@@ -375,7 +384,8 @@
                                 <div class="border-dashed-bottom my-3"></div>
                             </div>
                         </div>
-                        <div class="d-flex"><a href="#!"> <img class="img-fluid" src="{% static 'apps/assets/img/logos/staten.png' %}"
+                        <div class="d-flex"><a href="#!"> <img class="img-fluid"
+                                                               src="{% static 'apps/assets/img/logos/staten.png' %}"
                                                                alt="" width="56"></a>
                             <div class="flex-1 position-relative ps-3">
                                 <h6 class="fs-0 mb-0"><a href="#!">Staten Island Technical High School<span
@@ -399,7 +409,8 @@
                             </div>
                         </div>
                         <div class="d-flex"><a href="#!"> <img class="img-fluid"
-                                                               src="{% static 'apps/assets/img/logos/tj-heigh-school.png' %}" alt=""
+                                                               src="{% static 'apps/assets/img/logos/tj-heigh-school.png' %}"
+                                                               alt=""
                                                                width="56"></a>
                             <div class="flex-1 position-relative ps-3">
                                 <h6 class="fs-0 mb-0"><a href="#!">Thomas Jefferson High School for Science and
@@ -432,7 +443,8 @@
                             <div class="calendar"><span class="calendar-month">Feb</span><span
                                     class="calendar-day">21</span></div>
                             <div class="flex-1 position-relative ps-3">
-                                <h6 class="fs-0 mb-0"><a href="{% static 'apps/app/events/event-detail.html' %}">Newmarket Nights</a>
+                                <h6 class="fs-0 mb-0"><a href="{% static 'apps/app/events/event-detail.html' %}">Newmarket
+                                    Nights</a>
                                 </h6>
                                 <p class="mb-1">Organized by <a href="#!" class="text-700">University of Oxford</a></p>
                                 <p class="text-1000 mb-0">Time: 6:00AM</p>
@@ -445,7 +457,8 @@
                             <div class="calendar"><span class="calendar-month">Dec</span><span
                                     class="calendar-day">31</span></div>
                             <div class="flex-1 position-relative ps-3">
-                                <h6 class="fs-0 mb-0"><a href="{% static 'apps/app/events/event-detail.html' %}">31st Night
+                                <h6 class="fs-0 mb-0"><a href="{% static 'apps/app/events/event-detail.html' %}">31st
+                                    Night
                                     Celebration</a></h6>
                                 <p class="mb-1">Organized by <a href="#!" class="text-700">Chamber Music Society</a></p>
                                 <p class="text-1000 mb-0">Time: 11:00PM</p>
@@ -457,7 +470,8 @@
                             <div class="calendar"><span class="calendar-month">Dec</span><span
                                     class="calendar-day">16</span></div>
                             <div class="flex-1 position-relative ps-3">
-                                <h6 class="fs-0 mb-0"><a href="{% static 'apps/app/events/event-detail.html' %}">Folk Festival</a>
+                                <h6 class="fs-0 mb-0"><a href="{% static 'apps/app/events/event-detail.html' %}">Folk
+                                    Festival</a>
                                 </h6>
                                 <p class="mb-1">Organized by <a href="#!" class="text-700">Harvard University</a></p>
                                 <p class="text-1000 mb-0">Time: 9:00AM</p>
@@ -487,7 +501,8 @@
                 <div class="col">
                     <h5 class="mb-0" id="followers">Followers <span class="d-none d-sm-inline-block">(233)</span></h5>
                 </div>
-                <div class="col text-end"><a class="font-sans-serif" href="{% static 'apps/app/social/followers.html' %}">All
+                <div class="col text-end"><a class="font-sans-serif"
+                                             href="{% static 'apps/app/social/followers.html' %}">All
                     Members</a>
                 </div>
             </div>
