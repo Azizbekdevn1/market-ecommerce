@@ -135,7 +135,4 @@ class StatisticView(ListView):
     template_name = 'apps/product/statistic.html'
 
 
-class OperatorView(ListView):
-    model = Order
-    template_name = 'apps/product/operators.html'
-    context_object_name = 'orders'
+

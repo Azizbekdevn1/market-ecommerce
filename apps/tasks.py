@@ -22,6 +22,13 @@ def add_data():
         description = f"Descriptiom -{i}"
         spec = {"rangi": f"rang-{i}"}
         discount = random.randint(1, 5) * 10
-        products.append(Product(name=name, category_id=category, price=price, quantity=quantity, description=description, spec=spec, discount=discount))
+        products.append(
+            Product(name=name, category_id=category, price=price, quantity=quantity, description=description, spec=spec,
+                    discount=discount))
 
     Product.objects.bulk_create(products)
+
+
+
+
+
