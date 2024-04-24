@@ -6,5 +6,5 @@ class NotLoginRequiredMixin(AccessMixin):
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            return redirect('product-list')
+            return redirect('product_list')
         return super().dispatch(request, *args, **kwargs)

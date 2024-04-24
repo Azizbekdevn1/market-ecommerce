@@ -116,7 +116,7 @@ class Product(BaseModel):
         return self.created_at >= now() - timedelta(days=7)
 
 
-class Order(Model):
+class Order(BaseModel):
     class Status(TextChoices):
         NEW = 'yangi', 'Yangi'
         DELIVERED = 'yetkazildi', 'Yetkazildi'
@@ -124,8 +124,8 @@ class Order(Model):
         DELIVERING = 'yetkazilmoqda', 'Yetkazilmoqda'
         BROKEN = 'nosoz_mahsulot', 'Nosoz_maxsulot'
         RETURNED = 'qaytib_keldi', 'Qaytib_keldi'
-        CANCELLED = 'bekor_qilindi', 'Bekor_qilibdi'
-        WAITING = 'keyin_oladi', 'Keyin_oladi'
+        CANCELLED = 'bekor_qilindi', 'Bekor qilibdi'
+        WAITING = 'keyin_oladi', 'Keyin oladi'
         READY_TO_DELIVERY = 'dastavkaga_tayyor', 'Dastavkaga_tayyor'
 
     status = CharField(max_length=30, choices=Status.choices, default=Status.NEW)

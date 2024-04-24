@@ -5,7 +5,7 @@
         <div class="card-header">
             <div class="row justify-content-between">
                 <div class="col-md-auto">
-                    <h5 class="mb-3 mb-md-0">Shopping Cart (7 Items)</h5>
+                    <h5 class="mb-3 mb-md-0">Yoqtirgan maxsulotlarim ({{ user.count_wishlist }} xil)</h5>
                 </div>
                 <div class="col-md-auto"><a class="btn btn-sm btn-outline-secondary border-300 me-2"
                                             href="../../app/e-commerce/product/product-list.html">
@@ -21,18 +21,17 @@
                             </g>
                         </g>
                     </svg>
-                    <!-- <span class="fas fa-chevron-left me-1" data-fa-transform="shrink-4"></span> Font Awesome fontawesome.com -->
                     Continue Shopping</a><a class="btn btn-sm btn-primary" href="../../app/e-commerce/checkout.html">Checkout</a>
                 </div>
             </div>
         </div>
         <div class="card-body p-0">
             <div class="row gx-card mx-0 bg-200 text-900 fs--1 fw-semi-bold">
-                <div class="col-9 col-md-8 py-2">Name</div>
+                <div class="col-9 col-md-8 py-2">Maxsulot nomi</div>
                 <div class="col-3 col-md-4">
                     <div class="row">
-                        <div class="col-md-8 py-2 d-none d-md-block text-center">Quantity</div>
-                        <div class="col-12 col-md-4 text-end py-2">Price</div>
+                        <div class="col-md-8 py-2 d-none d-md-block text-center">Soni</div>
+                        <div class="col-12 col-md-4 text-end py-2">Narhi</div>
                     </div>
                 </div>
             </div>
@@ -49,7 +48,7 @@
                                                     href="{% url 'product_detail' wishlist.product.slug %}">{{ wishlist.product.name }}</a>
                                 </h5>
                                 <div class="fs--2 fs-md--1"><a class="text-danger"
-                                                               href="{% url 'wishlist_delete' wishlist.product.pk %}">Remove</a>
+                                                               href="{% url 'wishlist_delete' wishlist.product.pk %}">O'chirish</a>
                                 </div>
                             </div>
                         </div>
@@ -81,23 +80,14 @@
             {% endfor %}
 
             <div class="row fw-bold gx-card mx-0">
-                <div class="col-9 col-md-8 py-2 text-end text-900">Total</div>
+                <div class="col-9 col-md-8 py-2 text-end text-900">Umumiy</div>
                 <div class="col px-0">
                     <div class="row gx-card mx-0">
-                        <div class="col-md-8 py-2 d-none d-md-block text-center">7 (items)</div>
+                        <div class="col-md-8 py-2 d-none d-md-block text-center">{{ user.count_wishlist }} turdagi maxsulotlar</div>
                         <div class="col-12 col-md-4 text-end py-2">$8516</div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="card-footer bg-light d-flex justify-content-end">
-            <form class="me-3">
-                <div class="input-group input-group-sm">
-                    <input class="form-control" type="text" placeholder="Promocode">
-                    <button class="btn btn-outline-secondary border-300 btn-sm" type="submit">Apply</button>
-                </div>
-            </form>
-            <a class="btn btn-sm btn-primary" href="../../app/e-commerce/checkout.html">Checkout</a>
         </div>
     </div>
 {% endblock %}

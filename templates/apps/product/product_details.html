@@ -1,7 +1,6 @@
 {% extends 'apps/product/base.html' %}
 {% load static %}
 {% load custom_tags %}
-
 {% block content %}
     <div class="card mb-3 container">
         <div class="card-body">
@@ -71,16 +70,16 @@
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item"><a class="nav-link active ps-0" id="description-tab"
                                                 data-bs-toggle="tab" href="#tab-description" role="tab"
-                                                aria-controls="tab-description" aria-selected="true">Order</a>
+                                                aria-controls="tab-description" aria-selected="true">Buyurtma berish</a>
                         </li>
                         <li class="nav-item"><a class="nav-link px-2 px-md-3" id="specifications-tab"
                                                 data-bs-toggle="tab" href="#tab-specifications" role="tab"
                                                 aria-controls="tab-specifications"
-                                                aria-selected="false">Specifications</a>
+                                                aria-selected="false">Xususiyatlari</a>
                         </li>
                         <li class="nav-item"><a class="nav-link px-2 px-md-3" id="reviews-tab" data-bs-toggle="tab"
                                                 href="#tab-reviews" role="tab" aria-controls="tab-reviews"
-                                                aria-selected="false">Reviews</a></li>
+                                                aria-selected="false">Komentariya</a></li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="tab-description" role="tabpanel"
@@ -90,7 +89,8 @@
                                     <form action="{% url 'order' %}" method="post">
                                         {% csrf_token %}
                                         <div class="input-group input-group-sm" data-quantity="data-quantity">
-                                            <label class="form-label" for="formGroupNameInput1">Soni: </label>
+                                            <label class="form-label" for="formGroupNameInput1" style="padding-right:15px">Soni: <br></label>
+                                            <br>
                                             <button class="btn btn-sm btn-outline-secondary border-300"
                                                     data-field="input-quantity" data-type="minus">-
                                             </button>
@@ -106,6 +106,8 @@
                                             <input class="form-control" name="name" id="formGroupNameInput" type="text">
                                         </div>
                                         <input class="form-control" name="product" type="text" value="{{ product.id }}"
+                                               hidden>
+                                        <input class="form-control" name="stream" type="text" value="{{ stream_id }}"
                                                hidden>
 
                                         <div class="mb-4">

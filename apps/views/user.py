@@ -36,7 +36,7 @@ class RegisterFormView(NotLoginRequiredMixin, FormView):
 class CustomLoginView(NotLoginRequiredMixin, LoginView):
     template_name = 'apps/auth/login.html'
     authentication_form = AuthenticationForm
-    next_page = 'product-list'
+    next_page = 'product_list'
 
 
 class ProfileView(ListView, NotLoginRequiredMixin):

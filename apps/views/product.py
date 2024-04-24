@@ -35,7 +35,21 @@ class ProductDetailView(DetailView):
     model = Product
     template_name = 'apps/product/product_details.html'
     context_object_name = 'product'
-    slug_url_kwarg = 'slug'
+
+    def get_object(self, queryset=None):
+        pk = self.kwargs.get(self.pk_url_kwarg)
+        slug = self.kwargs.get(self.slug_url_kwarg)
+        if pk is not None:
+            stream = get_object_or_404(Stream.objects.all(), pk=pk)
+            return stream.product
+
+        product = get_object_or_404(Product.objects.all(), slug=slug)
+        return product
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['stream_id'] = self.kwargs.get(self.pk_url_kwarg)
+        return context
 
 
 class OrderView(FormView):
@@ -47,19 +61,13 @@ class OrderView(FormView):
         return redirect(reverse('ordered', kwargs={'pk': order.pk}))
 
     def form_invalid(self, form):
-        return redirect(reverse('product-detail', kwargs={'slug': self.request.POST.get('product')}))
+        return redirect(reverse('product_detail', kwargs={'slug': self.request.POST.get('product')}))
 
 
 class OrderedTemplateView(DetailView):
     template_name = 'apps/product/ordered.html'
     model = Order
     context_object_name = 'order'
-
-
-class OrdersListView(ListView):
-    template_name = 'apps/product/operator.html'
-    model = Order
-    context_object_name = 'orders'
 
 
 class WishlistView(View):
@@ -79,7 +87,6 @@ class WishlistsView(ListView):
 
 
 class WishlistRemoveView(View):
-
     def get(self, request, product_id):
         WishList.objects.filter(product_id=product_id, user_id=self.request.user.id).delete()
         return redirect(reverse('wishlist_list'))
@@ -119,20 +126,17 @@ class StreamListView(LoginRequiredMixin, FormView):
         return redirect('stream')
 
 
-class StreamDetailView(DetailView):
-    model = Stream
-    template_name = 'apps/product/product_details.html'
-    context_object_name = 'product'
-
-    def get_object(self, queryset=None):
-        pk = self.kwargs.get('pk')
-        stream = get_object_or_404(Stream.objects.all(), pk=pk)
-        return stream.product
+# class StreamDetailView(DetailView):
+#     model = Stream
+#     template_name = 'apps/product/product_details.html'
+#     context_object_name = 'product'
+#
+#     def get_object(self, queryset=None):
+#         pk = self.kwargs.get('pk')
+#         stream = get_object_or_404(Stream.objects.all(), pk=pk)
+#         return stream.product
 
 
 class StatisticView(ListView):
     model = Stream
     template_name = 'apps/product/statistic.html'
-
-
-

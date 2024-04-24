@@ -33,9 +33,12 @@ class UserLoginForm(AuthenticationForm):
 
 
 class OrderModelForm(ModelForm):
+    product = ModelChoiceField(queryset=Product.objects.all())
+    stream = ModelChoiceField(queryset=Stream.objects.all(), required=False)
+
     class Meta:
         model = Order
-        fields = ('name', 'phone_number', 'product', 'count')
+        fields = ('name', 'phone_number', 'product', 'count',  'stream')
 
     def clean_phone_number(self):
         phone_number = self.cleaned_data['phone_number']
