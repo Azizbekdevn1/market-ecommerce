@@ -71,7 +71,6 @@ class OrderedTemplateView(DetailView):
 
 
 class WishlistView(View):
-
     def get(self, request, *args, **kwargs):
         product_id = kwargs['product_id']
         wishlist, created = WishList.objects.get_or_create(user=request.user, product_id=product_id)
@@ -140,3 +139,12 @@ class StreamListView(LoginRequiredMixin, FormView):
 class StatisticView(ListView):
     model = Stream
     template_name = 'apps/product/statistic.html'
+
+
+class OrdersListView(LoginRequiredMixin, ListView):
+    queryset = Order.objects.all()
+    template_name = 'apps/product/orders_list.html'
+    context_object_name = "orders"
+
+    def get_queryset(self):
+        return super().get_queryset().filter(user=self.request.user)

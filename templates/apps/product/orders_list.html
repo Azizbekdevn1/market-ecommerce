@@ -1,0 +1,26 @@
+{% extends 'apps/product/base.html' %}
+{% load static %}
+{% load custom_tags %}
+{% block content %}
+    <div class="card mb-3">
+        <div class="card-body">
+            <div class="container" style="padding-top: 10px;">
+                <div class="content_cart">
+
+                    <div class="content_single-product-nouser">
+                        <div class="row">
+                            {% for order in orders %}
+                                <div class="col-md-4 p-5">
+                                    <h3>Mahsulot: {{ order.product.name }}</h3>
+                                    <small>Mahsulot narxi: {{ order.product.price }}</small>
+                                    <p>Soni: {{ order.count }}</p>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

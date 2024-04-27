@@ -59,3 +59,9 @@ class StreamModelForm(ModelForm):
     class Meta:
         model = Stream
         fields = ('name', 'product')
+
+
+class OrderAcceptedModelForm(ModelForm):
+    class Meta:
+        model = Order
+        fields = ['region', 'status', 'comment']
