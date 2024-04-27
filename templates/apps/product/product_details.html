@@ -33,20 +33,20 @@
                     <h4 class="d-flex align-items-center">
                         {% if product.in_discount %}
                             <span
-                                    class="text-warning me-2">${{ product.percent_product }}
+                                    class="text-warning me-2">{{ product.percent_product }}00
                         </span>
                             <span
                                     class="me-1 fs--1 text-500">
-                            <del class="me-1">${{ product.price }}</del>
+                            <del class="me-1">{{ product.price }}00 so'm</del>
                             <strong>-{{ product.discount }}%</strong>
                         </span>
                         {% else %}
                             <span
-                                    class="text-warning me-2">${{ product.price }}
+                                    class="text-warning me-2">{{ product.price }}00 so'm
                         </span>
                         {% endif %}
                     </h4>
-                    <p class="fs--1 mb-1"><span>Shipping Cost: </span><strong>{{ product.shipping_cost }}</strong></p>
+                    <p class="fs--1 mb-1"><span>Shipping Cost: </span><strong>{{ product.shipping_cost }}00</strong></p>
                     <p class="fs--1">
                         {% if product.in_stock %}
                             Stock: <strong class="text-success">Available</strong>

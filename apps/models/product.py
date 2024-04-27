@@ -1,6 +1,6 @@
 from datetime import timedelta
 from django.db.models import CharField, PositiveIntegerField, FloatField, ForeignKey, TextField, JSONField, Model, \
-    CASCADE, TextChoices, DateTimeField, SlugField, SET_NULL
+    CASCADE, TextChoices, DateTimeField, SlugField, SET_NULL, IntegerField
 from django.utils import timezone
 from django.utils.text import slugify
 from django.utils.timezone import now
@@ -64,7 +64,7 @@ class Product(BaseModel):
     name = CharField(max_length=255)
     slug = SlugField(max_length=255, unique=True)
     quantity = PositiveIntegerField(default=0)
-    price = FloatField(default=200)
+    price = IntegerField(default=200)
     spec = JSONField(null=True, blank=True)
     discount = FloatField(null=True, blank=True)
     category = ForeignKey('apps.Category', CASCADE, 'categories')

@@ -88,15 +88,15 @@
                                     </p>
                                     {% if product.in_discount %}
                                         <h5 class="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3">
-                                            ${{ product.percent_product }}
-                                            <del class="ms-2 fs--1 text-500">${{ product.price }} </del>
+                                            {{ product.percent_product }}00 so'm
+                                            <del class="ms-2 fs--1 text-500">{{ product.price }}00 so'm </del>
                                         </h5>
                                     {% else %}
                                         <h5 class="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3">
-                                            ${{ product.price }}
+                                            {{ product.price }}00 so'm
                                         </h5>
                                     {% endif %}
-                                    <p class="fs--1 mb-1">Shipping Cost: <strong>$65</strong></p>
+                                    <p class="fs--1 mb-1">Shipping Cost: <strong>30,000 so'm</strong></p>
                                     <p class="fs--1 mb-1">
                                         {% if product.in_stock %}
                                             Stock: <strong class="text-primary">Available</strong>

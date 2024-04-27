@@ -9,9 +9,12 @@ from apps.views import ProductListView, ProductDetailView, RegisterFormView, Cus
 from root import settings
 from .tasks import add_data
 
-# def djagshjhags(request):
-#     add_data()
-#     return JsonResponse({})
+
+def djagshjhags(request):
+    add_data()
+    return JsonResponse({})
+
+
 #
 #
 # def trigger_error(request):
@@ -19,21 +22,20 @@ from .tasks import add_data
 
 
 urlpatterns = [
-    path('', ProductListView.as_view(), name='product_list'),
-    # path('data/', djagshjhags),
-    # path('sentry-debug/', trigger_error),
-    path('product/<slug:slug>/', ProductDetailView.as_view(), name='product_detail'),
-    path('stream/<int:pk>/', ProductDetailView.as_view(), name='stream_detail'),
-    path('order/', OrderView.as_view(), name='order'),
-    path('ordered/<int:pk>/', OrderedTemplateView.as_view(), name='ordered'),
-    path('wishlist/add/<int:product_id>', WishlistView.as_view(), name='wishlist_create'),
-    path('wishlist/', WishlistsView.as_view(), name='wishlist_list'),
-    path('wishlist/delete/<int:product_id>', WishlistRemoveView.as_view(), name='wishlist_delete'),
-    path('market/', MarketView.as_view(), name='market'),
-    path('stream/', StreamListView.as_view(), name='stream'),
-    path('statistics/', StatisticView.as_view(), name='statistic'),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
+                  path('', ProductListView.as_view(), name='product_list'),
+                  path('data/', djagshjhags),
+                  # path('sentry-debug/', trigger_error),
+                  path('product/<slug:slug>/', ProductDetailView.as_view(), name='product_detail'),
+                  path('stream/<int:pk>/', ProductDetailView.as_view(), name='stream_detail'),
+                  path('order/', OrderView.as_view(), name='order'),
+                  path('ordered/<int:pk>/', OrderedTemplateView.as_view(), name='ordered'),
+                  path('wishlist/add/<int:product_id>', WishlistView.as_view(), name='wishlist_create'),
+                  path('wishlist/', WishlistsView.as_view(), name='wishlist_list'),
+                  path('wishlist/delete/<int:product_id>', WishlistRemoveView.as_view(), name='wishlist_delete'),
+                  path('market/', MarketView.as_view(), name='market'),
+                  path('stream/', StreamListView.as_view(), name='stream'),
+                  path('statistics/', StatisticView.as_view(), name='statistic'),
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # auth site
 
@@ -49,5 +51,12 @@ urlpatterns += [
 # operator side
 urlpatterns += [
     path('operator/new/', BaseOperatorListView.as_view(), name='orders_list'),
+    path('yetkazishga-tayyor/', OrderREADYTODELIVERYListView.as_view(), name='yetkazishga_tayyor_list'),
+    path('arxivlandi/', OrderARCHIVEListView.as_view(), name='arxivlandi'),
+    path('yetkazildi/', OrderDELIVEREDListView.as_view(), name='yetkazildi'),
+    path('nosoz-mahsukot/', OrderBROKENListView.as_view(), name='nosoz_mahsukot'),
+    path('qaytib-keldi/', OrderRETURNEDListView.as_view(), name='qaytib_keldi'),
+    path('bekor-qilindi/', OrderCANCELLEDListView.as_view(), name='bekor_qilindi'),
+    path('keyin-oladi/', OrderWAITINGListView.as_view(), name='kiyin_oladi'),
 
 ]

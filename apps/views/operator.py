@@ -8,5 +8,30 @@ class BaseOperatorListView(ListView):
     template_name = 'apps/product/operators.html'
     context_object_name = 'orders'
 
-    # def get_queryset(self):
-    #     return super().get_queryset().filter(status=Order.Status.NEW)
+
+class OrderREADYTODELIVERYListView(ListView):
+    queryset = Order.objects.filter(status=Order.Status.DELIVERED)
+    template_name = 'apps/product/operators.html'
+    context_object_name = 'orders'
+
+
+class OrderARCHIVEListView(ListView):
+    queryset = Order.objects.filter(status=Order.Status.DELIVERED)
+    template_name = 'apps/product/operators.html'
+    context_object_name = 'orders'
+
+
+class OrderDELIVEREDListView(ListView):
+    queryset = Order.objects.filter(status=Order.Status.DELIVERED)
+    template_name = 'apps/product/operators.html'
+    context_object_name = 'orders'
+
+
+class OrderBROKENListView(ListView):
+    queryset = Order.objects.filter(status=Order.Status.DELIVERED)
+    template_name = 'apps/product/operators.html'
+    context_object_name = 'orders'
+
+
+
+

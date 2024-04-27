@@ -38,7 +38,7 @@ class OrderModelForm(ModelForm):
 
     class Meta:
         model = Order
-        fields = ('name', 'phone_number', 'product', 'count',  'stream')
+        fields = ('name', 'phone_number', 'product', 'count', 'stream')
 
     def clean_phone_number(self):
         phone_number = self.cleaned_data['phone_number']
