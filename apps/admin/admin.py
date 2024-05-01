@@ -11,6 +11,7 @@ from apps.models import Product, Category, ProductImage, User, Order
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('id', 'name')
+    readonly_fields = ['slug']
 
 
 @admin.register(Order)
@@ -29,6 +30,7 @@ class ProductImageStackedInline(StackedInline):
 class ProductModelAdmin(admin.ModelAdmin):
     inlines = [ProductImageStackedInline]
     list_display = ['id', 'name', 'price']
+    readonly_fields = ['slug']
 
 
 # @admin.register(User)

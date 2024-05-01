@@ -1,4 +1,4 @@
-{% extends 'apps/product/base.html' %}
+{% extends 'apps/base.html' %}
 {% load static %}
 {% load custom_tags %}
 {% block content %}
@@ -55,10 +55,19 @@
                         {% endif %}
                     </p>
                     <div class="col-auto px-0">
-                        <a class="btn btn-sm btn-outline-danger border-300" href="#!"
-                           data-bs-toggle="tooltip" data-bs-placement="top"
-                           title="Add to Wish List">
-                            <span class="far fa-heart me-1"></span>282
+                        <a class="btn btn-sm btn-outline-danger border-300"
+                           {% if user.id|has_wishlist:product.id %}style="background-color: red; color : white"
+                           {% else %} style="background-color: white; color:black"
+                           {% endif %}
+                                {% if user.is_authenticated %}
+                           href="{% url 'wishlist_create' product.id %}" data-bs-toggle="tooltip"
+                                {% else %}
+                           href="{% url 'login' %}"
+                                {% endif %}
+                           data-bs-placement="top" title="Add to Wish List">
+                                <span
+                                        class="far fa-heart me-1"></span>
+                            {{ product.wishlist_set.count }}
                         </a>
                     </div>
                 </div>
@@ -89,7 +98,8 @@
                                     <form action="{% url 'order' %}" method="post">
                                         {% csrf_token %}
                                         <div class="input-group input-group-sm" data-quantity="data-quantity">
-                                            <label class="form-label" for="formGroupNameInput1" style="padding-right:15px">Soni: <br></label>
+                                            <label class="form-label" for="formGroupNameInput1"
+                                                   style="padding-right:15px">Soni: <br></label>
                                             <br>
                                             <button class="btn btn-sm btn-outline-secondary border-300"
                                                     data-field="input-quantity" data-type="minus">-

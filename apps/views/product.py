@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import Q
+from django.db.models import Q, F, Count
 from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse
 from django.views import View
@@ -57,7 +57,9 @@ class OrderView(FormView):
     template_name = 'apps/product/product_details.html'
 
     def form_valid(self, form):
-        order = form.save()
+        order = form.save(False)
+        order.user = self.request.user
+        order.save()
         return redirect(reverse('ordered', kwargs={'pk': order.pk}))
 
     def form_invalid(self, form):
@@ -144,7 +146,7 @@ class StatisticView(ListView):
 class OrdersListView(LoginRequiredMixin, ListView):
     queryset = Order.objects.all()
     template_name = 'apps/product/orders_list.html'
-    context_object_name = "orders"
+    context_object_name = "orders_list"
 
     def get_queryset(self):
         return super().get_queryset().filter(user=self.request.user)

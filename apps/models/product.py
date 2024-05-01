@@ -36,7 +36,7 @@ class Category(Model):
         slug = slugify(self.name)
         unique_slug = slug
         num = 1
-        while Product.objects.filter(slug=unique_slug).exists():
+        while Category.objects.filter(slug=unique_slug).exists():
             unique_slug = f'{slug}-{num}'
             num += 1
         return unique_slug
@@ -140,6 +140,7 @@ class Order(BaseModel):
     district = ForeignKey('apps.District', CASCADE, verbose_name='Tuman', blank=True, null=True)
     street = CharField(max_length=25, verbose_name="Ko'cha", blank=True, null=True)
     operator = ForeignKey('apps.User', CASCADE, 'operator', blank=True, null=True, verbose_name='Operator')
+    user = ForeignKey('apps.User', CASCADE, 'user', blank=True, null=True, verbose_name='Foydalanuvchi')
 
     @property
     def total(self):
@@ -157,10 +158,18 @@ class Order(BaseModel):
 class Region(Model):
     name = CharField(max_length=30)
 
+    class Meta:
+        verbose_name = 'Viloyat'
+        verbose_name_plural = 'Viloyatlar'
+
 
 class District(Model):
     name = CharField(max_length=30)
     region = ForeignKey('apps.Region', CASCADE)
+
+    class Meta:
+        verbose_name = 'Tuman'
+        verbose_name_plural = 'Tumanlar'
 
 
 class WishList(Model):
