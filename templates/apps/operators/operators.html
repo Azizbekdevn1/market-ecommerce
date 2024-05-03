@@ -1326,7 +1326,11 @@
                             <h2 class="card-title">{{ order.product.name }} - {{ order.product.price }},000 so'm</h2>
                             <h3 class="card-title text-danger">ZAKAZ ID: #{{ order.id }}</h3>
                             <ul class="text-muted">
-                                <li class="">Reklama tarqatuvchi ID: {{ order.stream.user.phone }}</li>
+                                {% if order.stream.user.phone%}
+                                    <li class="">Reklama tarqatuvchi ID: {{ order.stream.user.phone }}</li>
+                                {% else %}    
+                                     <li class="">Reklama tarqatuvchi ID: Yo'q</li>
+                                {% endif %}
                                 <li class="">Client: {{ order.name }} - +9989XXXXXXXX</li>
                                 <li class="">Address: Viloyatni tanlang None</li>
                                 <li class="">Narxi: 30,000 + <p style="color: red; display: inline;">
@@ -1334,9 +1338,9 @@
                                 <li class="">Soni: {{ order.count }} ta</li>
                                 <li class="">Vaqti:{{ order.created_at }} </li>
                                 <li class="">Yangilangan vaqti: {{ order.updated_at }}</li>
-                                <li class="">Holati: {{ order.status }}</li>
+                                <li class="">Holati: {{ order.get_status_display }}</li>
                             </ul>
-                            <a href="" class="btn btn-primary"
+                            <a href="{% url 'order_accepted' order.pk %}" class="btn btn-primary"
                                style="float: left; margin-right: 10px;">
                                 Qabul qilish
 

@@ -139,7 +139,7 @@ class AllOrderListView(ListView):
 class OrderAcceptedView(UpdateView):
     model = Order
     form_class = OrderAcceptedModelForm
-    template_name = 'apps/operators/operators.html'
+    template_name = 'apps/operators/accepted_order.html'
     success_url = reverse_lazy('new')
 
     def get_context_data(self, *, object_list=None, **kwargs):

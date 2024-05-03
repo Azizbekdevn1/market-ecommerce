@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.db.models import Q, F, Count
+from django.db.models import Q, F, Count, Sum
 from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse
 from django.views import View
@@ -41,6 +41,8 @@ class ProductDetailView(DetailView):
         slug = self.kwargs.get(self.slug_url_kwarg)
         if pk is not None:
             stream = get_object_or_404(Stream.objects.all(), pk=pk)
+            stream.view += 1
+            stream.save()
             return stream.product
 
         product = get_object_or_404(Product.objects.all(), slug=slug)
@@ -138,9 +140,36 @@ class StreamListView(LoginRequiredMixin, FormView):
 #         return stream.product
 
 
-class StatisticView(ListView):
-    model = Stream
+class StatisticView(LoginRequiredMixin, ListView):
+    queryset = Stream.objects.annotate(
+        new=Count('orders', filter=Q(orders__status=Order.Status.NEW)),
+        delivered=Count('orders', filter=Q(orders__status='yetkazildi')),
+        archive=Count('orders', filter=Q(orders__status='arxivlandi')),
+        delivering=Count('orders', filter=Q(orders__status='yetkazilmoqda')),
+        cancelled=Count('orders', filter=Q(orders__status='bekor_qilindi')),
+        waiting=Count('orders', filter=Q(orders__status='keyin_oladi')),
+        ready_to_delivery=Count('orders', filter=Q(orders__status='dastavkaga_tayyor')),
+    ).select_related('product')
     template_name = 'apps/product/statistic.html'
+    context_object_name = "streams_statistic"
+
+    def get_queryset(self):
+        return super().get_queryset().filter(user=self.request.user)
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(object_list=object_list, **kwargs)
+        qs = self.get_queryset()
+        context.update(**qs.aggregate(
+            visit_count=Sum('view'),
+            new_count=Sum('new'),
+            delivered_count=Sum('delivered'),
+            archive_count=Sum('archive'),
+            delivering_count=Sum('delivering'),
+            cancelled_count=Sum('cancelled'),
+            waiting_count=Sum('waiting'),
+            ready_to_delivery_count=Sum('ready_to_delivery'),
+        ))
+        return context
 
 
 class OrdersListView(LoginRequiredMixin, ListView):

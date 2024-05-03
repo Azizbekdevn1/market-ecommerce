@@ -1,0 +1,204 @@
+{% load static %}
+<!Doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'apps/bootstrap/css/bootstrap.css' %}">
+    <title>Hello, world!</title>
+</head>
+<body>
+
+<div class="container py-5">
+
+    <div class="row">
+        <h1>Hammasi to'g'ri kiritilganligiga e'tibor bering!</h1>
+        <p>Customer: <span>998335726021 - 998995405816</span></p>
+        <p>FRESH Meni blender - 89000 so'm</p>
+        <p style="color: red; display: inline;">AKSIYA</p>
+        <p>Dostavka narxi: 30000</p>
+    </div>
+
+    <form method="post" action="{% url 'order' %}">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-6">
+                <p>Nechta:</p>
+                <select class="form-select" aria-label="Default select example" name="quantity">
+                    <option value="1">1 ta (foydalanuvchi tanlagan)</option>
+
+                    1
+                    <option value="1">1</option>
+
+                    2
+                    <option value="2">2</option>
+
+                    3
+                    <option value="3">3</option>
+
+                    4
+                    <option value="4">4</option>
+
+                    5
+                    <option value="5">5</option>
+
+                    6
+                    <option value="6">6</option>
+
+                    7
+                    <option value="7">7</option>
+
+                    8
+                    <option value="8">8</option>
+
+                    9
+                    <option value="9">9</option>
+
+                    10
+                    <option value="10">10</option>
+
+                </select>
+            </div>
+
+            <div class="col-6">
+                <label>
+                    Chegirma
+                    <input class="form-control mt-3" name="discount" type="text" value="yuq">
+                </label>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="mb-3 col-12">
+                <label for="location">Viloyat:</label>
+                <select class="form-control" id="location" name="location">
+                    <!-- <option value="None" selected>Viloyatni tanlang</option> -->
+
+                    <option
+                            value="Viloyatni tanlang">Viloyatni tanlang
+                    </option>
+
+                    <option value="tashkent">Toshkent shahar</option>
+
+                    <option value="andijon">Andijon viloyati</option>
+
+                    <option value="buxoro">Buxoro viloyati</option>
+
+                    <option value="fargona">Fargʻona viloyati</option>
+
+                    <option value="jizzax">Jizzax viloyati</option>
+
+                    <option value="namangan">Namangan viloyati</option>
+
+                    <option value="navoiy">Navoiy viloyati</option>
+
+                    <option value="qashqadaryo">Qashqadaryo viloyati</option>
+
+                    <option value="qoraqalpogiston">Qoraqalpogʻiston Respublika</option>
+
+                    <option value="samarqand">Samarqand viloyati</option>
+
+                    <option value="sirdaryo">Sirdaryo viloyati</option>
+
+                    <option value="surxondaryo">Surxondaryo viloyati</option>
+
+                    <option value="toshkent">Toshkent viloyati</option>
+
+                    <option value="xorazm">Xorazm viloyati</option>
+
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="mb-3 col-12">
+                <p>Manzil: </p>
+                <label for="exampleFormControlInput1" class="form-label w-50">
+                    <select class="form-control" name="address" id="region">
+                        <option value="None">Tanlang</option>
+                    </select>
+                </label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="mb-3 col-12">
+                <label for="exampleFormControlInput3" class="form-label">Yuborish vaqti
+                    <input type="date" class="form-control" name="delivering_time"
+
+                           value="2024-02-06"/></label>
+            </div>
+        </div>
+
+        <div class="row">
+            <h1>Buyurtma holati</h1>
+            <p>Buyurtma holatini o'zgartirishdan oldin har bir ma'lumot to'g'ri to'ldirilganligiga ishonch hosil
+                qiling.</p>
+            <p>Har bir noto'g'ri to'ldirilgan holat uchun 50000 so'm jarima.</p>
+        </div>
+
+        <div class="row">
+            <div class="form-check">
+                <input
+                        checked="checked"
+                        required class="sr-only form-check-input" type="radio" name="status"
+                        id="new_order"
+                        value="yangi">
+                <label class="form-check-label" for="new_order">
+                    Yangi buyurtma
+                </label>
+                <p>Hali bog'lanilmagan qurilma</p>
+            </div>
+            <div class="form-check">
+                <input required class="form-check-input sr-only" type="radio" name="status" id="ready_to_deliver"
+                       value="dastavkaga_tayyor">
+                <label class="form-check-label" for="ready_to_deliver">
+                    Dastavkaga tayyor
+                </label>
+                <p class="bg-primary">Klient buyurtma olishga tayyor yoki buyurtma olish uchun sana aniq qilindi</p>
+            </div>
+            <div class="form-check">
+                <input required class="form-check-input sr-only" type="radio" name="status" id="waiting"
+                       value="keyin_oladi">
+                <label class="form-check-label" for="waiting">
+                    Keyin oladi
+                </label>
+                <p class="bg-warning">2 marta ko'tarmadi, o'chirilgan, xizmat doirasida tashqarida</p>
+            </div>
+            <div class="form-check">
+                <input required class="form-check-input sr-only" type="radio" name="status"
+                       id="broken"
+                       value="nosoz_mahsulot">
+                <label class="form-check-label" for="broken">
+                    Nosoz, bekor qilindi
+                </label>
+                <p class="bg-danger">Klient tomonidan shikoyat tushdi</p>
+            </div>
+            <div class="form-check">
+                <input required class="form-check-input sr-only" type="radio" name="status"
+                       id="archive"
+                       value="arxivlandi">
+                <label class="form-check-label" for="archive">
+                    Arxivlandi
+                </label>
+                <p class="bg-secondary">Noto'g'ri nomer, dubl buyurtma, Bekor qilindi, Olib bo'lgan</p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Komment</label>
+            <textarea name="comment" class="form-control" id="exampleFormControlTextarea1"
+                      rows="3">Ocu</textarea>
+        </div>
+        <div style="display: flex; justify-content: flex-end;">
+            <a href="/operator/new" type="button" class="btn m-3 btn-secondary">Chiqish</a>
+            <input type="submit" class="btn m-3 btn-primary" value="Yuborish"/>
+        </div>
+    </form>
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="/static/app/js/regions.js"></script>
+</body>
+</html> 

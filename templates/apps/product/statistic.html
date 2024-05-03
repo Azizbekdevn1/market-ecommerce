@@ -31,45 +31,33 @@
                             <th scope="col">Bekor qilindi</th>
                             <th scope="col">Arxivlandi</th>
                         </tr>
-                        <tr class="bg-info">
-                            <td> JAMI</td>
-                            <td></td>
-                            <td> 7</td>
-                            <td> 0</td>
-                            <td> 0</td>
-                            <td> 0</td>
-                            <td> 0</td>
-                            <td> 0</td>
-                            <td> 0</td>
-                            <td> 0</td>
-                        </tr>
                         </thead>
                         <tbody class="text-center">
-                        {% for stream in user.streams.all %}
+                        {% for stream in streams_statistic %}
                             <tr>
                                 <th>{{ stream.name }}</th>
                                 <th>{{ stream.product.name }}</th>
-                                <td>6</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
-                                <td>0</td>
+                                <td>{{ stream.view }}</td>
+                                <td>{{ stream.new }}</td>
+                                <td>{{ stream.ready_to_delivery }}</td>
+                                <td>{{ stream.delivering }}</td>
+                                <td>{{ stream.delivered }}</td>
+                                <td>{{ stream.waiting }}</td>
+                                <td>{{ stream.cancelled }}</td>
+                                <td>{{ stream.archive }}</td>
                             </tr>
                         {% endfor %}
                         <tr class="bg-info">
                             <td> JAMI</td>
                             <td></td>
-                            <td> 7</td>
-                            <td> 0</td>
-                            <td> 0</td>
-                            <td> 0</td>
-                            <td> 0</td>
-                            <td> 0</td>
-                            <td> 0</td>
-                            <td> 0</td>
+                            <td> {{ visit_count }} </td>
+                            <td> {{ new_count }} </td>
+                            <td> {{ delivered_count }} </td>
+                            <td> {{ archive_count }} </td>
+                            <td> {{ delivering_count }} </td>
+                            <td> {{ cancelled_count }} </td>
+                            <td> {{ waiting_count }} </td>
+                            <td> {{ ready_to_delivery_count }} </td>
                         </tr>
                         </tbody>
                     </table>

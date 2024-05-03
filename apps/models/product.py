@@ -122,11 +122,11 @@ class Order(BaseModel):
         DELIVERED = 'yetkazildi', 'Yetkazildi'
         ARCHIVE = 'arxivlandi', 'Arxivlandi'
         DELIVERING = 'yetkazilmoqda', 'Yetkazilmoqda'
-        BROKEN = 'nosoz_mahsulot', 'Nosoz_maxsulot'
-        RETURNED = 'qaytib_keldi', 'Qaytib_keldi'
-        CANCELLED = 'bekor_qilindi', 'Bekor qilibdi'
+        BROKEN = 'nosoz_mahsulot', 'Nosoz maxsulot'
+        RETURNED = 'qaytib_keldi', 'Qaytib keldi'
+        CANCELLED = 'bekor_qilindi', 'Bekor qilindi'
         WAITING = 'keyin_oladi', 'Keyin oladi'
-        READY_TO_DELIVERY = 'dastavkaga_tayyor', 'Dastavkaga_tayyor'
+        READY_TO_DELIVERY = 'dastavkaga_tayyor', 'Dastavkaga tayyor'
 
     status = CharField(max_length=30, choices=Status.choices, default=Status.NEW)
     name = CharField(max_length=20)
@@ -136,7 +136,7 @@ class Order(BaseModel):
     currier = ForeignKey('apps.User', SET_NULL, limit_choices_to={'type': User.Type.CURRIER}, null=True, blank=True)
     comment = CharField(max_length=255, blank=True, null=True)
     region = ForeignKey('apps.Region', CASCADE, verbose_name='Viloyat', blank=True, null=True)
-    stream = ForeignKey('apps.Stream', SET_NULL, blank=True, null=True)
+    stream = ForeignKey('apps.Stream', SET_NULL, blank=True, null=True, related_name="orders")
     district = ForeignKey('apps.District', CASCADE, verbose_name='Tuman', blank=True, null=True)
     street = CharField(max_length=25, verbose_name="Ko'cha", blank=True, null=True)
     operator = ForeignKey('apps.User', CASCADE, 'operator', blank=True, null=True, verbose_name='Operator')
@@ -182,6 +182,7 @@ class Stream(Model):
     name = CharField(max_length=255)
     user = ForeignKey('apps.User', CASCADE, related_name='streams')
     product = ForeignKey('apps.Product', CASCADE)
+    view = IntegerField(default=0)
 
     class Meta:
         verbose_name = "Oqim"
