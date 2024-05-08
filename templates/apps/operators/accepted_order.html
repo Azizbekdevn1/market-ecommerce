@@ -16,8 +16,8 @@
 
     <div class="row">
         <h1>Hammasi to'g'ri kiritilganligiga e'tibor bering!</h1>
-        <p>Customer: <span>998335726021 - 998995405816</span></p>
-        <p>FRESH Meni blender - 89000 so'm</p>
+        <p>Customer: <span>{{ order.user.first_name }} {{ order.user.last_name }}- {{ order.user.phone }}</span></p>
+        <p>{{ order.product.name }} - {{ order.product.price }}so'm</p>
         <p style="color: red; display: inline;">AKSIYA</p>
         <p>Dostavka narxi: 30000</p>
     </div>
@@ -28,7 +28,7 @@
             <div class="col-6">
                 <p>Nechta:</p>
                 <select class="form-select" aria-label="Default select example" name="quantity">
-                    <option value="1">1 ta (foydalanuvchi tanlagan)</option>
+                    <option value="1">1 ta ({{ order.count }})</option>
 
                     1
                     <option value="1">1</option>
@@ -80,41 +80,15 @@
                     <option
                             value="Viloyatni tanlang">Viloyatni tanlang
                     </option>
-
-                    <option value="tashkent">Toshkent shahar</option>
-
-                    <option value="andijon">Andijon viloyati</option>
-
-                    <option value="buxoro">Buxoro viloyati</option>
-
-                    <option value="fargona">Fargʻona viloyati</option>
-
-                    <option value="jizzax">Jizzax viloyati</option>
-
-                    <option value="namangan">Namangan viloyati</option>
-
-                    <option value="navoiy">Navoiy viloyati</option>
-
-                    <option value="qashqadaryo">Qashqadaryo viloyati</option>
-
-                    <option value="qoraqalpogiston">Qoraqalpogʻiston Respublika</option>
-
-                    <option value="samarqand">Samarqand viloyati</option>
-
-                    <option value="sirdaryo">Sirdaryo viloyati</option>
-
-                    <option value="surxondaryo">Surxondaryo viloyati</option>
-
-                    <option value="toshkent">Toshkent viloyati</option>
-
-                    <option value="xorazm">Xorazm viloyati</option>
-
+                    {% for region in regions %}
+                        <option value="{{ region.pk }}">{{ region.name }}</option>
+                    {% endfor %}
                 </select>
             </div>
         </div>
         <div class="row">
             <div class="mb-3 col-12">
-                <p>Manzil: </p>
+                <p>Tuman: </p>
                 <label for="exampleFormControlInput1" class="form-label w-50">
                     <select class="form-control" name="address" id="region">
                         <option value="None">Tanlang</option>
@@ -198,6 +172,49 @@
     </form>
 
 </div>
+<script>
+    // JavaScript funksiyasi, viloyatni tanlanganda viloyatga mos tumanlarni chiqaradi
+    function fillRegions() {
+        // Viloyatlar va ularning tumanlari ma'lumotlarini olish
+        var regions = {
+            "Toshkent": ["Yunusobod", "Yakkasaroy", "Shayhontohur", "Yashnobod", "Mirobod"],
+        };
+
+        // Viloyatni tanlangan elementni tanlash
+        var selectedRegion = document.getElementById("location");
+        // Tanlangan viloyatning nomini olish
+        var regionName = selectedRegion.options[selectedRegion.selectedIndex].value;
+        // Viloyatga mos tumanlarni olish
+        var districtOptions = regions[regionName];
+
+        // Tumanlarni chiqarish uchun tanlovni tanlangan elementni topish
+        var districtSelect = document.getElementById("region");
+        // Tumanlarni tozalash
+        districtSelect.innerHTML = "";
+
+        // Agar tanlangan viloyat bo'lsa va unda tumanlar mavjud bo'lsa
+        if (districtOptions) {
+            // Har bir tuman uchun option elementini yaratish va qo'shish
+            districtOptions.forEach(function (district) {
+                var option = document.createElement("option");
+                option.text = district;
+                option.value = district;
+                districtSelect.add(option);
+            });
+        } else {
+            // Agar tanlangan viloyat uchun tumanlar mavjud bo'lmasa
+            var option = document.createElement("option");
+            option.text = "Tumanlar topilmadi";
+            districtSelect.add(option);
+        }
+    }
+
+    // Viloyat tanlovini o'zgartirganda `fillRegions` funktsiyasini chaqirish
+    document.getElementById("location").addEventListener("change", fillRegions);
+    // Saqlamaq uchun avvalgi tanlovniki bilan to'ldirilgan tumanlarni chiqarish
+    fillRegions();
+</script>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="/static/app/js/regions.js"></script>
 </body>

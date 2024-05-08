@@ -1,0 +1,80 @@
+{% extends 'apps/operators/operator_main.html' %}
+{% load static %}
+{% block operator_content %}
+    <div class="col-md-10" style="margin-left: 16%;">
+
+        <div class="bg-light w-75 m-auto mt-5">
+            <form method="GET">
+                <div>
+                    <p>
+                        <label for="id_product">Mahsulot:</label>
+                        <select name="product" id="id_product" multiple>
+                            {% for order in hold %}
+                                <option value="1">{{ order.product.name }}</option>
+                            {% endfor %}
+                        </select>
+
+
+                    </p>
+
+
+                    <p>
+                        <label for="id_location">Viloyat:</label>
+                        <select name="location" id="id_location" multiple>
+                            <option value="Viloyatni tanlang">Viloyatni tanlang</option>
+                            {% for district in districts %}
+                                <option value="">{{ region.name }}</option>
+                            {% endfor %}
+                        </select>
+
+
+                    </p>
+
+
+                    <p>
+                        <label for="id_region">Tuman:</label>
+                        <select name="region" id="id_region" multiple>
+                            {% for district in districts %}
+                                <option value="">{{ district.name }}</option>
+                            {% endfor %}
+
+
+                        </select>
+
+
+                    </p>
+
+
+                    <p>
+                        <label for="id_name">Mahsulot nomi:</label>
+                        <input type="text" name="name" id="id_name">
+
+
+                    </p></div>
+                <input class="btn btn-primary" type="submit" value="Saqlash">
+            </form>
+
+            {% for order in hold_orders %}
+                <div class="card border-dark mt-5">
+                    <div class="card-body">
+                        <h2 class="card-title">{{ order.product.name }} - {{ order.product.price }} so'm</h2>
+                        <ul class="text-muted">
+                            <li class="">
+                                Client: {{ order.user.first_name }} {{ order.user.last_name }} {{ order.user.phone_number }}</li>
+                            <li class="">Address: Viloyatni tanlang</li>
+                            <li class="">Narxi: {{ order.product.price }} so'm</li>
+                            <li class="">Soni: {{ order.count }}ta</li>
+                            <li class="">Komment: {{ order.comment }}</li>
+                            <li class="">ID: #{{ order.id }}</li>
+                            <li class="">Vaqti: {{ order.created_at }}</li>
+                            <li class="">Yangilangan vaqti: {{ order.updated_at }}</li>
+                        </ul>
+                        <a href="{% url 'order_accepted' order.pk %}" class="btn btn-primary">Holatini o'zgartirish</a>
+                    </div>
+                </div>
+            {% endfor %}
+
+
+        </div>
+    </div>
+{% endblock %}

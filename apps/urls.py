@@ -7,8 +7,8 @@ from apps.views import ProductListView, ProductDetailView, RegisterFormView, Cus
     WishlistsView, WishlistRemoveView, MarketView, StreamListView, StatisticView, \
     NewOrderListView, ReadyOrderListView, DeliveringOrderListView, WaitingOrderListView, ArchivedOrderListView, \
     BrokenOrderListView, \
-    DeliveredOrderListView, CancelledOrderListView, AllOrderListView, OrderAcceptedView, \
-    ConditionUpdateView, OrdersListView
+    DeliveredOrderListView, CancelledOrderListView, AllOrderListView, OrdersListView, HoldOrderListView, \
+    OrderAcceptedView, NewOrderCreateView,ConditionUpdateView
 
 from root import settings
 from .tasks import add_data
@@ -56,7 +56,9 @@ urlpatterns += [
     path('operator/delivered/', DeliveredOrderListView.as_view(), name='delivered'),
     path('operator/cancelled/', CancelledOrderListView.as_view(), name='cancelled'),
     path('operator/all/', AllOrderListView.as_view(), name='all'),
+    path('operator/hold/', HoldOrderListView.as_view(), name='hold'),
     path('operator/order/<int:pk>/', OrderAcceptedView.as_view(), name='order_accepted'),
+    path('operator/create_order/', NewOrderCreateView.as_view(), name='order_create'),
     path('operator/condition/<int:pk>/', ConditionUpdateView.as_view(), name='condition_update'),
 
 ]

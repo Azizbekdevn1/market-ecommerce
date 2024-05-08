@@ -127,6 +127,7 @@ class Order(BaseModel):
         CANCELLED = 'bekor_qilindi', 'Bekor qilindi'
         WAITING = 'keyin_oladi', 'Keyin oladi'
         READY_TO_DELIVERY = 'dastavkaga_tayyor', 'Dastavkaga tayyor'
+        HOLD = 'hold', 'Hold'
 
     status = CharField(max_length=30, choices=Status.choices, default=Status.NEW)
     name = CharField(max_length=20)

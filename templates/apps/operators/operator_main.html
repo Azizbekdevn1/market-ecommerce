@@ -1,0 +1,129 @@
+{% load static %}
+{% load custom_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        Operatorlar bo'limi
+        - alijahon.uz</title>
+    <link rel="stylesheet" href="{% static 'apps/bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'apps/bootstrap/css/font-awesome.min.css' %}">
+    <link href="{% static 'apps/bootstrap/css/multiple-select.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <style>
+        select {
+            width: 100%;
+        }
+    </style>
+
+</head>
+<body>
+<div>
+    <nav class="navbar navbar-dark bg-dark text-white" style="height: 10%;">
+
+
+        <div style="margin-left: 15px;"><a href="{% url 'order_create' %}">Zakaz + </a></div>
+
+
+        <div>Buyurtmalar</div>
+        <h4>ID: 721 </h4>
+        <a href="{% url 'product_list' %}" class="btn btn-danger btn-sm">Asosiy panel</a>
+    </nav>
+    <div class="row">
+        <div class="col-md-2 h-70 text-center" style="background-color: #38ffae; padding-right: 0; position:absolute;">
+            <div class="list-group text-light w-100 h-100">
+                <a style="height: 13%" href="/operator/new"
+                   class="btn btn-primary list-group-item text-dark mt-1  {% if 'new' in request.path %}active{% endif %}  ">
+                    <div>
+                        <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+                    </div>
+                    <h6>Yangi buyurtmalar</h6>
+                </a>
+                <a style="height: 13%" href="/operator/ready"
+                   class="btn btn-primary list-group-item text-dark mt-1 {% if 'ready' in request.path %}active{% endif %}">
+                    <div>
+                        <i class="fa fa-truck" aria-hidden="true"></i>
+                    </div>
+                    <h6>Dostavka tayyor</h6>
+                </a>
+                <a style="height: 13%" href="/operator/delivering"
+                   class="btn btn-primary list-group-item text-dark mt-1 {% if 'delivering' in request.path %}active{% endif %}">
+                    <div>
+                        <i class="fa fa-truck" aria-hidden="true"></i>
+                    </div>
+                    <h6>Yetkazilmoqda</h6>
+                </a>
+                <a style="height: 13%" href="/operator/waiting"
+                   class="btn btn-primary list-group-item text-dark mt-1 {% if 'waiting' in request.path %}active{% endif %}">
+                    <div>
+                        <i class="fa fa-clock-o" aria-hidden="true"></i>
+                    </div>
+                    <h6>Keyin oladi</h6>
+                </a>
+                <a style="height: 13%" href="/operator/archived"
+                   class="btn btn-primary list-group-item text-dark mt-1 {% if 'archived' in request.path %}active{% endif %}">
+                    <div>
+                        <i class="fa fa-archive" aria-hidden="true"></i>
+                    </div>
+                    <h6>Arxivlandi</h6>
+                </a>
+                <a style="height: 13%" href="/operator/broken"
+                   class="btn btn-primary list-group-item text-dark mt-1 {% if 'broken' in request.path %}active{% endif %}">
+                    <div>
+                        <i class="fa fa-chain-broken" aria-hidden="true"></i>
+                    </div>
+                    <h6>Nosoz, bekor qilindi</h6>
+                </a>
+                <a style="height: 13%" href="/operator/delivered"
+                   class="btn btn-primary list-group-item text-dark mt-1 {% if 'delivered' in request.path %}active{% endif %}">
+                    <div>
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                    </div>
+                    <h6>Yetkazib berildi</h6>
+                </a>
+                <a style="height: 13%" href="/operator/cancelled"
+                   class="btn btn-primary list-group-item text-dark mt-1 {% if 'cancelled' in request.path %}active{% endif %}">
+                    <div>
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                    </div>
+                    <h6>Qaytib keldi</h6>
+                </a>
+                <a style="height: 13%" href="/operator/hold"
+                   class="btn btn-primary list-group-item text-dark mt-1 {% if 'hold' in request.path %}active{% endif %}">
+                    <div>
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                    </div>
+                    <h6>Hold</h6>
+                </a>
+                <a style="height: 13%" href="/operator/all"
+                   class="btn btn-primary list-group-item text-dark mt-1 {% if 'all' in request.path %}active{% endif %}">
+                    <div>
+                        <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+                    </div>
+                    <h6>Hammasi</h6>
+                </a>
+            </div>
+        </div>
+        {% block operator_content %}{% endblock %}
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+<script src="https://unpkg.com/multiple-select@1.5.2/dist/multiple-select.min.js"></script>
+<script src="/static/app/js/regions_filter.js"></script>
+<script src="{% static 'apps/vendors/fontawesome/all.min.js' %}"></script>
+<script>
+    $(function () {
+        $('select').multipleSelect({
+            multiple: true,
+            multipleWidth: 500,
+            maxHeight: 200,
+            maxHeightUnit: 50,
+            filter: true
+        })
+    })
+</script>
+
+</body>
+</html>

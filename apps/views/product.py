@@ -88,6 +88,9 @@ class WishlistsView(ListView):
     model = WishList
     context_object_name = 'wishlists'
 
+    def get_queryset(self):
+        return super().get_queryset().filter(user=self.request.user)
+
 
 class WishlistRemoveView(View):
     def get(self, request, product_id):
@@ -143,12 +146,12 @@ class StreamListView(LoginRequiredMixin, FormView):
 class StatisticView(LoginRequiredMixin, ListView):
     queryset = Stream.objects.annotate(
         new=Count('orders', filter=Q(orders__status=Order.Status.NEW)),
-        delivered=Count('orders', filter=Q(orders__status='yetkazildi')),
-        archive=Count('orders', filter=Q(orders__status='arxivlandi')),
-        delivering=Count('orders', filter=Q(orders__status='yetkazilmoqda')),
-        cancelled=Count('orders', filter=Q(orders__status='bekor_qilindi')),
-        waiting=Count('orders', filter=Q(orders__status='keyin_oladi')),
-        ready_to_delivery=Count('orders', filter=Q(orders__status='dastavkaga_tayyor')),
+        delivered=Count('orders', filter=Q(orders__status=Order.Status.DELIVERED)),
+        archive=Count('orders', filter=Q(orders__status=Order.Status.ARCHIVE)),
+        delivering=Count('orders', filter=Q(orders__status=Order.Status.DELIVERING)),
+        cancelled=Count('orders', filter=Q(orders__status=Order.Status.CANCELLED)),
+        waiting=Count('orders', filter=Q(orders__status=Order.Status.WAITING)),
+        ready_to_delivery=Count('orders', filter=Q(orders__status=Order.Status.READY_TO_DELIVERY)),
     ).select_related('product')
     template_name = 'apps/product/statistic.html'
     context_object_name = "streams_statistic"
@@ -179,3 +182,4 @@ class OrdersListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return super().get_queryset().filter(user=self.request.user)
+
