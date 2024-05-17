@@ -6,6 +6,7 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 
 from apps.models import Product, Category, ProductImage, User, Order
+from apps.models.product import SiteSetting
 
 
 @admin.register(Category)
@@ -30,7 +31,15 @@ class ProductImageStackedInline(StackedInline):
 class ProductModelAdmin(admin.ModelAdmin):
     inlines = [ProductImageStackedInline]
     list_display = ['id', 'name', 'price']
-    readonly_fields = ['slug']
+
+
+@admin.register(SiteSetting)
+class SiteSettingModelAdmin(admin.ModelAdmin):
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, *args, **kwargs):
+        return False
 
 
 # @admin.register(User)

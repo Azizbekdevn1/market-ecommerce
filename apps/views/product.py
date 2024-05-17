@@ -6,14 +6,14 @@ from django.urls import reverse
 from django.views import View
 from django.views.generic import ListView, DetailView, FormView
 from apps.forms import OrderModelForm, StreamModelForm
-from apps.models import Product, Order, WishList, Category, Stream
+from apps.models import Product, Order, WishList, Category, Stream, SiteSetting
 
 
 class ProductListView(ListView):
     queryset = Product.objects.order_by('-id')
     template_name = 'apps/product/product_grid.html'
     context_object_name = 'products'
-    paginate_by = 9
+    paginate_by = 2
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -51,6 +51,7 @@ class ProductDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['stream_id'] = self.kwargs.get(self.pk_url_kwarg, '')
+        context['delivery_price'] = SiteSetting.objects.first()
         return context
 
 
@@ -72,6 +73,11 @@ class OrderedTemplateView(DetailView):
     template_name = 'apps/product/ordered.html'
     model = Order
     context_object_name = 'order'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['delivery_price'] = SiteSetting.objects.first().delivery_price
+        return context
 
 
 class WishlistView(View):
@@ -182,4 +188,3 @@ class OrdersListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return super().get_queryset().filter(user=self.request.user)
-

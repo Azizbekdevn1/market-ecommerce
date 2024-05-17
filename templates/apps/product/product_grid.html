@@ -1,6 +1,7 @@
 {% extends 'apps/base.html' %}
 {% load static %}
 {% load custom_tags %}
+{% load humanize %}
 {% block content %}
     <div class="card mt-2 mb-2">
         <div class="card-header bg-light">
@@ -88,15 +89,15 @@
                                     </p>
                                     {% if product.in_discount %}
                                         <h5 class="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3">
-                                            {{ product.percent_product }} so'm
-                                            <del class="ms-2 fs--1 text-500">{{ product.price }} so'm </del>
+                                            {{ product.percent_product|intcomma }} so'm
+                                            <del class="ms-2 fs--1 text-500">{{ product.price|intcomma  }} so'm</del>
                                         </h5>
                                     {% else %}
                                         <h5 class="fs-md-2 text-warning mb-0 d-flex align-items-center mb-3">
-                                            {{ product.price }} so'm
+                                            {{ product.price|intcomma }} so'm
                                         </h5>
                                     {% endif %}
-                                    <p class="fs--1 mb-1">Shipping Cost: <strong>30,000 so'm</strong></p>
+                                    <p class="fs--1 mb-1">Shipping Cost: <strong>{{ delivery_price }}so'm</strong></p>
                                     <p class="fs--1 mb-1">
                                         {% if product.in_stock %}
                                             Stock: <strong class="text-primary">Available</strong>

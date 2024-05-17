@@ -6,6 +6,7 @@ from django.utils.text import slugify
 from django.utils.timezone import now
 from django_resized import ResizedImageField
 from apps.models.user import User
+from django_ckeditor_5.fields import CKEditor5Field
 
 
 class BaseModel(Model):
@@ -62,13 +63,13 @@ class ProductImage(Model):
 
 class Product(BaseModel):
     name = CharField(max_length=255)
-    slug = SlugField(max_length=255, unique=True)
+    slug = SlugField(max_length=255, unique=True, editable=False)
     quantity = PositiveIntegerField(default=0)
     price = IntegerField(default=200)
     spec = JSONField(null=True, blank=True)
-    discount = FloatField(null=True, blank=True)
+    discount = IntegerField(null=True, blank=True)
     category = ForeignKey('apps.Category', CASCADE, 'categories')
-    description = TextField(blank=True, null=True)
+    description = CKEditor5Field(blank=True, null=True)
 
     class Meta:
         verbose_name = 'Maxsulot'
@@ -84,14 +85,13 @@ class Product(BaseModel):
         return unique_slug
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
-        self.slug = self._get_unique_slug()
-        if force_update is True:
-            self.slug = slugify(self.name)
+        if not self.slug:
+            self.slug = self._get_unique_slug()
         return super().save(force_insert, force_update, using, update_fields)
 
     @property
     def percent_product(self):
-        return self.price * (1 - self.discount / 100)
+        return int(self.price * (1 - self.discount / 100))
 
     @property
     def image(self):
@@ -177,6 +177,16 @@ class WishList(Model):
     user = ForeignKey('apps.User', CASCADE, related_name='wishlists')
     product = ForeignKey('apps.Product', CASCADE)
     added_at = DateTimeField(auto_now_add=True)
+
+
+class SiteSetting(Model):
+    delivery_price = IntegerField('Yetkazib berish narxi')
+
+    class Meta:
+        verbose_name_plural = "Sayt sozlamalari"
+
+    def __str__(self):
+        return "Yetkazib berish narhi"
 
 
 class Stream(Model):

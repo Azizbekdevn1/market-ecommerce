@@ -1,6 +1,7 @@
 {% extends 'apps/base.html' %}
 {% load static %}
 {% load custom_tags %}
+{% load humanize %}
 {% block content %}
     <div class="card mb-3 container">
         <div class="card-body">
@@ -33,20 +34,20 @@
                     <h4 class="d-flex align-items-center">
                         {% if product.in_discount %}
                             <span
-                                    class="text-warning me-2">{{ product.percent_product }}
+                                    class="text-warning me-2">{{ product.percent_product|intcomma }}
                         </span>
                             <span
                                     class="me-1 fs--1 text-500">
-                            <del class="me-1">{{ product.price }} so'm</del>
+                            <del class="me-1">{{ product.price|intcomma }} so'm</del>
                             <strong>-{{ product.discount }}%</strong>
                         </span>
                         {% else %}
                             <span
-                                    class="text-warning me-2">{{ product.price }} so'm
+                                    class="text-warning me-2">{{ product.price|intcomma }} so'm
                         </span>
                         {% endif %}
                     </h4>
-                    <p class="fs--1 mb-1"><span>Shipping Cost: </span><strong>{{ product.shipping_cost }}00</strong></p>
+                    <p class="fs--1 mb-1"><span>Shipping Cost: </span><strong>{{ delivery_price.delivery_price|intcomma }} so'm</strong></p>
                     <p class="fs--1">
                         {% if product.in_stock %}
                             Stock: <strong class="text-success">Available</strong>
@@ -105,7 +106,7 @@
                                                     data-field="input-quantity" data-type="minus">-
                                             </button>
                                             <input class="form-control text-center input-quantity input-spin-none"
-                                                   type="number" min="0" value="0" name="count" id="formGroupNameInput1"
+                                                   type="number" min="1" value="1" name="count" id="formGroupNameInput1"
                                                    aria-label="Amount (to the nearest dollar)" style="max-width: 50px">
                                             <button class="btn btn-sm btn-outline-secondary border-300"
                                                     data-field="input-quantity" data-type="plus">+
