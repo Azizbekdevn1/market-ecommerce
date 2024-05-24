@@ -151,7 +151,7 @@
                     {% if page_obj.has_previous %}
                         <a class="btn btn-falcon-default btn-sm me-2" type="button" disabled="disabled"
                            data-bs-toggle="tooltip" data-bs-placement="top" title="Prev"
-                           href="?page={{ page_obj.previous_page_number }}">
+                           href="?category={{ request.GET.category }}&page={{ page_obj.previous_page_number }}">
                             <span class="fas fa-chevron-left">
                             </span>
                         </a>
@@ -166,14 +166,14 @@
                     {% for p in page_obj.paginator.page_range %}
                         {% if p == page_obj.number %}
                             <a class="btn btn-sm btn-falcon-default text-primary me-2"
-                               href="?page={{ p }}">{{ p }}</a>
+                               href="?category={{ request.GET.category }}&page={{ p }}">{{ p }}</a>
                         {% else %}
-                            <a class="btn btn-sm btn-falcon-default me-2" href="?page={{ p }}">{{ p }}</a>
+                            <a class="btn btn-sm btn-falcon-default me-2" href="?category={{ request.GET.category }}&page={{ p }}">{{ p }}</a>
                         {% endif %}
                     {% endfor %}
                     {% if page_obj.has_next %}
                         <a class="btn btn-falcon-default btn-sm" type="button" data-bs-toggle="tooltip"
-                           data-bs-placement="top" title="Next" href="?page={{ page_obj.next_page_number }}">
+                           data-bs-placement="top" title="Next" href="?category={{ request.GET.category }}&page={{ page_obj.next_page_number }}">
                             <span class="fas fa-chevron-right "></span>
                         </a>
                     {% else %}

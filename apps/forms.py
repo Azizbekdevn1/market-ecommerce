@@ -69,6 +69,7 @@ class OrderAcceptedModelForm(ModelForm):
 
 class OrderCreateModelForm(ModelForm):
     name = CharField(max_length=255, label="Ism familya")
+
     class Meta:
         model = Order
         fields = ['name', 'region', 'district', 'count', 'phone_number', 'product']

@@ -6,7 +6,6 @@ from apps.models import User
 from apps.proxies import OperatorProxy, AdminProxy, CurrierProxy, UserProxy, ManageerProxy
 
 
-
 @admin.register(AdminProxy)
 class AdminProxyModelAdmin(UserAdmin):
     list_display = ['username']
