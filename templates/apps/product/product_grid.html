@@ -97,7 +97,7 @@
                                             {{ product.price|intcomma }} so'm
                                         </h5>
                                     {% endif %}
-                                    <p class="fs--1 mb-1">Shipping Cost: <strong>{{ delivery_price }}so'm</strong></p>
+                                    <p class="fs--1 mb-1">Shipping Cost: <strong>{{ delivery_price.delivery_price|intcomma }} so'm</strong></p>
                                     <p class="fs--1 mb-1">
                                         {% if product.in_stock %}
                                             Stock: <strong class="text-primary">Available</strong>

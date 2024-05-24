@@ -64,7 +64,7 @@ class StreamModelForm(ModelForm):
 class OrderAcceptedModelForm(ModelForm):
     class Meta:
         model = Order
-        fields = ['region', 'status', 'comment']
+        fields = ['region', 'status', 'comment','count']
 
 
 class OrderCreateModelForm(ModelForm):

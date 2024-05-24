@@ -1,6 +1,7 @@
 {% extends 'apps/base.html' %}
 {% load static %}
 {% block content %}
+    {% load custom_tags %}
     {% load humanize %}
     <div class="container text-center pb-5 card" style="margin-top: 80px;">
         <div class="card-body" style="margin-top: 30px">
@@ -40,9 +41,9 @@
             <div class="col-md-6">
                 <h5>Jami</h5>
                 {% if order.product.in_discount %}
-                    <h5>{{ order.product.percent_product|add:delivery_price }} so'm</h5>
+                    <h5>{{ order.product.percent_product|multiply:order.count|add:delivery_price }} so'm</h5>
                 {% else %}
-                    <h5>{{ order.product.price|add:delivery_price }} so'm</h5>
+                    <h5>{{ order.product.price|multiply:order.count|add:delivery_price }} so'm</h5>
                 {% endif %}
 
 

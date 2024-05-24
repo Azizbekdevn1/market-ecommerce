@@ -8,7 +8,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{% static 'apps/bootstrap/css/bootstrap.css' %}">
-    <title>Hello, world!</title>
+    <title>Buyurtma holatini o'zgartirish </title>
 </head>
 <body>
 
@@ -19,7 +19,7 @@
         <p>Customer: <span>{{ order.user.first_name }} {{ order.user.last_name }}- {{ order.user.phone }}</span></p>
         <p>{{ order.product.name }} - {{ order.product.price }}so'm</p>
         <p style="color: red; display: inline;">AKSIYA</p>
-        <p>Dostavka narxi: 30000</p>
+        <p>Dostavka narxi: 30000 so'm</p>
     </div>
 
     <form method="post" action="{% url 'order' %}">
@@ -27,7 +27,7 @@
         <div class="row">
             <div class="col-6">
                 <p>Nechta:</p>
-                <select class="form-select" aria-label="Default select example" name="quantity">
+                <select class="form-select" aria-label="Default select example" name="count">
                     <option value="1">1 ta ({{ order.count }})</option>
 
                     1
@@ -74,9 +74,7 @@
         <div class="row">
             <div class="mb-3 col-12">
                 <label for="location">Viloyat:</label>
-                <select class="form-control" id="location" name="location">
-                    <!-- <option value="None" selected>Viloyatni tanlang</option> -->
-
+                <select class="form-control" id="location" name="region">
                     <option
                             value="Viloyatni tanlang">Viloyatni tanlang
                     </option>
@@ -101,7 +99,6 @@
             <div class="mb-3 col-12">
                 <label for="exampleFormControlInput3" class="form-label">Yuborish vaqti
                     <input type="date" class="form-control" name="delivering_time"
-
                            value="2024-02-06"/></label>
             </div>
         </div>
@@ -172,49 +169,6 @@
     </form>
 
 </div>
-<script>
-    // JavaScript funksiyasi, viloyatni tanlanganda viloyatga mos tumanlarni chiqaradi
-    function fillRegions() {
-        // Viloyatlar va ularning tumanlari ma'lumotlarini olish
-        var regions = {
-            "Toshkent": ["Yunusobod", "Yakkasaroy", "Shayhontohur", "Yashnobod", "Mirobod"],
-        };
-
-        // Viloyatni tanlangan elementni tanlash
-        var selectedRegion = document.getElementById("location");
-        // Tanlangan viloyatning nomini olish
-        var regionName = selectedRegion.options[selectedRegion.selectedIndex].value;
-        // Viloyatga mos tumanlarni olish
-        var districtOptions = regions[regionName];
-
-        // Tumanlarni chiqarish uchun tanlovni tanlangan elementni topish
-        var districtSelect = document.getElementById("region");
-        // Tumanlarni tozalash
-        districtSelect.innerHTML = "";
-
-        // Agar tanlangan viloyat bo'lsa va unda tumanlar mavjud bo'lsa
-        if (districtOptions) {
-            // Har bir tuman uchun option elementini yaratish va qo'shish
-            districtOptions.forEach(function (district) {
-                var option = document.createElement("option");
-                option.text = district;
-                option.value = district;
-                districtSelect.add(option);
-            });
-        } else {
-            // Agar tanlangan viloyat uchun tumanlar mavjud bo'lmasa
-            var option = document.createElement("option");
-            option.text = "Tumanlar topilmadi";
-            districtSelect.add(option);
-        }
-    }
-
-    // Viloyat tanlovini o'zgartirganda `fillRegions` funktsiyasini chaqirish
-    document.getElementById("location").addEventListener("change", fillRegions);
-    // Saqlamaq uchun avvalgi tanlovniki bilan to'ldirilgan tumanlarni chiqarish
-    fillRegions();
-</script>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="/static/app/js/regions.js"></script>
 </body>

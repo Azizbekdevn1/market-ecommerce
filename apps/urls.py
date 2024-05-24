@@ -8,7 +8,7 @@ from apps.views import ProductListView, ProductDetailView, RegisterFormView, Cus
     NewOrderListView, ReadyOrderListView, DeliveringOrderListView, WaitingOrderListView, ArchivedOrderListView, \
     BrokenOrderListView, \
     DeliveredOrderListView, CancelledOrderListView, AllOrderListView, OrdersListView, HoldOrderListView, \
-    OrderAcceptedView, NewOrderCreateView,ConditionUpdateView
+    OrderAcceptedView, NewOrderCreateView, ConditionUpdateView
 
 from root import settings
 from .tasks import add_data
@@ -16,7 +16,6 @@ from .tasks import add_data
 # def djagshjhags(request):
 #     add_data()
 #     return JsonResponse({})
-
 
 
 urlpatterns = ([

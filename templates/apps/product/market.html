@@ -1,7 +1,7 @@
 {% extends 'apps/base.html' %}
 {% load static %}
 {% load custom_tags %}
-
+{% load humanize %}
 {% block content %}
     <div class="card-body">
         <!-- Modal -->
@@ -107,11 +107,11 @@
                                         {{ pro.name }}
                                     </a>
                                 </h5>
-                                <p class="text-muted"> {{ pro.price }}</p>
+                                <p class="text-muted"> {{ pro.price|intcomma }} so'm</p>
                             </div>
 
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">To'lov: <strong>{{ pro.shipping_cost }} </strong></li>
+                                <li class="list-group-item">To'lov: <strong>{{ pro.shipping_cost|intcomma }} so'm</strong></li>
 
                                 <li class="list-group-item">Zaxirada: <strong> {{ pro.quantity }} ta </strong>
                                 </li>

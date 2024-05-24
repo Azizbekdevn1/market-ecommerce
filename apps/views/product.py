@@ -13,11 +13,12 @@ class ProductListView(ListView):
     queryset = Product.objects.order_by('-id')
     template_name = 'apps/product/product_grid.html'
     context_object_name = 'products'
-    paginate_by = 2
+    paginate_by = 6
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['categories'] = Category.objects.all()
+        context['delivery_price'] = SiteSetting.objects.first()
         return context
 
     def get_queryset(self):
@@ -77,7 +78,6 @@ class OrderedTemplateView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['delivery_price'] = SiteSetting.objects.first().delivery_price
-
         return context
 
 
@@ -127,27 +127,11 @@ class StreamListView(LoginRequiredMixin, FormView):
     template_name = 'apps/product/oqim.html'
     form_class = StreamModelForm
 
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context['streams'] = Stream.objects.filter(user=self.request.user)
-    #     return context
-
     def form_valid(self, form):
         stream = form.save(commit=False)
         stream.user = self.request.user
         stream.save()
         return redirect('stream')
-
-
-# class StreamDetailView(DetailView):
-#     model = Stream
-#     template_name = 'apps/product/product_details.html'
-#     context_object_name = 'product'
-#
-#     def get_object(self, queryset=None):
-#         pk = self.kwargs.get('pk')
-#         stream = get_object_or_404(Stream.objects.all(), pk=pk)
-#         return stream.product
 
 
 class StatisticView(LoginRequiredMixin, ListView):

@@ -1,6 +1,7 @@
 {% extends 'apps/base.html' %}
 {% load static %}
 {% load custom_tags %}
+{% load humanize %}
 {% block content %}
     <div class="card mb-3">
         <div class="card-body">
@@ -12,8 +13,8 @@
                             {% for order in orders_list %}
                                 <div class="col-md-4 p-5">
                                     <h3>Mahsulot: {{ order.product.name }}</h3>
-                                    <small>Mahsulot narxi: {{ order.product.price }}</small>
-                                    <p>Soni: {{ order.count }}</p>
+                                    <small>Mahsulot narxi: {{ order.product.price|intcomma }} so'm</small>
+                                    <p>Soni: {{ order.count }} ta</p>
                                 </div>
                             {% endfor %}
                         </div>
