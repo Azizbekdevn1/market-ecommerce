@@ -18,6 +18,7 @@ from .tasks import add_data
 #     return JsonResponse({})
 
 
+
 urlpatterns = ([
                    path('', ProductListView.as_view(), name='product_list'),
                    path('product/<slug:slug>/', ProductDetailView.as_view(), name='product_detail'),
