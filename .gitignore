@@ -10,7 +10,7 @@
 .idea/**/shelf
 .idea
 media
-servercommands
+servercommands/
 TODO
 # AWS User-specific
 .idea/**/aws.xml
@@ -234,6 +234,8 @@ venv.bak/
 
 # mkdocs documentation
 /site
+
+templates/
 
 # mypy
 .mypy_cache/
