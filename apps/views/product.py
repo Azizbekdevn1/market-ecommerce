@@ -90,7 +90,7 @@ class WishlistView(View):
         return redirect('/')
 
 
-class WishlistsView(ListView):
+class WishlistsView(LoginRequiredMixin, ListView):
     template_name = 'apps/product/wishlist.html'
     model = WishList
     context_object_name = 'wishlists'
@@ -105,7 +105,7 @@ class WishlistRemoveView(View):
         return redirect(reverse('wishlist_list'))
 
 
-class MarketView(ListView):
+class MarketView(LoginRequiredMixin, ListView):
     queryset = Product.objects.all()
     context_object_name = 'products'
     template_name = 'apps/product/market.html'
@@ -176,4 +176,12 @@ class OrdersListView(LoginRequiredMixin, ListView):
 
 
 class QueriesListView(LoginRequiredMixin, ListView):
+    queryset = Order.objects.all().select_related('product', 'operator')
     template_name = 'apps/product/queries.html'
+    context_object_name = 'orders'
+
+    def get_queryset(self):
+        return super().get_queryset().filter(user=self.request.user)
+
+class CompetitionView(ListView):
+    template_name = 'aoo'

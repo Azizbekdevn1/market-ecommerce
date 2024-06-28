@@ -7,7 +7,8 @@ from apps.views import ProductListView, ProductDetailView, RegisterFormView, Cus
     WishlistsView, WishlistRemoveView, MarketView, StreamListView, StatisticView, \
     NewOrderListView, ReadyOrderListView, DeliveringOrderListView, WaitingOrderListView, ArchivedOrderListView, \
     BrokenOrderListView, \
-    DeliveredOrderListView, CancelledOrderListView, AllOrderListView, OrdersListView, HoldOrderListView, NewOrderCreateView, ConditionUpdateView
+    DeliveredOrderListView, CancelledOrderListView, AllOrderListView, OrdersListView, HoldOrderListView, \
+    NewOrderCreateView, ConditionUpdateView,QueriesListView
 
 from root import settings
 from .tasks import add_data
@@ -30,6 +31,8 @@ urlpatterns = ([
                    path('stream/', StreamListView.as_view(), name='stream'),
                    path('statistics/', StatisticView.as_view(), name='statistic'),
                    path('orders/', OrdersListView.as_view(), name='orders_list'),
+                   path('queries/', QueriesListView.as_view(), name='queries_list'),
+
                ]
                + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT))
 

@@ -79,6 +79,9 @@ class NewOrderCreateView(CreateView, BaseOperatorListView):
         return context
 
     def form_valid(self, form):
+        order = form.save(False)
+        order.user = self.request.user
+        order.save()
         return super().form_valid(form)
 
     def form_invalid(self, form):
@@ -91,6 +94,12 @@ class ConditionUpdateView(UpdateView):
     template_name = 'apps/operators/accepted_order.html'
     success_url = reverse_lazy('ready')
     context_object_name = 'order'
+
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset)
+        obj.operator = self.request.user
+        obj.save()
+        return obj
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(object_list=object_list, **kwargs)

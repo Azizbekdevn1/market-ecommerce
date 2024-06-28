@@ -4,9 +4,12 @@
 {% block content %}
     <div class="card-body d-flex justify-content-between">
         <div>
-            <a class="btn btn-falcon-default btn-sm" href="" data-bs-toggle="tooltip" data-bs-original-title="Orqaga">
-                <svg class="svg-inline--fa fa-arrow-left fa-w-14" data-icon="arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                    <path fill="currentColor" d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"></path>
+            <a style="" class="btn btn-falcon-default btn-sm" href="{% url 'product_list' %}" data-bs-toggle="tooltip"
+               data-bs-original-title="Orqaga">
+                <svg class="svg-inline--fa fa-arrow-left fa-w-14" data-icon="arrow-left" role="img"
+                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                    <path fill="currentColor"
+                          d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"></path>
                 </svg>
                 <!-- <span class="fas fa-arrow-left"></span> Font Awesome fontawesome.com -->
             </a>
@@ -32,69 +35,21 @@
                         </thead>
 
                         <tbody class="text-center">
-                        
+                        {% for order in orders %}
                             <tr style="text-align: center;">
-                                <th scope="col">2130480</th>
-                                <th scope="col">721</th>
-                                <th scope="col">Bolalar uchun alifbo</th>
-                                <th scope="col">yangi oqim12345</th>
-                                <th scope="col">zakazga</th>
-                                <th scope="col">Viloyatni tanlang</th>
-                                <th scope="col">
-                                    yangi
-                                    
-                                </th>
-                                <th scope="col"></th>
-                                <th scope="col">22-May, 2024-yil 20:38</th>
+                                <th scope="col">{{ order.pk }}</th>
+                                <th scope="col">{{ order.operator.id}}</th>
+                                <th scope="col">{{ order.product.name }}</th>
+                                <th scope="col"> {{ order.stream.name}} </th>
+                                <th scope="col">{{ order.name }}</th>
+                                <th scope="col">{{ order.region.name }}</th>
+                                <th scope="col" class="status"> {{ order.status }}</th>
+                                <th scope="col">{{ order.comment }}</th>
+                                <th scope="col">{{ order.updated_at }}</th>
                             </tr>
-                        
-                            <tr style="text-align: center;">
-                                <th scope="col">2130472</th>
-                                <th scope="col">721</th>
-                                <th scope="col">Bolalar uchun alifbo</th>
-                                <th scope="col">MY THREAD</th>
-                                <th scope="col">hjgfrhg</th>
-                                <th scope="col">tashkent</th>
-                                <th scope="col">
-                                    yangi
-                                    
-                                </th>
-                                <th scope="col"></th>
-                                <th scope="col">22-May, 2024-yil 20:26</th>
-                            </tr>
-                        
-                            <tr style="text-align: center;">
-                                <th scope="col">2130471</th>
-                                <th scope="col">722</th>
-                                <th scope="col">Bolalar uchun alifbo</th>
-                                <th scope="col">MY THREAD</th>
-                                <th scope="col">testga zakaz</th>
-                                <th scope="col">Viloyatni tanlang</th>
-                                <th scope="col">
-                                    dastavkaga_tayyor
-                                    
-                                </th>
-                                <th scope="col">5ta oladi</th>
-                                <th scope="col">13-May, 2024-yil 14:19</th>
-                            </tr>
-                        
-                            <tr style="text-align: center;">
-                                <th scope="col">2078090</th>
-                                <th scope="col">11663</th>
-                                <th scope="col">1 TA KOʻZ OYNAKDA 5 XIL RANG</th>
-                                <th scope="col">yangi oqim</th>
-                                <th scope="col">test zakaz</th>
-                                <th scope="col">Viloyatni tanlang</th>
-                                <th scope="col">
-                                    arxivlandi
-                                    
-                                </th>
-                                <th scope="col">Xato</th>
-                                <th scope="col">21-Aprel, 2024-yil 20:26</th>
-                            </tr>
-                        
+                        {% endfor %}
                         </tbody>
-                        
+
                     </table>
                 </div>
             </div>

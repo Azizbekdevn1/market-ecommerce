@@ -1,6 +1,6 @@
 from datetime import timedelta
 from django.db.models import CharField, PositiveIntegerField, FloatField, ForeignKey, TextField, JSONField, Model, \
-    CASCADE, TextChoices, DateTimeField, SlugField, SET_NULL, IntegerField
+    CASCADE, TextChoices, DateTimeField, SlugField, SET_NULL, IntegerField, DateField, BooleanField
 from django.utils import timezone
 from django.utils.text import slugify
 from django.utils.timezone import now
@@ -202,3 +202,14 @@ class Stream(Model):
 
     def __str__(self):
         return f'{self.product.name} --> {self.user}'
+
+
+class Competition(Model):
+    title = CharField(max_length=255)
+    start_date = DateField()
+    end_date = DateField()
+    is_active = BooleanField()
+
+    class Meta:
+        verbose_name = "Konkurs"
+        verbose_name_plural = "Konkurslar ro'yhati"
