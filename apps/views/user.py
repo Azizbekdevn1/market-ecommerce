@@ -33,10 +33,11 @@ class RegisterFormView(NotLoginRequiredMixin, FormView):
         return super().form_valid(form)
 
 
-class CustomLoginView(NotLoginRequiredMixin, LoginView):
+class CustomLoginView(LoginView):
     template_name = 'apps/auth/login.html'
     authentication_form = AuthenticationForm
     next_page = 'product_list'
+    redirect_authenticated_user = True
 
 
 class ProfileView(ListView, NotLoginRequiredMixin):

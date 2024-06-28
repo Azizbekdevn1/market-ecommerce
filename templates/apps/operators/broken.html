@@ -59,7 +59,7 @@
                 <input class="btn btn-primary" type="submit" value="Saqlash">
             </form>
 
-            {% for order in broken_orders %}
+            {% for order in orders %}
                 <div class="card border-dark mt-5">
                     <div class="card-body">
                         <h2 class="card-title">{{ order.product.name }} - {{ order.product.price }} so'm</h2>

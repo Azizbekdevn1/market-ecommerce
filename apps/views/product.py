@@ -13,7 +13,7 @@ class ProductListView(ListView):
     queryset = Product.objects.order_by('-id')
     template_name = 'apps/product/product_grid.html'
     context_object_name = 'products'
-    paginate_by = 6
+    paginate_by = 2
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -169,7 +169,11 @@ class StatisticView(LoginRequiredMixin, ListView):
 class OrdersListView(LoginRequiredMixin, ListView):
     queryset = Order.objects.all()
     template_name = 'apps/product/orders_list.html'
-    context_object_name = "orders_list"
+    context_object_name = "orders"
 
     def get_queryset(self):
         return super().get_queryset().filter(user=self.request.user)
+
+
+class QueriesListView(LoginRequiredMixin, ListView):
+    template_name = 'apps/product/queries.html'

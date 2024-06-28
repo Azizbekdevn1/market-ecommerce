@@ -10,7 +10,7 @@
 
                     <div class="content_single-product-nouser">
                         <div class="row">
-                            {% for order in orders_list %}
+                            {% for order in orders %}
                                 <div class="col-md-4 p-5">
                                     <h3>Mahsulot: {{ order.product.name }}</h3>
                                     <small>Mahsulot narxi: {{ order.product.price|intcomma }} so'm</small>

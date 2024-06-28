@@ -58,7 +58,7 @@
                 <input class="btn btn-primary" type="submit" value="Saqlash">
             </form>
 
-            {% for order in cancelled_orders %}
+            {% for order in orders %}
                 <div class="card border-dark mt-5">
                     <div class="card-body">
                         <h2 class="card-title">{{ order.product.name }} - {{ order.product.price }} so'm</h2>
@@ -73,7 +73,7 @@
                             <li class="">Vaqti: {{ order.created_at }}</li>
                             <li class="">Yangilangan vaqti: {{ order.updated_at }}</li>
                         </ul>
-                        <a href="{% url 'order_accepted' order.pk %}" class="btn btn-primary">Holatini o'zgartirish</a>
+                        <a href="{% url 'condition_update' order.pk %}" class="btn btn-primary">Holatini o'zgartirish</a>
                     </div>
                 </div>
             {% endfor %}

@@ -59,7 +59,7 @@
 
 
                 <input type="checkbox" onClick="toggle(this)"/> Toggle All<br/>
-                {% for order in ready_to_delivery_orders %}
+                {% for order in orders %}
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" name="orders" value="1746809"
                                id="order-1">
@@ -85,7 +85,7 @@
                                     <li class="">Yangilangan vaqti: {{ order.updated_at }}</li>
                                 </ul>
 
-                                <a href="{% url 'order_accepted' order.pk %}" class="btn btn-primary">Holatini
+                                <a href="{% url 'condition_update' order.pk %}" class="btn btn-primary">Holatini
                                     o'zgartirish</a>
 
                             </div>

@@ -42,7 +42,7 @@
                     </p></div>
                 <input class="btn btn-primary" type="submit" value="Saqlash">
             </form>
-            {% for order in new_orders %}
+            {% for order in orders %}
                 <div class="card border-dark mt-5">
                     <div class="card-body">
                         <h2 class="card-title">{{ order.product.name }} - {{ order.product.price }} so'm</h2>
@@ -60,7 +60,7 @@
                             <li class="">Yangilangan vaqti: {{ order.updated_at }}</li>
                             <li class="">Holati: {{ order.get_status_display }}</li>
                         </ul>
-                        <a href="{% url 'order_accepted' order.pk %}" class="btn btn-primary"
+                        <a href="{% url 'condition_update' order.pk %}" class="btn btn-primary"
                            style="float: left; margin-right: 10px;">
                             Qabul qilish
 

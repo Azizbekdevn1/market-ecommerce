@@ -196,6 +196,7 @@ class Stream(Model):
     view = IntegerField(default=0)
 
     class Meta:
+        ordering = ['-id']
         verbose_name = "Oqim"
         verbose_name_plural = "Oqimlar ro'yhati"
 

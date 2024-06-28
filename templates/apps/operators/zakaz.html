@@ -1,0 +1,69 @@
+{% extends 'apps/operators/operator_main.html' %}
+{% load static %}
+{% block operator_content %}
+    <div class="col-md-10" style="margin-left: 16%;">
+        <br>
+        <br>
+        <div class="container">
+            <div class="col-md-6 col-sm-6 offset-2">
+                <form method="post" action="{% url 'order_create' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label for="inputFullName">Ism Familyasi</label>
+                            <input type="text" name="name" class="form-control" id="inputFullName">
+                        </div>
+                        <br>
+                        <label for="location">Viloyat</label>
+                        <div class="form-group">
+                            <select id="location" name="region">
+                                <option value="Viloyatni tanlang">Viloyatni tanlang</option>
+                                {% for region in regions %}
+                                    <option value="{{ region.id }}">{{ region.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <br>
+                        <label for="inputAddress">Tuman</label>
+                        <div class="form-group">
+                            <select id="district" name="district">
+                                <option value="Viloyatni tanlang">Tumani tanlang</option>
+                                {% for district in districts %}
+                                    <option value="{{ district.id }}">{{ district.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="inputCount">Soni</label>
+                            <input type="number" name="count" class="form-control" id="inputCount">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="phone-mask">Telefon nomer</label>
+                            <input type="text" id="phone-mask" max="20" name="phone_number" class="form-control">
+                        </div>
+                        <br>
+
+                        <div class="form-group">
+                            <label for="product">Mahsulot</label>
+                            <select id="product" name="product">
+                                <option value="">Hammasi</option>
+                                {% for product in products %}
+                                    <option value="{{ product.id }}">
+                                        {{ product.name }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <br>
+
+                        <input class="btn btn-primary" type="submit" value="Mahsulot qo'shish">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+{% endblock %}

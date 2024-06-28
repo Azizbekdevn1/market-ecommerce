@@ -19,10 +19,10 @@
         <p>Customer: <span>{{ order.user.first_name }} {{ order.user.last_name }}- {{ order.user.phone }}</span></p>
         <p>{{ order.product.name }} - {{ order.product.price }}so'm</p>
         <p style="color: red; display: inline;">AKSIYA</p>
-        <p>Dostavka narxi: 30000 so'm</p>
+        <p>Dostavka narxi: 30 000 so'm</p>
     </div>
 
-    <form method="post" action="{% url 'order' %}">
+    <form method="post" action="{% url 'condition_update' order.pk %}">
         {% csrf_token %}
         <div class="row">
             <div class="col-6">

@@ -22,7 +22,7 @@
             </thead>
             <tbody>
             <tr>
-                <th scope="col">{{ order.name }}</th>
+                <th scope="col">{{ order.product.name }}</th>
                 {% if order.product.in_discount %}
                     <th scope="col">{{ order.product.percent_product|intcomma }} so'm</th>
                 {% else %}

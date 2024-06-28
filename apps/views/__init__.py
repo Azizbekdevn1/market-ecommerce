@@ -8,4 +8,4 @@ from apps.views.user import (RegisterFormView, CustomLoginView, ProfileView, Cus
 from apps.views.operator import (NewOrderListView, ReadyOrderListView, DeliveringOrderListView, WaitingOrderListView,
                                  ArchivedOrderListView, BrokenOrderListView,
                                  DeliveredOrderListView, CancelledOrderListView, AllOrderListView, HoldOrderListView,
-                                 OrderAcceptedView, NewOrderCreateView, ConditionUpdateView)
+                                 NewOrderCreateView, ConditionUpdateView)

@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import AuthenticationForm, UserChangeForm
 from django.forms import ModelForm, ValidationError, CharField, PasswordInput, TextInput, ModelChoiceField
-from apps.models import User, Order, Stream, Product
+from apps.models import User, Order, Stream, Product, Region,District
 import re
 
 
@@ -62,13 +62,18 @@ class StreamModelForm(ModelForm):
 
 
 class OrderAcceptedModelForm(ModelForm):
+    region = ModelChoiceField(queryset=Region.objects.all(), required=False)
+
     class Meta:
         model = Order
-        fields = ['region', 'status', 'comment','count']
+        fields = ['region', 'status', 'comment', 'count']
 
 
 class OrderCreateModelForm(ModelForm):
+    region = ModelChoiceField(queryset=Region.objects.all())
     name = CharField(max_length=255, label="Ism familya")
+    product=ModelChoiceField(queryset=Product.objects.all())
+    district=ModelChoiceField(queryset=District.objects.all())
 
     class Meta:
         model = Order
