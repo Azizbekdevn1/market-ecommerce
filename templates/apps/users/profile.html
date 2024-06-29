@@ -30,6 +30,13 @@
                         <!-- <small class="fa fa-check-circle text-primary" data-fa-transform="shrink-4 down-2"></small> Font Awesome fontawesome.com --></span>
                     </h4>
                     <h5 class="fs-0 fw-normal">Senior Software Engineer {{ user.country }}</h5>
+                    <div>
+                        <p>
+                            <a href="{% url 'download_user_image' %}" target="_blank">
+                            Yuklab olish
+                            </a>
+                        </p>
+                    </div>
                     <p class="text-500">Tashkent,{{ user.country }}</p>
                     <button class="btn btn-falcon-primary btn-sm px-3" type="button">Following</button>
                     <button class="btn btn-falcon-default btn-sm px-3 ms-2" type="button">Message</button>

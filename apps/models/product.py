@@ -1,6 +1,6 @@
 from datetime import timedelta
 from django.db.models import CharField, PositiveIntegerField, FloatField, ForeignKey, TextField, JSONField, Model, \
-    CASCADE, TextChoices, DateTimeField, SlugField, SET_NULL, IntegerField, DateField, BooleanField
+    CASCADE, TextChoices, DateTimeField, SlugField, SET_NULL, IntegerField, DateField, BooleanField, ImageField
 from django.utils import timezone
 from django.utils.text import slugify
 from django.utils.timezone import now
@@ -205,10 +205,11 @@ class Stream(Model):
 
 
 class Competition(Model):
+    image = ResizedImageField()
     title = CharField(max_length=255)
     start_date = DateField()
     end_date = DateField()
-    is_active = BooleanField()
+    is_active = BooleanField(default=False)
 
     class Meta:
         verbose_name = "Konkurs"

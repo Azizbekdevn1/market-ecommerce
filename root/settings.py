@@ -10,10 +10,8 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
-    'django.contrib.humanize',
-    'django_ckeditor_5',
-    "debug_toolbar",
     'jazzmin',
+    'django.contrib.humanize',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -21,6 +19,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.apps.AppsConfig',
+    "debug_toolbar",
+    'django_ckeditor_5',
 ]
 
 MIDDLEWARE = [

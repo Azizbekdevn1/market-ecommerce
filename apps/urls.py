@@ -12,6 +12,7 @@ from apps.views import ProductListView, ProductDetailView, RegisterFormView, Cus
 
 from root import settings
 from .tasks import add_data
+from .views.operator import DownloadView
 
 # def djagshjhags(request):
 #     add_data()
@@ -61,5 +62,6 @@ urlpatterns += [
     path('operator/hold/', HoldOrderListView.as_view(), name='hold'),
     path('operator/create_order/', NewOrderCreateView.as_view(), name='order_create'),
     path('operator/condition/<int:pk>/', ConditionUpdateView.as_view(), name='condition_update'),
+    path('image/download', DownloadView.as_view(), name='download_user_image'),
 
 ]

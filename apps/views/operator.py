@@ -1,5 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import FileResponse
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic import ListView, UpdateView, CreateView
 
 from apps.forms import OrderAcceptedModelForm, OrderCreateModelForm
@@ -88,6 +90,13 @@ class NewOrderCreateView(CreateView, BaseOperatorListView):
         return super().form_invalid(form)
 
 
+class DownloadView(View):
+
+    def get(self, request):
+        user = request.user
+        return FileResponse(user.avatar.file, as_attachment=True)
+
+
 class ConditionUpdateView(UpdateView):
     model = Order
     form_class = OrderAcceptedModelForm
@@ -106,4 +115,3 @@ class ConditionUpdateView(UpdateView):
         context['regions'] = Region.objects.all()
         context['districts'] = District.objects.all()
         return context
-
