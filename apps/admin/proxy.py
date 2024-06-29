@@ -28,6 +28,7 @@ class CurrierProxyModelAdmin(UserAdmin):
 @admin.register(UserProxy)
 class UserProxyModelAdmin(UserUserAdmin):
     pass
+
     # addition_list_display = 'image_download',
     #
     # def get_urls(self):
@@ -37,20 +38,20 @@ class UserProxyModelAdmin(UserUserAdmin):
     #     old_urls = super().get_urls()
     #     return urls + old_urls
     #
-    # def download_image_view(self, request, pk):
-    #     user: User = User.objects.filter(pk=pk).first()
-    #     if user:
-    #         return FileResponse(user.avatar, as_attachment=True)
-    #
-    #     return JsonResponse({})
-    #
-    # def get_list_display(self, request):
-    #     return super().get_list_display(request) + self.addition_list_display
-    #
-    # @admin.action(description='Yuklash')
-    # def image_download(self, obj: UserProxy):
-    #     html = f'<a href="download-image/{obj.pk}" target="_blank"><button>Rasm</button></a>'
-    #     return mark_safe(html)
+    def download_image_view(self, request, pk):
+        user: User = User.objects.filter(pk=pk).first()
+        if user:
+            return FileResponse(user.avatar, as_attachment=True)
+
+        return JsonResponse({})
+
+    def get_list_display(self, request):
+        return super().get_list_display(request) + self.addition_list_display
+
+    @admin.action(description='Yuklash')
+    def image_download(self, obj: UserProxy):
+        html = f'<a href="download-image/{obj.pk}" target="_blank"><button>Rasm</button></a>'
+        return mark_safe(html)
 
 
 @admin.register(OperatorProxy)
